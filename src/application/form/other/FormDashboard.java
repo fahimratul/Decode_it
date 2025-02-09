@@ -21,11 +21,15 @@ public class FormDashboard extends javax.swing.JPanel {
         role.setText(Application.user.getRole());
         mobileno.setText(Application.user.getMobile());
 
-        username.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 14));
-        rank.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 14));
-        role.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 14));
-        mobileno.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 14));
-
+        username.putClientProperty(FlatClientProperties.STYLE, ""
+                + "font:200% $h1.font");
+        rank.putClientProperty(FlatClientProperties.STYLE, ""
+                + "font:$h2.font");
+        role.putClientProperty(FlatClientProperties.STYLE, ""
+                + "font:$h2.font"); 
+        mobileno.putClientProperty(FlatClientProperties.STYLE, ""
+                + "font:$h2.font"); 
+        
         
 
     }
