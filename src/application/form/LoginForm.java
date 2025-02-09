@@ -148,7 +148,11 @@ public class LoginForm extends javax.swing.JPanel {
             pstmt.setString(1, name);
             pstmt.setString(2, String.valueOf(password));
             try (ResultSet rs = pstmt.executeQuery()) {
-                return rs.next();
+                boolean flag= rs.next();
+                rs.close();
+                pstmt.close();
+                c.con.close();
+                return flag;
             }
         } catch (SQLException e) {
             return false;

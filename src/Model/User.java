@@ -67,6 +67,9 @@ public class User {
                     this.role = rs.getString("role");
                     this.mobile = rs.getString("mobile");
                 }
+                rs.close();
+                pstmt.close();
+                con.con.close();
             }
             Notifications.getInstance().show(Notifications.Type.SUCCESS, Notifications.Location.TOP_CENTER,"Welcome "+ this.name);
 

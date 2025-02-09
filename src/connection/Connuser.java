@@ -23,21 +23,4 @@ public class Connuser {
 
         }
     }
-    public void executeQuery(String query) {
-        ResultSet rs = null;
-        try {
-            rs = st.executeQuery(query);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            if (rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
-
 }
