@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import connection.Connuser;
+import raven.toast.Notifications;
 
 /**
  *
@@ -67,9 +68,10 @@ public class User {
                     this.dob = rs.getString("dob");
                     this.role = rs.getString("role");
                 }
+                Notifications.getInstance().show(Notifications.Type.SUCCESS, Notifications.Location.TOP_CENTER,"Welcome "+ name);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_CENTER,"Error while reading user data");
         }
 
     }
