@@ -54,10 +54,10 @@ public class User {
     
     public User(String name) {
         Connuser con= new Connuser();
-        String query = "SELECT * FROM users WHERE username = ? ";
-        try (PreparedStatement pstmt = con.con.prepareStatement(query)) {
-            pstmt.setString(1, name);
-            try (ResultSet rs = pstmt.executeQuery()) {
+        String query = "SELECT * FROM users WHERE username = ?";
+            try (PreparedStatement pstmt = con.con.prepareStatement(query)) {
+                pstmt.setString(1, name);
+                try (ResultSet rs = pstmt.executeQuery()) {
                 if(rs.next()){
                     this.name = rs.getString("username");
                     this.rank = rs.getString("rank");
@@ -65,15 +65,14 @@ public class User {
                     this.dob = rs.getString("dob");
                     this.password = rs.getString("password");
                     this.role = rs.getString("role");
-                    this.mobile = rs.getString("mobile");
+                    this.mobile = rs.getString("mobilenumber");
                 }
                 rs.close();
-                pstmt.close();
-                con.con.close();
+                con.con.close();    
             }
-            Notifications.getInstance().show(Notifications.Type.SUCCESS, Notifications.Location.TOP_CENTER,"Welcome "+ this.name);
-
-        } catch (SQLException e) {
+                Notifications.getInstance().show(Notifications.Type.SUCCESS, Notifications.Location.TOP_CENTER,"Welcome "+ this.name);
+            }    
+            catch (SQLException e) {
             Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_CENTER,"Error while reading user data");
         }
 
