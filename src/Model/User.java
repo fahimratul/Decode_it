@@ -67,8 +67,9 @@ public class User {
                     this.role = rs.getString("role");
                     this.mobile = rs.getString("mobile");
                 }
-                Notifications.getInstance().show(Notifications.Type.SUCCESS, Notifications.Location.TOP_CENTER,"Welcome "+ name);
             }
+            Notifications.getInstance().show(Notifications.Type.SUCCESS, Notifications.Location.TOP_CENTER,"Welcome "+ this.name);
+
         } catch (SQLException e) {
             Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_CENTER,"Error while reading user data");
         }

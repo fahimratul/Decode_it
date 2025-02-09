@@ -20,6 +20,7 @@ public class FormDashboard extends javax.swing.JPanel {
         rank.setText(Application.user.getRank());
         role.setText(Application.user.getRole());
         mobileno.setText(Application.user.getMobile());
+
         
 
     }
