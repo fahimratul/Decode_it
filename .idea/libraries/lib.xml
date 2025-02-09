@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dist/lib/flatlaf-extras-3.4.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/jsvg-1.4.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/miglayout-swing.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/flatlaf-3.4.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/swing-toast-notifications-1.0.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/flatlaf-fonts-roboto-2.137.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/miglayout-core.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/mysql-connector-j-9.1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
