@@ -119,6 +119,11 @@ public class LoginForm extends javax.swing.JPanel {
             if(checkuser()){
                 if(checkuser_password(txtUser.getText(),txtPass.getPassword())) {
                     Application.user= new User(txtUser.getText());
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
+                    }
                     Application.login();
                 }
                 else{

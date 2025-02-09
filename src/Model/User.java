@@ -53,7 +53,6 @@ public class User {
     }
     
     public User(String name) {
-        
         Connuser con= new Connuser();
         String query = "SELECT * FROM users WHERE username = ? ";
         try (PreparedStatement pstmt = con.con.prepareStatement(query)) {
@@ -63,10 +62,10 @@ public class User {
                     this.name = rs.getString("username");
                     this.rank = rs.getString("rank");
                     this.email = rs.getString("email");
-                    this.password = rs.getString("password");
-                    this.mobile = rs.getString("mobile");
                     this.dob = rs.getString("dob");
+                    this.password = rs.getString("password");
                     this.role = rs.getString("role");
+                    this.mobile = rs.getString("mobile");
                 }
                 Notifications.getInstance().show(Notifications.Type.SUCCESS, Notifications.Location.TOP_CENTER,"Welcome "+ name);
             }
