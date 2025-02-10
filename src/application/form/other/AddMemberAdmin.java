@@ -40,7 +40,7 @@ public class AddMemberAdmin extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new application.form.other.Addmember();
+        jPanel1 = new pannelcolor("#205072");
         AddBtn = new javax.swing.JButton();
         addmemName = new javax.swing.JLabel();
         lb = new javax.swing.JLabel();
