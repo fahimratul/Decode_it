@@ -19,13 +19,19 @@ public class FormDashboard extends javax.swing.JPanel {
         rank.setText(Application.user.getRank());
         role.setText(Application.user.getRole());
         mobileno.setText(Application.user.getMobile());
+        jName.putClientProperty(FlatClientProperties.STYLE, ""+"font:200% $h2.font");
 
         username.putClientProperty(FlatClientProperties.STYLE, ""
                 + "font:200% $h2.font");
+        jRank.putClientProperty(FlatClientProperties.STYLE, ""+"font:$h2.font");
+
         rank.putClientProperty(FlatClientProperties.STYLE, ""
                 + "font:$h2.font");
+        jRole.putClientProperty(FlatClientProperties.STYLE, ""+"font:$h2.font");
+
         role.putClientProperty(FlatClientProperties.STYLE, ""
                 + "font:$h2.font"); 
+        JMobile.putClientProperty(FlatClientProperties.STYLE, ""+"font:$h2.font");
         mobileno.putClientProperty(FlatClientProperties.STYLE, ""
                 + "font:$h2.font"); 
         
@@ -38,11 +44,15 @@ public class FormDashboard extends javax.swing.JPanel {
 
         lb = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jPanel1 = new pannelcolor("#7097AB");
+        jPanel1 = new application.form.other.pannelcolor();
         mobileno = new javax.swing.JLabel();
         username = new javax.swing.JLabel();
         rank = new javax.swing.JLabel();
         role = new javax.swing.JLabel();
+        jName = new javax.swing.JLabel();
+        jRole = new javax.swing.JLabel();
+        jRank = new javax.swing.JLabel();
+        JMobile = new javax.swing.JLabel();
 
         lb.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lb.setText("Dashboard");
@@ -62,30 +72,52 @@ public class FormDashboard extends javax.swing.JPanel {
 
         role.setText("jLabel1");
 
+        jName.setText("Name:");
+
+        jRole.setText("Role:");
+
+        jRank.setText("Rank:");
+
+        JMobile.setText("Mobile No: ");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(mobileno, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
-                    .addComponent(role, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(username, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(rank, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(91, 91, 91))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jRole, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JMobile, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                    .addComponent(jRank, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(username, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rank, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mobileno, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(role, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(80, 80, 80)
-                .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(username, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(rank, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(rank, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                    .addComponent(jRank, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(role, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(role, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRole, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(mobileno, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(mobileno, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JMobile, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(80, 80, 80))
         );
 
@@ -111,7 +143,7 @@ public class FormDashboard extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lb)
-                .addGap(54, 54, 54)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46)
                 .addComponent(jButton1)
@@ -124,8 +156,12 @@ public class FormDashboard extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel JMobile;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jName;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jRank;
+    private javax.swing.JLabel jRole;
     private javax.swing.JLabel lb;
     private javax.swing.JLabel mobileno;
     private javax.swing.JLabel rank;
