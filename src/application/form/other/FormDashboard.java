@@ -16,7 +16,7 @@ public class FormDashboard extends javax.swing.JPanel {
         lb.putClientProperty(FlatClientProperties.STYLE, ""
                 + "font:$h1.font");
 
-        username.setText(Application.user.getName());
+        username.setText(Application.user.getName().toUpperCase());
         rank.setText(Application.user.getRank());
         role.setText(Application.user.getRole());
         mobileno.setText(Application.user.getMobile());
