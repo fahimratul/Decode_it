@@ -1,6 +1,5 @@
 package application.form.other;
 
-import Model.User;
 import application.Application;
 import com.formdev.flatlaf.FlatClientProperties;
 import raven.toast.Notifications;
@@ -39,7 +38,7 @@ public class FormDashboard extends javax.swing.JPanel {
 
         lb = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jPanel1 = new application.form.other.Addmember();
+        jPanel1 = new pannelcolor("#7097AB");
         mobileno = new javax.swing.JLabel();
         username = new javax.swing.JLabel();
         rank = new javax.swing.JLabel();
