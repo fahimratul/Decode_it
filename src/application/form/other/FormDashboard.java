@@ -22,7 +22,7 @@ public class FormDashboard extends javax.swing.JPanel {
         mobileno.setText(Application.user.getMobile());
 
         username.putClientProperty(FlatClientProperties.STYLE, ""
-                + "font:200% $h1.font");
+                + "font:200% $h2.font");
         rank.putClientProperty(FlatClientProperties.STYLE, ""
                 + "font:$h2.font");
         role.putClientProperty(FlatClientProperties.STYLE, ""
