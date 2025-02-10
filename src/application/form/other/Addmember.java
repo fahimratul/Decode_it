@@ -14,8 +14,8 @@ public class Addmember extends JPanel {
     public Addmember() {
         setLayout(new MigLayout("fillx,wrap,insets 30 40 50 40, width 520", "[fill]", "[]20[][]15[][]30[]"));
         putClientProperty(FlatClientProperties.STYLE, ""
-                + "background:$Login.background;"
-                + "arc:20;");
+            + "background:#205072;"
+            + "arc:20;");
     }
 
 }
