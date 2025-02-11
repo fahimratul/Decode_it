@@ -104,6 +104,7 @@ public class MorsecodeLogic {
         for(Character c: input.toCharArray()) {
             output.append(morseCodeMap.get(c)+" ");
         }
+
         return output.toString();
     }
 }

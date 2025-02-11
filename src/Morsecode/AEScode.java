@@ -10,6 +10,7 @@ package Morsecode;
  */
 public class AEScode {
     public AEScode(){
+        int c=10;
 
     }
 }
