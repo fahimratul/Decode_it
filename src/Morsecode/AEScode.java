@@ -61,7 +61,7 @@ public class AEScode {
             AEScode aes = new AEScode();
             aes.initFromStrings("CHuO1Fjd8YgJqTyapibFBQ==", "e3IYYJC2hxe24/EO");
             Scanner scanner = new Scanner(System.in);
-            System.out.println("Enter Your Text:");
+            System.out.println("Enter Your Message:");
             String input = scanner.nextLine();
             String encryptedMessage = aes.encrypt(input);
             scanner.close();
