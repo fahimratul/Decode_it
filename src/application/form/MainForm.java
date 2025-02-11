@@ -74,13 +74,13 @@ public class MainForm extends JLayeredPane {
                 Application.showForm(new FormDashboard());
             } else if (index == 1) {
                 if (subIndex == 1) {
-                    Application.showForm(new AddMemberAdmin());
+
                 } else if (subIndex == 2) {
                     Application.showForm(new FormRead());
                 } else {
                     action.cancel();
                 }
-            } else if (index == 3) {
+            } else if (index == 2) {
                 Application.logout();
             } else {
                 action.cancel();
