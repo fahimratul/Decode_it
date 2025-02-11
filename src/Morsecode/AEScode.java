@@ -9,5 +9,7 @@ package Morsecode;
  * @author TANVIR JAKARIA LITU
  */
 public class AEScode {
-    
+    public AEScode(){
+
+    }
 }
