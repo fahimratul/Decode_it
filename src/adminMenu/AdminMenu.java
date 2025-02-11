@@ -42,10 +42,8 @@ public class AdminMenu extends JPanel {
         {"~MAIN~"},
         {"Dashboard"},
         {"New Member"},
-        {"Change Code"},
-        {"~WEB APP~"},
-        {"Email", "Inbox", "Read"},
-        {"Chat"},
+        {"~Change Code~"},
+        {"Morse code"},
         {"~OTHER~"},
         {"Logout"}
     };
