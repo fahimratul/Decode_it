@@ -61,7 +61,7 @@ class Caesercypher{
             System.out.println(decipher( etext.toString() , key ));
 
         } catch ( IOException e ) {
-            //TODO: handle exception
+            /* TODO: handle exception */
             e.printStackTrace();
         }
     }
