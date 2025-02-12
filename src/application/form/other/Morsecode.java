@@ -13,9 +13,6 @@ import com.formdev.flatlaf.FlatClientProperties;
  */
 public class Morsecode  extends javax.swing.JPanel{
 
-    /**
-     * Creates new form Morsecode
-     */
     public Morsecode() {
         initComponents();
 
