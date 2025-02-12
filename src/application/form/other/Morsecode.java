@@ -4,13 +4,14 @@
  */
 package application.form.other;
 
+
 import com.formdev.flatlaf.FlatClientProperties;
 
 /**
  *
  * @author RATUL
  */
-public class Morsecode extends javax.swing.JFrame {
+public class Morsecode  extends javax.swing.JPanel{
 
     /**
      * Creates new form Morsecode
@@ -33,7 +34,7 @@ public class Morsecode extends javax.swing.JFrame {
                 + "font:$h2.font");
         ouputbox.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT,"Morse Code Will Be Here");
         ouputbox.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.BLACK));
-        
+
 
     }
 
