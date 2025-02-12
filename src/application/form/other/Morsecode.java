@@ -23,7 +23,11 @@ public class Morsecode extends javax.swing.JFrame {
                 + "borderWidth:0;"
                 + "focusWidth:0");
         changebotton.putClientProperty( "JButton.buttonType", "roundRect" );
-
+        changebotton.putClientProperty("JButton.background", "#205072");
+        changebotton.putClientProperty("JButton.foreground", "#ffffff");
+        changebotton.putClientProperty("JButton.hoverBackground", "#205072");
+        changebotton.putClientProperty("JButton.hoverForeground", "#ffffff");
+        changebotton.putClientProperty("jButton.settext", "Convert");
         textbox.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT,"Enter Your Text Here");
 
 
