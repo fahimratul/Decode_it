@@ -56,16 +56,16 @@ public class Morsecode extends javax.swing.JPanel {
         outputbox = new javax.swing.JLabel();
         ChangeButton = new javax.swing.JButton();
 
-        Title.setText("jLabel1");
+        Title.setText("TEXT TO MORSECODE");
 
-        Textbox.setText("jTextField1");
+        Textbox.setText("");
         Textbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TextboxActionPerformed(evt);
             }
         });
 
-        outputbox.setText("jLabel1");
+        outputbox.setText("Morsecode will be here");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -88,7 +88,7 @@ public class Morsecode extends javax.swing.JPanel {
                 .addGap(40, 40, 40))
         );
 
-        ChangeButton.setText("jButton1");
+        ChangeButton.setText("Convert");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
