@@ -7,7 +7,6 @@ package application.form.other;
 import java.awt.Color;
 
 import com.formdev.flatlaf.FlatClientProperties;
-import java.awt.Color;
 import raven.toast.Notifications;
 import Morsecode.MorsecodeLogic;
 /**
@@ -35,12 +34,14 @@ public class Morsecode extends javax.swing.JPanel {
         ChangeButton.putClientProperty( "JButton.buttonType", "roundRect" );
         
         Textbox.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT,"Enter Your Text Here");
+        
         outputbox.putClientProperty(FlatClientProperties.STYLE, ""
             + "font:$h1.font");
         outputbox.setOpaque(true);
         outputbox.setBackground(Color.decode("#003135"));
+        outputbox.setForeground(Color.decode("#D3D9D4"));
+        
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
