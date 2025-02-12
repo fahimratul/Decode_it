@@ -25,14 +25,15 @@ public class Morsecode extends javax.swing.JPanel {
         initComponents();
 
         Title.putClientProperty(FlatClientProperties.STYLE, ""
-                + "font:$h1.font");
+                + "font: 130% $h1.font");
 
         ChangeButton.putClientProperty(FlatClientProperties.STYLE, ""
-                + "borderWidth:0;"
-                + "focusWidth:0;"
-                + "background:#0AF4AF;");
-        ChangeButton.putClientProperty( "JButton.buttonType", "roundRect" );
+            + "borderWidth:0;"
+            + "focusWidth:0;");
+        ChangeButton.setBackground(Color.decode("#0FA4AF"));
 
+        ChangeButton.putClientProperty( "JButton.buttonType", "roundRect" );
+        
         Textbox.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT,"Enter Your Text Here");
         outputbox.putClientProperty(FlatClientProperties.STYLE, ""
             + "font:$h1.font");
@@ -55,11 +56,16 @@ public class Morsecode extends javax.swing.JPanel {
         outputbox = new javax.swing.JLabel();
         ChangeButton = new javax.swing.JButton();
 
-        Title.setText("Text To Morse Code");
+        Title.setText("jLabel1");
 
-        Textbox.setText("");
+        Textbox.setText("jTextField1");
+        Textbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextboxActionPerformed(evt);
+            }
+        });
 
-        outputbox.setText("Morse Code will be here");
+        outputbox.setText("jLabel1");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -76,18 +82,13 @@ public class Morsecode extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addComponent(Textbox, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Textbox, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
                 .addGap(33, 33, 33)
-                .addComponent(outputbox, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(outputbox, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
                 .addGap(40, 40, 40))
         );
 
-        ChangeButton.setText("CONVERT");
-        ChangeButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ChangeButtonActionPerformed(evt);
-            }
-        });
+        ChangeButton.setText("jButton1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -109,11 +110,15 @@ public class Morsecode extends javax.swing.JPanel {
                 .addComponent(Title, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 47, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addComponent(ChangeButton)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addGap(41, 41, 41)
+                .addComponent(ChangeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void TextboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextboxActionPerformed
 
     private  void ChangeButtonActionPerformed(java.awt.event.ActionEvent evt) {
         if (Textbox.getText().equals("")) {

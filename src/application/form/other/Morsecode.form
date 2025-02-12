@@ -36,9 +36,9 @@
               <Component id="Title" min="-2" pref="46" max="-2" attributes="0"/>
               <EmptySpace type="separate" pref="47" max="32767" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-              <Component id="ChangeButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="35" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+              <Component id="ChangeButton" min="-2" pref="39" max="-2" attributes="0"/>
+              <EmptySpace pref="28" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -71,9 +71,9 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                  <Component id="Textbox" min="-2" pref="85" max="-2" attributes="0"/>
+                  <Component id="Textbox" pref="85" max="32767" attributes="0"/>
                   <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                  <Component id="outputbox" min="-2" pref="84" max="-2" attributes="0"/>
+                  <Component id="outputbox" pref="84" max="32767" attributes="0"/>
                   <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -84,6 +84,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="jTextField1"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TextboxActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="outputbox">
           <Properties>
