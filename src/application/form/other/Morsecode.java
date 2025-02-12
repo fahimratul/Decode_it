@@ -31,17 +31,12 @@ public class Morsecode extends javax.swing.JPanel {
         ChangeButton.putClientProperty("JButton.foreground", "#ffffff");
         ChangeButton.putClientProperty("JButton.hoverBackground", "#003135");
         ChangeButton.putClientProperty("JButton.hoverForeground", "#ffffff");
-        ChangeButton.putClientProperty("jButton.settext", "Convert");
         Textbox.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT,"Enter Your Text Here");
         outputbox.putClientProperty(FlatClientProperties.STYLE, ""
                 + "font:$h1.font");
         
         outputbox.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.BLACK));
-        outputbox.putClientProperty(FlatClientProperties.STYLE, ""
-                + "background:#ffffff;"
-                + "arc:10;"
-                + "focusWidth:0;"
-                + "borderWidth:0");
+
 
     }
 
