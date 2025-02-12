@@ -15,11 +15,6 @@ import Morsecode.MorsecodeLogic;
  */
 public class Morsecode extends javax.swing.JPanel {
 
-    /**
-     * Creates new form Morsecode
-     */
-
-
     public Morsecode() {
         initComponents();
 
@@ -59,12 +54,6 @@ public class Morsecode extends javax.swing.JPanel {
 
         Title.setText("TEXT TO MORSECODE");
 
-        Textbox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TextboxActionPerformed(evt);
-            }
-        });
-
         outputbox.setText("Your Morse Code will be Here");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -89,9 +78,9 @@ public class Morsecode extends javax.swing.JPanel {
         );
 
         ChangeButton.setText("Convert");
-        ChangeButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ChangeButtonMouseClicked(evt);
+        ChangeButton.addActionListener(new java.awt.event.ActionListener(){
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChangeButtonActionPerformed(evt);
             }
         });
 
@@ -121,13 +110,6 @@ public class Morsecode extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TextboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextboxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TextboxActionPerformed
-
-    private void ChangeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChangeButtonMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ChangeButtonMouseClicked
 
     private  void ChangeButtonActionPerformed(java.awt.event.ActionEvent evt) {
         if (Textbox.getText().equals("")) {
