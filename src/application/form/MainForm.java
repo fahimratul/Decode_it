@@ -17,7 +17,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import application.Application;
 import application.form.other.FormDashboard;
-import application.form.other.Morsecode;
 import menu.Menu;
 import menu.MenuAction;
 
@@ -72,7 +71,7 @@ public class MainForm extends JLayeredPane {
                 Application.showForm(new FormDashboard());
             } else if (index == 1) {
                 if (subIndex == 1) {
-                    Application.showForm(new Morsecode());
+                    //Application.showForm(new Morsecode());
                 } else if (subIndex == 2) {
                     //Application.showForm();
                 } else {
