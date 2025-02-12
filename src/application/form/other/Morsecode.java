@@ -4,6 +4,8 @@
  */
 package application.form.other;
 
+import com.formdev.flatlaf.FlatClientProperties;
+
 /**
  *
  * @author RATUL
@@ -15,6 +17,25 @@ public class Morsecode extends javax.swing.JPanel {
      */
     public Morsecode() {
         initComponents();
+
+        Title.putClientProperty(FlatClientProperties.STYLE, ""
+                + "font:$h1.font");
+        ChangeButton.putClientProperty(FlatClientProperties.STYLE, ""
+                + "borderWidth:0;"
+                + "focusWidth:0");
+        ChangeButton.putClientProperty( "JButton.buttonType", "roundRect" );
+        ChangeButton.putClientProperty("JButton.background", "#205072");
+        ChangeButton.putClientProperty("JButton.foreground", "#ffffff");
+        ChangeButton.putClientProperty("JButton.hoverBackground", "#205072");
+        ChangeButton.putClientProperty("JButton.hoverForeground", "#ffffff");
+        ChangeButton.putClientProperty("jButton.settext", "Convert");
+        Textbox.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT,"Enter Your Text Here");
+        outputbox.putClientProperty(FlatClientProperties.STYLE, ""
+                + "font:$h2.font");
+        outputbox.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT,"Morse Code Will Be Here");
+        outputbox.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.BLACK));
+
+
     }
 
     /**
