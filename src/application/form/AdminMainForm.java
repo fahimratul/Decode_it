@@ -19,7 +19,6 @@ import javax.swing.border.EmptyBorder;
 import application.Application;
 import application.form.other.FormDashboard;
 import application.form.other.AddMemberAdmin;
-import application.form.other.FormRead;
 import adminMenu.AdminMenu;
 
 /**
@@ -84,7 +83,7 @@ public class AdminMainForm extends JLayeredPane {
             }
             else if (index == 2) {
                 System.out.println(subIndex);
-                Application.showForm_admin(new FormRead());
+                //Application.showForm_admin();
             }
             else if (index == 3) {
                 Application.logout();

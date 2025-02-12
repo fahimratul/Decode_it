@@ -17,8 +17,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import application.Application;
 import application.form.other.FormDashboard;
-import application.form.other.AddMemberAdmin;
-import application.form.other.FormRead;
 import menu.Menu;
 import menu.MenuAction;
 
@@ -76,7 +74,7 @@ public class MainForm extends JLayeredPane {
                 if (subIndex == 1) {
 
                 } else if (subIndex == 2) {
-                    Application.showForm(new FormRead());
+                    //Application.showForm();
                 } else {
                     action.cancel();
                 }
