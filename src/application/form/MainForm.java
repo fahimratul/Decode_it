@@ -1,5 +1,6 @@
 package application.form;
 
+import application.form.other.Morsecode;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import com.formdev.flatlaf.util.UIScale;
@@ -71,7 +72,7 @@ public class MainForm extends JLayeredPane {
                 Application.showForm(new FormDashboard());
             } else if (index == 1) {
                 if (subIndex == 1) {
-                    //Application.showForm(new Morsecode());
+                    Application.showForm(new Morsecode());
                 } else if (subIndex == 2) {
                     //Application.showForm();
                 } else {

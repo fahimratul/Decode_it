@@ -15,6 +15,8 @@ public class Morsecode extends javax.swing.JPanel {
     /**
      * Creates new form Morsecode
      */
+
+
     public Morsecode() {
         initComponents();
 
