@@ -50,6 +50,9 @@
       </Properties>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel1">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new application.form.other.pannelcolor(&quot;#90AEAD&quot;);"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">

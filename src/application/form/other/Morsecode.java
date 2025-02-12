@@ -5,7 +5,8 @@
 package application.form.other;
 
 import com.formdev.flatlaf.FlatClientProperties;
-
+import raven.toast.Notifications;
+import Morsecode.MorsecodeLogic;
 /**
  *
  * @author RATUL
@@ -32,9 +33,9 @@ public class Morsecode extends javax.swing.JPanel {
         ChangeButton.putClientProperty("JButton.hoverForeground", "#ffffff");
         ChangeButton.putClientProperty("jButton.settext", "Convert");
         Textbox.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT,"Enter Your Text Here");
+        outputbox.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT,"Morsecode will be here");
         outputbox.putClientProperty(FlatClientProperties.STYLE, ""
                 + "font:$h2.font");
-        outputbox.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT,"Morse Code Will Be Here");
         outputbox.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.BLACK));
 
 
@@ -50,16 +51,16 @@ public class Morsecode extends javax.swing.JPanel {
     private void initComponents() {
 
         Title = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        jPanel1 = new application.form.other.pannelcolor("#90AEAD");
         Textbox = new javax.swing.JTextField();
         outputbox = new javax.swing.JLabel();
         ChangeButton = new javax.swing.JButton();
 
-        Title.setText("jLabel1");
+        Title.setText("Text To Morse Code");
 
-        Textbox.setText("jTextField1");
+        Textbox.setText("");
 
-        outputbox.setText("jLabel1");
+        outputbox.setText("");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -82,7 +83,12 @@ public class Morsecode extends javax.swing.JPanel {
                 .addGap(40, 40, 40))
         );
 
-        ChangeButton.setText("jButton1");
+        ChangeButton.setText("CONVERT");
+        ChangeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChangeButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -109,6 +115,14 @@ public class Morsecode extends javax.swing.JPanel {
                 .addContainerGap(35, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private  void ChangeButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        if (Textbox.getText().equals("")) {
+            Notifications.getInstance().show(Notifications.Type.ERROR, "Please Enter Your Text Here");
+            return;
+        }
+        outputbox.setText(new MorsecodeLogic().getMorseCode(Textbox.getText()));
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
