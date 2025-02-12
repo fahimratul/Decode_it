@@ -14,27 +14,27 @@ public class FormDashboard extends javax.swing.JPanel {
         initComponents();
         lb.putClientProperty(FlatClientProperties.STYLE, ""
                 + "font:$h1.font");
+        if(Application.user!=null) {
+            username.setText(Application.user.getName().toUpperCase());
+            rank.setText(Application.user.getRank());
+            role.setText(Application.user.getRole());
+            mobileno.setText(Application.user.getMobile());
+            jName.putClientProperty(FlatClientProperties.STYLE, "" + "font:200% $h2.font");
 
-        username.setText(Application.user.getName().toUpperCase());
-        rank.setText(Application.user.getRank());
-        role.setText(Application.user.getRole());
-        mobileno.setText(Application.user.getMobile());
-        jName.putClientProperty(FlatClientProperties.STYLE, ""+"font:200% $h2.font");
+            username.putClientProperty(FlatClientProperties.STYLE, ""
+                    + "font:200% $h2.font");
+            jRank.putClientProperty(FlatClientProperties.STYLE, "" + "font:$h2.font");
 
-        username.putClientProperty(FlatClientProperties.STYLE, ""
-                + "font:200% $h2.font");
-        jRank.putClientProperty(FlatClientProperties.STYLE, ""+"font:$h2.font");
+            rank.putClientProperty(FlatClientProperties.STYLE, ""
+                    + "font:$h2.font");
+            jRole.putClientProperty(FlatClientProperties.STYLE, "" + "font:$h2.font");
 
-        rank.putClientProperty(FlatClientProperties.STYLE, ""
-                + "font:$h2.font");
-        jRole.putClientProperty(FlatClientProperties.STYLE, ""+"font:$h2.font");
-
-        role.putClientProperty(FlatClientProperties.STYLE, ""
-                + "font:$h2.font"); 
-        JMobile.putClientProperty(FlatClientProperties.STYLE, ""+"font:$h2.font");
-        mobileno.putClientProperty(FlatClientProperties.STYLE, ""
-                + "font:$h2.font"); 
-        
+            role.putClientProperty(FlatClientProperties.STYLE, ""
+                    + "font:$h2.font");
+            JMobile.putClientProperty(FlatClientProperties.STYLE, "" + "font:$h2.font");
+            mobileno.putClientProperty(FlatClientProperties.STYLE, ""
+                    + "font:$h2.font");
+        }
         
 
     }
