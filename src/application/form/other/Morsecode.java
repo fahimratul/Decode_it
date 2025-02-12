@@ -4,7 +4,10 @@
  */
 package application.form.other;
 
+import java.awt.Color;
+
 import com.formdev.flatlaf.FlatClientProperties;
+import java.awt.Color;
 import raven.toast.Notifications;
 import Morsecode.MorsecodeLogic;
 /**
@@ -33,10 +36,14 @@ public class Morsecode extends javax.swing.JPanel {
         ChangeButton.putClientProperty("JButton.hoverForeground", "#ffffff");
         Textbox.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT,"Enter Your Text Here");
         outputbox.putClientProperty(FlatClientProperties.STYLE, ""
-            + "font:$h1.font"+ "background:#2F4F4F");
-
-        outputbox.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.BLACK));
-
+            + "font:$h1.font");
+        outputbox.setBorder(javax.swing.BorderFactory.createCompoundBorder(
+            javax.swing.BorderFactory.createLineBorder(java.awt.Color.BLACK),
+            javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)
+        ));
+        outputbox.putClientProperty(FlatClientProperties.STYLE, "borderRadius:10");
+        outputbox.setOpaque(true);
+        outputbox.setBackground(Color.decode("#003135"));
     }
 
     /**
