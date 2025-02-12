@@ -19,7 +19,15 @@ public class Morsecode extends javax.swing.JFrame {
         initComponents();
         Title.putClientProperty(FlatClientProperties.STYLE, ""
                 + "font:$h1.font");
-        
+        changebotton.putClientProperty(FlatClientProperties.STYLE, ""
+                + "borderWidth:0;"
+                + "focusWidth:0");
+        changebotton.putClientProperty( "JButton.buttonType", "roundRect" );
+
+        textbox.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT,"Enter Your Text Here");
+
+
+
     }
 
     /**
