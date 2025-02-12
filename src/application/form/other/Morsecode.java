@@ -37,10 +37,7 @@ public class Morsecode extends javax.swing.JPanel {
         Textbox.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT,"Enter Your Text Here");
         outputbox.putClientProperty(FlatClientProperties.STYLE, ""
             + "font:$h1.font");
-        outputbox.setBorder(javax.swing.BorderFactory.createCompoundBorder(
-            javax.swing.BorderFactory.createLineBorder(java.awt.Color.BLACK),
-            javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)
-        ));
+        outputbox.putClientProperty("JLabel.roundRect", true);
         outputbox.putClientProperty(FlatClientProperties.STYLE, "borderRadius:10");
         outputbox.setOpaque(true);
         outputbox.setBackground(Color.decode("#003135"));
