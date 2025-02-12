@@ -59,14 +59,13 @@ public class Morsecode extends javax.swing.JPanel {
 
         Title.setText("TEXT TO MORSECODE");
 
-        Textbox.setText("");
         Textbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TextboxActionPerformed(evt);
             }
         });
 
-        outputbox.setText("Morsecode will be here");
+        outputbox.setText("Your Morse Code will be Here");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -74,7 +73,7 @@ public class Morsecode extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(outputbox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Textbox, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE))
                 .addGap(40, 40, 40))
@@ -86,13 +85,13 @@ public class Morsecode extends javax.swing.JPanel {
                 .addComponent(Textbox, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
                 .addGap(33, 33, 33)
                 .addComponent(outputbox, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
-                .addGap(40, 40, 40))
+                .addGap(49, 49, 49))
         );
 
         ChangeButton.setText("Convert");
-        ChangeButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ChangeButtonActionPerformed(evt);
+        ChangeButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ChangeButtonMouseClicked(evt);
             }
         });
 
@@ -114,17 +113,21 @@ public class Morsecode extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(Title, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 47, Short.MAX_VALUE)
+                .addGap(18, 42, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
                 .addComponent(ChangeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void TextboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextboxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TextboxActionPerformed
+
+    private void ChangeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChangeButtonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ChangeButtonMouseClicked
 
     private  void ChangeButtonActionPerformed(java.awt.event.ActionEvent evt) {
         if (Textbox.getText().equals("")) {
