@@ -29,8 +29,11 @@ public class Morsecode extends javax.swing.JFrame {
         changebotton.putClientProperty("JButton.hoverForeground", "#ffffff");
         changebotton.putClientProperty("jButton.settext", "Convert");
         textbox.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT,"Enter Your Text Here");
-
-
+        ouputbox.putClientProperty(FlatClientProperties.STYLE, ""
+                + "font:$h2.font");
+        ouputbox.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT,"Morse Code Will Be Here");
+        ouputbox.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.BLACK));
+        
 
     }
 
