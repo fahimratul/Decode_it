@@ -18,6 +18,8 @@ public class Morsecode  extends javax.swing.JPanel{
      */
     public Morsecode() {
         initComponents();
+
+
         Title.putClientProperty(FlatClientProperties.STYLE, ""
                 + "font:$h1.font");
         changebotton.putClientProperty(FlatClientProperties.STYLE, ""
@@ -53,7 +55,6 @@ public class Morsecode  extends javax.swing.JPanel{
         ouputbox = new javax.swing.JLabel();
         changebotton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         Title.setText("Text To Morse Code");
 
@@ -84,8 +85,8 @@ public class Morsecode  extends javax.swing.JPanel{
 
         changebotton.setText("jButton1");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -109,7 +110,6 @@ public class Morsecode  extends javax.swing.JPanel{
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     /**
