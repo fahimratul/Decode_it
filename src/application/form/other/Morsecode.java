@@ -2,11 +2,8 @@
 package application.form.other;
 
 import java.awt.Color;
-import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
-import javax.swing.*;
-
-
+import java.awt.event.KeyListener;
 import com.formdev.flatlaf.FlatClientProperties;
 
 import raven.toast.Notifications;
@@ -15,7 +12,7 @@ import Morsecode.MorsecodeLogic;
  *
  * @author RATUL
  */
-public class Morsecode extends javax.swing.JPanel {
+public class Morsecode extends javax.swing.JPanel implements KeyListener {
 
     public Morsecode() {
         initComponents();
@@ -42,6 +39,12 @@ public class Morsecode extends javax.swing.JPanel {
 
         Outputbox.setLineWrap(true);
         Outputbox.setWrapStyleWord(true);
+
+        ChangeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChangeButtonActionPerformed(evt);
+            }
+        });
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -93,7 +96,11 @@ public class Morsecode extends javax.swing.JPanel {
         );
 
         ChangeButton.setText("Convert");
-
+        ChangeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChangeButtonActionPerformed(evt);
+            }
+        });
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -141,12 +148,8 @@ public class Morsecode extends javax.swing.JPanel {
 
     @Override
     public void keyReleased(KeyEvent e) {
-        // ignore shift key press
         if(e.getKeyCode() != KeyEvent.VK_SHIFT){
-            // retrieve text input
             String inputText = TextBox.getText();
-
-            // update the GUI with the translated text
             Outputbox.setText(new MorsecodeLogic().getMorseCode(inputText));
         }
     }
