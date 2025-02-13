@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package application.form.other;
 
 import java.awt.Color;
@@ -10,6 +7,8 @@ import javax.swing.*;
 
 
 import com.formdev.flatlaf.FlatClientProperties;
+import com.github.weisj.jsvg.nodes.text.Text;
+
 import raven.toast.Notifications;
 import Morsecode.MorsecodeLogic;
 /**
@@ -38,6 +37,12 @@ public class Morsecode extends javax.swing.JPanel {
         outputbox.setOpaque(true);
         outputbox.setBackground(Color.decode("#003135"));
         outputbox.setForeground(Color.decode("#D3D9D4"));
+
+        outputbox.setLineWrap(true);
+        outputbox.setWrapStyleWord(true);
+
+
+
         
     }
     /**
@@ -52,12 +57,13 @@ public class Morsecode extends javax.swing.JPanel {
         Title = new javax.swing.JLabel();
         jPanel1 = new application.form.other.pannelcolor("#90AEAD");
         Textbox = new javax.swing.JTextField();
-        outputbox = new javax.swing.JLabel();
+        outputbox = new javax.swing.JTextArea();
         ChangeButton = new javax.swing.JButton();
 
         Title.setText("TEXT TO MORSECODE");
 
         outputbox.setText("Your Morse Code will be Here");
+
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -128,6 +134,6 @@ public class Morsecode extends javax.swing.JPanel {
     private javax.swing.JTextField Textbox;
     private javax.swing.JLabel Title;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel outputbox;
+    private javax.swing.JTextArea outputbox;
     // End of variables declaration//GEN-END:variables
 }
