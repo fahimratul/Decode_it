@@ -5,6 +5,9 @@
 package application.form.other;
 
 import java.awt.Color;
+import java.awt.GridLayout;
+import javax.swing.*;
+
 
 import com.formdev.flatlaf.FlatClientProperties;
 import raven.toast.Notifications;
