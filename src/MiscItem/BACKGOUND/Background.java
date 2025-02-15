@@ -77,12 +77,12 @@ public class Background extends JComponent {
             BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
             Graphics2D g2 = img.createGraphics();
             g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-            Shape shape = new FancyBorderRadius(width, height, "32% 68% 65% 35% / 60% 78% 22% 40%").getShape();
+            Shape shape = new FancyBorderRadius(width, height, "34% 66% 38% 62% / 51% 23% 77% 49% ").getShape();
             g2.fill(shape);
             g2.setComposite(AlphaComposite.SrcIn);
             g2.drawImage(ImageUtil.blur(bufferedImage.getSubimage(x, y, width, height), 30f), 0, 0, null);
             g2.setComposite(AlphaComposite.SrcOver);
-            g2.setColor(new Color(255, 255, 255, 20));
+            g2.setColor(new Color(255, 255, 255, 10));
             g2.fill(shape);
             g2.dispose();
             g.drawImage(new ShadowRenderer(shadow, 0.3f, new Color(0, 0, 0)).createShadow(img), (int) (x - shadow * 0.8f), (int) (y - shadow * 0.8f), null);
