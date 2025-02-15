@@ -18,7 +18,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
 import MiscItem.border.FancyBorderRadius;
-import shadow.ShadowRenderer;
+import MiscItem.shadow.ShadowRenderer;
 
 /**
  *
@@ -46,7 +46,7 @@ public class Background extends JComponent {
     private Component blur;
 
     public Background() {
-        image = new ImageIcon(getClass().getResource("/login/img_2.jpg"));
+        image = new ImageIcon(getClass().getResource("/MiscItem/BACKGOUND/img.jpg"));
     }
 
     private void createImage() {
