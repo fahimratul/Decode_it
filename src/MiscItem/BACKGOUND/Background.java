@@ -45,10 +45,14 @@ public class Background extends JComponent {
     private BufferedImage bufferedImage;
     private Component blur;
 
-    public Background() {
-        image = new ImageIcon(getClass().getResource("/MiscItem/BACKGOUND/img.jpg"));
+    public Background(String path) {
+        if (path != null) {
+            image = new ImageIcon(getClass().getResource(path));
+        }
+        else{
+            image= new ImageIcon(getClass().getResource("/MiscItem/BACKGOUND/img.jpg"));
+        }
     }
-
     private void createImage() {
         if (image != null) {
             int width = getWidth();
@@ -133,8 +137,8 @@ public class Background extends JComponent {
         if (height < 1) {
             height = 1;
         }
-        int x = (w - width) / 2;
-        int y = (h - height) / 2;
-        return new Rectangle(new Point(x, y), new Dimension(width, height));
+//        int x = (w - width) / 2;
+//        int y = (h - height) / 2;
+        return new Rectangle(new Point(0, 0), new Dimension(width, height));
     }
 }
