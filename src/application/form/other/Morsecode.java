@@ -14,8 +14,6 @@ import Morsecode.MorsecodeLogic;
  */
 public class Morsecode extends javax.swing.JPanel implements KeyListener {
 
-    public MorsecodeLogic logic = new MorsecodeLogic();
-
     public Morsecode() {
         initComponents();
 
@@ -34,8 +32,7 @@ public class Morsecode extends javax.swing.JPanel implements KeyListener {
 
         Outputbox.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT,"Your morse code will be here");
         Outputbox.setEditable(false);
-        Outputbox.putClientProperty(FlatClientProperties.STYLE, ""+ "font: $h2.font");
-        Outputbox.setForeground(Color.decode("#F8F4FF"));
+        Outputbox.putClientProperty(FlatClientProperties.STYLE, ""+ "font: 130 $h2.font");
 
         TextBox.setLineWrap(true);
         TextBox.setWrapStyleWord(true);
@@ -43,6 +40,11 @@ public class Morsecode extends javax.swing.JPanel implements KeyListener {
         Outputbox.setLineWrap(true);
         Outputbox.setWrapStyleWord(true);
 
+        ChangeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChangeButtonActionPerformed(evt);
+            }
+        });
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -64,17 +66,13 @@ public class Morsecode extends javax.swing.JPanel implements KeyListener {
         Title.setText("TEXT TO MORSECODE");
 
         Outputbox.setColumns(20);
-        Outputbox.setLineWrap(true);
         Outputbox.setRows(5);
-        Outputbox.setWrapStyleWord(true);
         Outputboxpane.setViewportView(Outputbox);
 
         TextBox.setColumns(20);
         TextBox.setRows(5);
-        TextBox.addKeyListener(this);
-
-
         inptutboxpane.setViewportView(TextBox);
+        TextBox.addKeyListener(this);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -83,30 +81,26 @@ public class Morsecode extends javax.swing.JPanel implements KeyListener {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(inptutboxpane, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Outputboxpane, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(inptutboxpane, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
+                    .addComponent(Outputboxpane))
                 .addGap(40, 40, 40))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addContainerGap(39, Short.MAX_VALUE)
                 .addComponent(inptutboxpane, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(Outputboxpane, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40))
+                .addGap(18, 18, 18)
+                .addComponent(Outputboxpane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62))
         );
 
         ChangeButton.setText("Convert");
-
         ChangeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ChangeButtonActionPerformed(evt);
             }
         });
-
-
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -156,10 +150,9 @@ public class Morsecode extends javax.swing.JPanel implements KeyListener {
     public void keyReleased(KeyEvent e) {
         if(e.getKeyCode() != KeyEvent.VK_SHIFT){
             String inputText = TextBox.getText();
-            Outputbox.setText(logic.getMorseCode(inputText));
+            Outputbox.setText(new MorsecodeLogic().getMorseCode(inputText));
         }
     }
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -170,5 +163,5 @@ public class Morsecode extends javax.swing.JPanel implements KeyListener {
     private javax.swing.JLabel Title;
     private javax.swing.JScrollPane inptutboxpane;
     private javax.swing.JPanel jPanel1;
-    // End of variables declaration
+    // End of variables declaration//GEN-END:variables
 }

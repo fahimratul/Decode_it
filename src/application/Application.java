@@ -11,9 +11,8 @@ import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
-import application.form.LoginForm;
+import javax.swing.*;
+
 import application.form.MainForm;
 import raven.toast.Notifications;
 import application.form.AdminMainForm;
@@ -29,6 +28,7 @@ public class Application extends javax.swing.JFrame {
     private final Adminlogin adminlogin;
     private final AdminMainForm adminMainForm;
     public static User user;
+
     public Application() {
         initComponents();
         setSize(new Dimension(1366, 768));
@@ -37,7 +37,6 @@ public class Application extends javax.swing.JFrame {
         loginForm = new LoginForm();
         adminlogin = new Adminlogin();
         adminMainForm = new AdminMainForm();
-        //isadmin = false;
         setContentPane(loginForm);
         getRootPane().putClientProperty(FlatClientProperties.FULL_WINDOW_CONTENT, true);
         Notifications.getInstance().setJFrame(this);
