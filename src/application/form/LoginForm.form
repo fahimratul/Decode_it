@@ -38,9 +38,6 @@
           <ComponentRef name="panelLogin1"/>
         </Property>
       </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new MiscItem.BACKGOUND.Background(&quot;/MiscItem/BACKGOUND/img.jpg&quot;)"/>
-      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">

@@ -45,13 +45,8 @@ public class Background extends JComponent {
     private BufferedImage bufferedImage;
     private Component blur;
 
-    public Background(String path) {
-        if (path != null) {
-            image = new ImageIcon(getClass().getResource(path));
-        }
-        else{
+    public Background() {
             image= new ImageIcon(getClass().getResource("/MiscItem/BACKGOUND/img.jpg"));
-        }
     }
     private void createImage() {
         if (image != null) {

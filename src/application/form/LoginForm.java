@@ -42,7 +42,7 @@ public class LoginForm extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        background1 = new MiscItem.BACKGOUND.Background("/MiscItem/BACKGOUND/img.jpg");
+        background1 = new MiscItem.BACKGOUND.Background();
         panelLogin1 = new application.form.PanelLogin();
         lbTitle = new javax.swing.JLabel();
         lbUser = new javax.swing.JLabel();
