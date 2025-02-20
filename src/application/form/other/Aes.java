@@ -48,6 +48,27 @@ public class Aes extends javax.swing.JPanel {
         }
     }
 
+    private void SubActionPerformed(java.awt.event.ActionEvent evt) {
+         try {
+
+            // Initialize with a predefined key and IV (Base64-encoded)
+            aes.initFromStrings("CHuO1Fjd8YgJqTyapibFBQ==", "e3IYYJC2hxe24/EO");
+
+
+
+            // Decrypt the message
+
+            String decryptedMessage = aes.decrypt(encoded.getText());
+            original.setText(decryptedMessage);
+
+
+        } catch (Exception d) {
+            d.printStackTrace(); // Handle exceptions properly
+        }
+
+    }
+
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -58,44 +79,82 @@ public class Aes extends javax.swing.JPanel {
     private void initComponents() {
 
         background1 = new MiscItem.BACKGOUND.Background();
-        jTitile = new javax.swing.JLabel();
         msg = new javax.swing.JTextField();
         entertext = new javax.swing.JLabel();
         encoded = new javax.swing.JTextField();
         enmsg = new javax.swing.JLabel();
         SUBMIT = new javax.swing.JButton();
-
-        jTitile.setText("jLabel1");
-        background1.add(jTitile);
-        jTitile.setBounds(90, 20, 37, 16);
+        sub = new javax.swing.JButton();
+        real = new javax.swing.JLabel();
+        original = new javax.swing.JTextField();
 
         msg.setBackground(new java.awt.Color(0, 0, 0));
-        msg.setText("jTextField1");
         background1.add(msg);
-        msg.setBounds(100, 40, 180, 40);
+        msg.setBounds(40, 40, 280, 40);
 
-        entertext.setBackground(new java.awt.Color(0, 255, 255));
-        entertext.setText("Enter Message");
+        entertext.setBackground(new java.awt.Color(255, 255, 255));
+        entertext.setForeground(new java.awt.Color(51, 51, 255));
+        entertext.setText("        Enter Message");
         entertext.setOpaque(true);
         background1.add(entertext);
-        entertext.setBounds(150, 20, 80, 16);
+        entertext.setBounds(110, 6, 140, 30);
 
-        encoded.setText("jTextField2");
+        encoded.setBackground(new java.awt.Color(0, 0, 0));
+        encoded.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                encodedActionPerformed(evt);
+            }
+        });
         background1.add(encoded);
-        encoded.setBounds(100, 150, 180, 40);
+        encoded.setBounds(40, 210, 290, 50);
 
-        enmsg.setBackground(new java.awt.Color(0, 255, 255));
-        enmsg.setText("Encoded Message");
+        enmsg.setBackground(new java.awt.Color(255, 255, 255));
+        enmsg.setForeground(new java.awt.Color(0, 0, 255));
+        enmsg.setText("        Encoded Message");
         enmsg.setOpaque(true);
         background1.add(enmsg);
-        enmsg.setBounds(140, 130, 100, 16);
+        enmsg.setBounds(110, 160, 150, 40);
 
         SUBMIT.setBackground(new java.awt.Color(51, 51, 255));
         SUBMIT.setForeground(new java.awt.Color(255, 255, 255));
         SUBMIT.setText("SUBMIT");
         SUBMIT.setOpaque(true);
+        SUBMIT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SUBMITActionPerformed(evt);
+            }
+        });
         background1.add(SUBMIT);
-        SUBMIT.setBounds(150, 90, 72, 23);
+        SUBMIT.setBounds(110, 90, 140, 50);
+
+        sub.setBackground(new java.awt.Color(51, 153, 0));
+        sub.setForeground(new java.awt.Color(255, 255, 255));
+        sub.setText("SUBMIT");
+        sub.setOpaque(true);
+        sub.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                subActionPerformed(evt);
+            }
+        });
+        background1.add(sub);
+        sub.setBounds(130, 290, 110, 50);
+
+        real.setBackground(new java.awt.Color(255, 255, 255));
+        real.setForeground(new java.awt.Color(0, 51, 255));
+        real.setText("                  Real Message");
+        real.setOpaque(true);
+        background1.add(real);
+        real.setBounds(90, 370, 190, 40);
+
+        original.setBackground(new java.awt.Color(0, 0, 0));
+        original.setOpaque(true);
+        original.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                originalActionPerformed(evt);
+            }
+        });
+        background1.add(original);
+        original.setBounds(40, 450, 310, 50);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -103,13 +162,33 @@ public class Aes extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(background1, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE))
+                .addComponent(background1, javax.swing.GroupLayout.PREFERRED_SIZE, 1071, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(background1, javax.swing.GroupLayout.PREFERRED_SIZE, 669, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+     private void SUBMITActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SUBMITActionPerformed
+        // TODO add your handling code here:
+     }//GEN-LAST:event_SUBMITActionPerformed
+
+     private void encodedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_encodedActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_encodedActionPerformed
+
+    private void subActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subActionPerformed
+        // TODO add your handling code here:
+        SubActionPerformed(evt);
+    }//GEN-LAST:event_subActionPerformed
+
+    private void originalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_originalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_originalActionPerformed
 
 
 
@@ -121,7 +200,9 @@ public class Aes extends javax.swing.JPanel {
     private javax.swing.JTextField encoded;
     private javax.swing.JLabel enmsg;
     private javax.swing.JLabel entertext;
-    private javax.swing.JLabel jTitile;
     private javax.swing.JTextField msg;
+    private javax.swing.JTextField original;
+    private javax.swing.JLabel real;
+    private javax.swing.JButton sub;
     // End of variables declaration//GEN-END:variables
 }
