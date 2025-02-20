@@ -47,7 +47,9 @@ public class Morsecode extends javax.swing.JPanel implements KeyListener {
             }
         });
         Playsound.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {}
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PlaysoundActionPerformed(evt);
+            }
         });
     }
     /**
@@ -163,16 +165,22 @@ public class Morsecode extends javax.swing.JPanel implements KeyListener {
 
     private void PlaysoundActionPerformed(java.awt.event.ActionEvent evt) {
         if(Outputbox.getText().isEmpty()) {
-            Notifications.getInstance().show(Notifications.Type.ERROR, "No Morse Code Found");
+            Notifications.getInstance().show(Notifications.Type.WARNING, "No Morse Code Found");
             return;
         }
-        try {
-            logic.playSound(new String[]{Outputbox.getText()});
-        } catch (LineUnavailableException | InterruptedException ex) {
-            Notifications.getInstance().show(Notifications.Type.ERROR, "Error playing sound: " + ex.getMessage());
-        }
-
-
+        ChangeButton.setEnabled(false);
+        Playsound.setEnabled(false);
+        new Thread(() -> {
+            try {
+                logic.playSound(new String[]{Outputbox.getText()});
+            } catch (LineUnavailableException | InterruptedException ex) {
+                Notifications.getInstance().show(Notifications.Type.WARNING, "Error playing sound: " + ex.getMessage());
+            } finally {
+                ChangeButton.setEnabled(true);
+                Playsound.setEnabled(true);
+            }
+        }).start();
+            Notifications.getInstance().show(Notifications.Type.INFO, "Sound is loading please wait");
     }
 
     @Override
