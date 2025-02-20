@@ -5,12 +5,15 @@
 package application.form.other;
 
 import Morsecode.AEScode;
+
+import java.util.Scanner;
+
 /**
  *
  * @author TANVIR JAKARIA LITU
  */
 public class Aes extends javax.swing.JPanel {
-    private AEScode q=new AEScode();
+    private AEScode aes=new AEScode();
 
     /**
      * Creates new form AEScode
@@ -20,9 +23,29 @@ public class Aes extends javax.swing.JPanel {
         initComponents();
         SUBMIT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                PlaysoundActionPerformed(evt);
+//
+                SUMMITbtnActionperformed(evt);
             }
         });
+    }
+
+    private void SUMMITbtnActionperformed( java.awt.event.ActionEvent evt){
+
+        try {
+            // Initialize with a predefined key and IV (Base64-encoded)
+            aes.initFromStrings("CHuO1Fjd8YgJqTyapibFBQ==", "e3IYYJC2hxe24/EO");
+
+            String encryptedMessage = aes.encrypt(msg.getText());
+
+            encoded.setText(encryptedMessage);
+
+            // Decrypt the message
+
+
+
+        } catch (Exception d) {
+            d.printStackTrace(); // Handle exceptions properly
+        }
     }
 
     /**
@@ -87,7 +110,6 @@ public class Aes extends javax.swing.JPanel {
             .addComponent(background1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
 
 
 
