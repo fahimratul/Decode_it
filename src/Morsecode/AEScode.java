@@ -104,8 +104,8 @@ public class AEScode {
             System.out.println("Decrypted Message: " + decryptedMessage);
 
             scanner.close();
-        } catch (Exception e) {
-            e.printStackTrace(); // Handle exceptions properly
+        } catch (Exception d) {
+            d.printStackTrace(); // Handle exceptions properly
         }
     }
 }
