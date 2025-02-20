@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import com.formdev.flatlaf.FlatClientProperties;
+import javax.sound.sampled.LineUnavailableException;
 
 import raven.toast.Notifications;
 import Morsecode.MorsecodeLogic;
@@ -13,7 +14,7 @@ import Morsecode.MorsecodeLogic;
  * @author RATUL
  */
 public class Morsecode extends javax.swing.JPanel implements KeyListener {
-
+    private MorsecodeLogic logic=new MorsecodeLogic();
     public Morsecode() {
         initComponents();
 
@@ -44,6 +45,9 @@ public class Morsecode extends javax.swing.JPanel implements KeyListener {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ChangeButtonActionPerformed(evt);
             }
+        });
+        Playsound.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {}
         });
     }
     /**
@@ -154,7 +158,21 @@ public class Morsecode extends javax.swing.JPanel implements KeyListener {
             Notifications.getInstance().show(Notifications.Type.ERROR, "Please Enter Your Text Here");
             return;
         }
-        Outputbox.setText(new MorsecodeLogic().getMorseCode(TextBox.getText()));
+        Outputbox.setText(logic.getMorseCode(TextBox.getText()));
+    }
+
+    private void PlaysoundActionPerformed(java.awt.event.ActionEvent evt) {
+        if(Outputbox.getText().isEmpty()) {
+            Notifications.getInstance().show(Notifications.Type.ERROR, "No Morse Code Found");
+            return;
+        }
+        try {
+            logic.playSound(new String[]{Outputbox.getText()});
+        } catch (LineUnavailableException | InterruptedException ex) {
+            Notifications.getInstance().show(Notifications.Type.ERROR, "Error playing sound: " + ex.getMessage());
+        }
+
+
     }
 
     @Override
