@@ -1,5 +1,6 @@
 package application.form;
 
+import application.form.other.Aes;
 import application.form.other.Morsecode;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
@@ -74,9 +75,9 @@ public class MainForm extends JLayeredPane {
                 if (subIndex == 1) {
                     Application.showForm(new Morsecode());
                 } else if (subIndex == 2) {
-                    //Application.showForm();
+                    Application.showForm(new Aes());
                 } else {
-                    action.cancel();
+                    //action.cancel();
                 }
             } else if (index == 2) {
                 Application.logout();
