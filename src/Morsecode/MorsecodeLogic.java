@@ -2,6 +2,11 @@ package Morsecode;
 
 
 import java.util.HashMap;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.DataLine;
+import javax.sound.sampled.SourceDataLine;
+import javax.sound.sampled.AudioSystem;
 
 public class MorsecodeLogic {
     private HashMap<Character, String> morseCodeMap;
@@ -106,5 +111,66 @@ public class MorsecodeLogic {
         }
 
         return output.toString();
+    }
+
+    public void playSound(String[] morseMessage) throws LineUnavailableException, InterruptedException {
+        // audio format specifies the audio properties (i.e. the type of sound we want)
+        AudioFormat audioFormat = new AudioFormat(44100, 16, 1, true, false);
+
+        // create the data line (to play incoming audio data)
+        DataLine.Info dataLineInfo = new DataLine.Info(SourceDataLine.class, audioFormat);
+        SourceDataLine sourceDataLine = (SourceDataLine) AudioSystem.getLine(dataLineInfo);
+        sourceDataLine.open(audioFormat);
+        sourceDataLine.start();
+
+        // duration of the sound to be played (I just messed around with the values to get it close enough)
+        int dotDuration = 200;
+        int dashDuration = (int) (1.5 * dotDuration);
+        int slashDuration = 2 * dashDuration;
+
+        for(String pattern : morseMessage){
+            System.out.println(pattern);
+
+            // play the letter sound
+            for(char c : pattern.toCharArray()){
+                if(c == '.'){
+                    playBeep(sourceDataLine, dotDuration);
+                    Thread.sleep(dotDuration);
+                }else if(c == '-'){
+                    playBeep(sourceDataLine, dashDuration);
+                    Thread.sleep(dotDuration);
+                }else if(c == '/'){
+                    Thread.sleep(slashDuration);
+                }
+            }
+
+            // waits a bit before playing the next sequence
+            Thread.sleep(dotDuration);
+        }
+
+        // close audio output line (cleans up resources)
+        sourceDataLine.drain();
+        sourceDataLine.stop();
+        sourceDataLine.close();
+    }
+
+    // sends audio data to be played to the data line
+    private void playBeep(SourceDataLine line, int duration){
+        // create audio data
+        byte[] data = new byte[duration * 44100 / 1000];
+
+        for(int i = 0; i < data.length; i++){
+            // calculates the angle of the sine wave for the current sample based on the sample rate and frequency
+            double angle = i / (44100.0/440) * 2.0 * Math.PI;
+
+            // calculates the amplitude of the sine wave at the current angle and scale it to fit within the range of
+            // a signed byte (-128, 127)
+            // also in the context of audio processing, a signed bytes is often used to represent audio data because it
+            // can represent both positive and negative amplitudes of sound waves
+            data[i] = (byte) (Math.sin(angle) * 127.0);
+        }
+
+        // write the audio dat in the data line to be played
+        line.write(data, 0, data.length);
     }
 }
