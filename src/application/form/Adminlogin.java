@@ -1,22 +1,29 @@
 package application.form;
 
+import Model.User;
 import application.Application;
 import com.formdev.flatlaf.FlatClientProperties;
+import connection.Connuser;
 import net.miginfocom.swing.MigLayout;
+import raven.toast.Notifications;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
  * @author Ratul
  */
 public class Adminlogin extends javax.swing.JPanel {
-    
+
     public Adminlogin() {
         initComponents();
         init();
     }
 
     private void init() {
-        setLayout(new MigLayout("al center center"));
+       setLayout(new MigLayout("al center center"));
 
         lbTitle.putClientProperty(FlatClientProperties.STYLE, ""
                 + "font:$h1.font");
@@ -35,14 +42,19 @@ public class Adminlogin extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        background1 = new MiscItem.BACKGOUND.Background();
         panelLogin1 = new application.form.PanelLogin();
         lbTitle = new javax.swing.JLabel();
         lbUser = new javax.swing.JLabel();
-        txtUser = new javax.swing.JTextField();
+        txtUser = new MiscItem.swing.TextField();
         lbPass = new javax.swing.JLabel();
-        txtPass = new javax.swing.JPasswordField();
-        cmdLogin = new javax.swing.JButton();
+        txtPass = new MiscItem.swing.PasswordField();
+        cmdLogin = new MiscItem.swing.Button();
         emptymsgbox = new javax.swing.JLabel();
+
+        background1.setBlur(panelLogin1);
+
+        panelLogin1.setOpaque(false);
 
         lbTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbTitle.setText("Admin Login");
@@ -80,33 +92,82 @@ public class Adminlogin extends javax.swing.JPanel {
         emptymsgbox.setText(" ");
         panelLogin1.add(emptymsgbox);
 
+        javax.swing.GroupLayout background1Layout = new javax.swing.GroupLayout(background1);
+        background1.setLayout(background1Layout);
+        background1Layout.setHorizontalGroup(
+            background1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(background1Layout.createSequentialGroup()
+                .addContainerGap(598, Short.MAX_VALUE)
+                .addComponent(panelLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(528, Short.MAX_VALUE))
+        );
+        background1Layout.setVerticalGroup(
+            background1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(background1Layout.createSequentialGroup()
+                .addContainerGap(185, Short.MAX_VALUE)
+                .addComponent(panelLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(218, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(218, Short.MAX_VALUE)
-                .addComponent(panelLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(197, 197, 197))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(background1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(68, 68, 68)
-                .addComponent(panelLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
+                .addComponent(background1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private boolean checkuser(){
         return (!txtUser.getText().isEmpty() && !txtPass.getText().isEmpty());
     }
+    
     private void cmdLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLoginActionPerformed
-       if(!checkuser()){
-           emptymsgbox.setText("Fill all the fields");
-       }else{
-           Application.adminloginmenu();
-       }
+            if(checkuser()){
+                if(checkuser_password(txtUser.getText(),txtPass.getPassword())) {
+                    Application.user= new User(txtUser.getText());
+                    txtUser.setText("");
+                    txtPass.setText("");
+                    Application.adminloginmenu();
+                }
+                else{
+                    Notifications.getInstance().show(Notifications.Type.WARNING,Notifications.Location.TOP_CENTER,"Wrong Password or Username");
+                }
+            }
+            else{
+                if(txtUser.getText().isEmpty()){
+                    Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Enter User Name");
+                }
+                if(txtPass.getText().isEmpty()){
+                    Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Enter Password ");
+                }
+            }
+    }
+
+    private boolean checkuser_password(String name, char[] password) {
+        Connuser c = new Connuser();
+        String query = "SELECT * FROM users WHERE username = ? AND password = ?";
+        try (PreparedStatement pstmt = c.con.prepareStatement(query)) {
+            pstmt.setString(1, name);
+            pstmt.setString(2, String.valueOf(password));
+            try (ResultSet rs = pstmt.executeQuery()) {
+                boolean flag= rs.next();
+                rs.close();
+                pstmt.close();
+                c.con.close();
+                return flag;
+            }
+        } catch (SQLException e) {
+            return false;
+        }
+        
     }
 //GEN-LAST:event_cmdLoginActionPerformed
 
@@ -121,6 +182,7 @@ public class Adminlogin extends javax.swing.JPanel {
     }//GEN-LAST:event_txtPassMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private MiscItem.BACKGOUND.Background background1;
     private javax.swing.JButton cmdLogin;
     private javax.swing.JLabel emptymsgbox;
     private javax.swing.JLabel lbPass;

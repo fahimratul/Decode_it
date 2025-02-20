@@ -48,7 +48,7 @@ public class Morsecode extends javax.swing.JPanel implements KeyListener {
         });
         Playsound.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PlaysoundActionPerformed(evt);
+                 PlaysoundActionPerformed(evt);
             }
         });
     }
