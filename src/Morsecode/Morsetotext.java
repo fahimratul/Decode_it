@@ -120,7 +120,7 @@ public class Morsetotext {
         Morsetotext decoder = new Morsetotext();
 
         // Test cases
-        String morse1 = "... --- ..."; // SOS
+        String morse1 = "..s. --- ..."; // SOS
         String morse2 = "-- ..- -..- / .. ... / .- -- .- --.. .. -. --."; // MUX IS AMAZING
 
         System.out.println("Decoded: " + decoder.decodeMorseCode(morse1));
