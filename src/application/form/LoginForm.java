@@ -139,6 +139,8 @@ public class LoginForm extends javax.swing.JPanel {
             if(checkuser()){
                 if(checkuser_password(txtUser.getText(),txtPass.getPassword())) {
                     Application.user= new User(txtUser.getText());
+                    txtUser.setText("");
+                    txtPass.setText("");
                     Application.login();
                 }
                 else{
