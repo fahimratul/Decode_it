@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import com.formdev.flatlaf.FlatClientProperties;
+import javax.sound.sampled.LineUnavailableException;
 
 import raven.toast.Notifications;
 import Morsecode.MorsecodeLogic;
@@ -13,7 +14,7 @@ import Morsecode.MorsecodeLogic;
  * @author RATUL
  */
 public class Morsecode extends javax.swing.JPanel implements KeyListener {
-
+    private MorsecodeLogic logic=new MorsecodeLogic();
     public Morsecode() {
         initComponents();
 
@@ -45,6 +46,11 @@ public class Morsecode extends javax.swing.JPanel implements KeyListener {
                 ChangeButtonActionPerformed(evt);
             }
         });
+        Playsound.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                 PlaysoundActionPerformed(evt);
+            }
+        });
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -62,7 +68,8 @@ public class Morsecode extends javax.swing.JPanel implements KeyListener {
         Outputbox = new javax.swing.JTextArea();
         inptutboxpane = new javax.swing.JScrollPane();
         TextBox = new javax.swing.JTextArea();
-        ChangeButton = new javax.swing.JButton();
+        Playsound = new MiscItem.swing.Button();
+        ChangeButton = new MiscItem.swing.Button();
 
         Title.setText("TEXT TO MORSECODE");
 
@@ -101,22 +108,24 @@ public class Morsecode extends javax.swing.JPanel implements KeyListener {
                 .addGap(40, 40, 40))
         );
 
-        ChangeButton.setText("Convert");
+        Playsound.setText("PLAY SOUND");
+
+        ChangeButton.setText("CONVERT");
 
         javax.swing.GroupLayout background1Layout = new javax.swing.GroupLayout(background1);
         background1.setLayout(background1Layout);
         background1Layout.setHorizontalGroup(
             background1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(background1Layout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
-                .addGroup(background1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap(140, Short.MAX_VALUE)
+                .addGroup(background1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(background1Layout.createSequentialGroup()
+                        .addComponent(Playsound, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ChangeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(Title, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(50, Short.MAX_VALUE))
-            .addGroup(background1Layout.createSequentialGroup()
-                .addGap(238, 238, 238)
-                .addComponent(ChangeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(140, Short.MAX_VALUE))
         );
         background1Layout.setVerticalGroup(
             background1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,19 +135,21 @@ public class Morsecode extends javax.swing.JPanel implements KeyListener {
                 .addGap(38, 38, 38)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(ChangeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addGroup(background1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(ChangeButton, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                    .addComponent(Playsound, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background1, javax.swing.GroupLayout.DEFAULT_SIZE, 886, Short.MAX_VALUE)
+            .addComponent(background1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background1, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
+            .addComponent(background1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -149,7 +160,27 @@ public class Morsecode extends javax.swing.JPanel implements KeyListener {
             Notifications.getInstance().show(Notifications.Type.ERROR, "Please Enter Your Text Here");
             return;
         }
-        Outputbox.setText(new MorsecodeLogic().getMorseCode(TextBox.getText()));
+        Outputbox.setText(logic.getMorseCode(TextBox.getText()));
+    }
+
+    private void PlaysoundActionPerformed(java.awt.event.ActionEvent evt) {
+        if(Outputbox.getText().isEmpty()) {
+            Notifications.getInstance().show(Notifications.Type.WARNING, "No Morse Code Found");
+            return;
+        }
+        ChangeButton.setEnabled(false);
+        Playsound.setEnabled(false);
+        new Thread(() -> {
+            try {
+                logic.playSound(new String[]{Outputbox.getText()});
+            } catch (LineUnavailableException | InterruptedException ex) {
+                Notifications.getInstance().show(Notifications.Type.WARNING, "Error playing sound: " + ex.getMessage());
+            } finally {
+                ChangeButton.setEnabled(true);
+                Playsound.setEnabled(true);
+            }
+        }).start();
+            Notifications.getInstance().show(Notifications.Type.INFO, "Sound is loading please wait");
     }
 
     @Override
@@ -172,8 +203,9 @@ public class Morsecode extends javax.swing.JPanel implements KeyListener {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ChangeButton;
+    private MiscItem.swing.Button ChangeButton;
     private javax.swing.JTextArea Outputbox;
+    private MiscItem.swing.Button Playsound;
     private javax.swing.JTextArea TextBox;
     private javax.swing.JLabel Title;
     private MiscItem.BACKGOUND.Background background1;
