@@ -147,7 +147,7 @@ public class Aes extends javax.swing.JPanel {
 
         real.setBackground(new java.awt.Color(255, 255, 255));
         real.setForeground(new java.awt.Color(0, 51, 255));
-        real.setText("                  Real Message");
+        real.setText("Real Message");
         real.setOpaque(true);
         background1.add(real);
         real.setBounds(90, 370, 190, 40);
