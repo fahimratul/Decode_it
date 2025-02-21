@@ -37,22 +37,6 @@ public class AddmemberForm extends javax.swing.JPanel {
                 + "background:$TextArea.background");
     }
 
-    public void loadData(Userinfo data) {
-        if (data != null) {
-            txtName.setText(data.getName());
-            txtRank.setText(data.getRank());
-            if (data.getDate() != null) {
-                datePicker.setSelectedDate(data.getDate().toLocalDate());
-            }
-            txtMobile.setValue(data.getMobile());
-            txtDescription.setText(data.getDescription());
-            profile = new UserProfilepic(data.getProfile().getIcon());
-            if (profile.getIcon() != null) {
-                pic.setImage(profile.getIcon());
-            }
-        }
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -66,7 +50,7 @@ public class AddmemberForm extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        txtRank = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtDate = new javax.swing.JFormattedTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -78,9 +62,9 @@ public class AddmemberForm extends javax.swing.JPanel {
         cmdBrowse = new javax.swing.JButton();
         cmdDelete = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        Mobile = new javax.swing.JFormattedTextField();
         Password = new MiscItem.swing.PasswordField();
         jLabel9 = new javax.swing.JLabel();
+        txtRank1 = new javax.swing.JTextField();
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel1.setText("Name");
@@ -132,7 +116,7 @@ public class AddmemberForm extends javax.swing.JPanel {
         picLayout.setHorizontalGroup(
             picLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, picLayout.createSequentialGroup()
-                .addContainerGap(152, Short.MAX_VALUE)
+                .addContainerGap(154, Short.MAX_VALUE)
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -147,9 +131,7 @@ public class AddmemberForm extends javax.swing.JPanel {
         panelPic.add(pic, java.awt.BorderLayout.CENTER);
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel6.setText("Mobile No");
-
-        Mobile.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.##"))));
+        jLabel6.setText("Email");
 
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel9.setText("Password");
@@ -175,17 +157,21 @@ public class AddmemberForm extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtMobile)
                             .addComponent(txtDate)
-                            .addComponent(txtRank)
                             .addComponent(txtName)))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Mobile)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(panelPic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(70, 70, 70))
-                            .addComponent(Password, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(40, 40, 40))
+                            .addComponent(Password, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtEmail))))
+                .addGap(38, 38, 38))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(126, 126, 126)
+                    .addComponent(txtRank1)
+                    .addGap(30, 30, 30)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,9 +181,7 @@ public class AddmemberForm extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtRank, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -210,15 +194,20 @@ public class AddmemberForm extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panelPic, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(9, 9, 9)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(Mobile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
-                .addContainerGap(116, Short.MAX_VALUE))
+                .addContainerGap(131, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(78, 78, 78)
+                    .addComponent(txtRank1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(398, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -242,11 +231,12 @@ public class AddmemberForm extends javax.swing.JPanel {
 
     public Userinfo getData() {
         String name = txtName.getText().trim();
-        String rank = txtRank.getText().trim();
+        String rank = txtEmail.getText().trim();
+        String Mobile = txtMobile.getText().trim();
         Date date = datePicker.isDateSelected() ? Date.valueOf(datePicker.getSelectedDate()) : null;
-        double salary = Double.parseDouble(txtMobile.getValue().toString());
-        String description = txtDescription.getText().trim();
-        return new Userinfo(name, location, date, salary, description, profile);
+        String email = txtEmail.getText().trim();
+        String pass = String.valueOf(Password.getPassword());
+        return new Userinfo(name, rank, email, date, Mobile,pass, profile);
     }
 
     public void init() {
@@ -254,7 +244,6 @@ public class AddmemberForm extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JFormattedTextField Mobile;
     private MiscItem.swing.PasswordField Password;
     private javax.swing.JButton cmdBrowse;
     private javax.swing.JButton cmdDelete;
@@ -270,8 +259,9 @@ public class AddmemberForm extends javax.swing.JPanel {
     private javax.swing.JPanel panelPic;
     private javaswingdev.picturebox.PictureBox pic;
     private javax.swing.JFormattedTextField txtDate;
+    private javax.swing.JTextField txtEmail;
     private javax.swing.JFormattedTextField txtMobile;
     private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtRank;
+    private javax.swing.JTextField txtRank1;
     // End of variables declaration//GEN-END:variables
 }
