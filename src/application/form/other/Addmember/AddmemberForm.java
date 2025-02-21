@@ -12,7 +12,6 @@ import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 import jnafilechooser.api.JnaFileChooser;
 import Model.Userinfo;
-import MiscItem.swing.*;
 /**
  *
  * @author RATUL
@@ -32,7 +31,7 @@ public class AddmemberForm extends javax.swing.JPanel {
                 return createRound(rectangle, UIScale.scale(10));
             }
         });
-        pic.setImage(new FlatSVGIcon("/profile.svg", 5f));
+        pic.setImage(new FlatSVGIcon("/icon/svg/profile.svg", 5f));
         panelPic.putClientProperty(FlatClientProperties.STYLE, ""
                 + "border:0,0,0,0,$Component.borderColor,,10;"
                 + "background:$TextArea.background");
@@ -227,7 +226,7 @@ public class AddmemberForm extends javax.swing.JPanel {
     private UserProfilepic profile;
 
     private void cmdDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdDeleteActionPerformed
-        pic.setImage(new FlatSVGIcon("/profile.svg", 5f));
+        pic.setImage(new FlatSVGIcon("/icon/svg/profile.svg", 5f));
         profile = null;
     }//GEN-LAST:event_cmdDeleteActionPerformed
 
