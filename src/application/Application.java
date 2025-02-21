@@ -14,6 +14,7 @@ import java.awt.Font;
 import javax.swing.*;
 
 import application.form.MainForm;
+import raven.popup.GlassPanePopup;
 import raven.toast.Notifications;
 import application.form.AdminMainForm;
 /**
@@ -40,6 +41,8 @@ public class Application extends javax.swing.JFrame {
         setContentPane(loginForm);
         getRootPane().putClientProperty(FlatClientProperties.FULL_WINDOW_CONTENT, true);
         Notifications.getInstance().setJFrame(this);
+
+        GlassPanePopup.install(this);
         revalidate();
         repaint();
     }

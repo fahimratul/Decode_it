@@ -1,13 +1,15 @@
 package application.form.other;
+ // Replace 'some.package' with the actual package name of GlassPanePopup
 
 import com.formdev.flatlaf.FlatClientProperties;
 import com.mysql.cj.protocol.Message;
-import raven.alerts.MessageAlerts;
 import raven.popup.component.PopupCallbackAction;
 import raven.popup.component.PopupController;
 import raven.toast.Notifications;
 import connection.Connuser;
-
+import raven.popup.component.PopupCallbackAction;
+import raven.popup.component.PopupController;
+import raven.alerts.*;
 /**
  *
  * @author Ratul
@@ -65,6 +67,16 @@ public class AddMemberAdmin extends javax.swing.JPanel {
         AddBtn.setText("Add Member");
         AddBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
+
+                MessageAlerts.getInstance().showMessage("Data Saving Failure", "Oops! We encountered an issue while attempting to save your data. Please try again later or contact support for assistance. Apologies for any inconvenience caused.", MessageAlerts.MessageType.ERROR, MessageAlerts.OK_OPTION, new PopupCallbackAction() {
+                    @Override
+                    public void action(PopupController pc, int i) {
+                        if (i == MessageAlerts.OK_OPTION) {
+                            System.out.println("Click ok");
+                        }
+                    }
+                });
+
                 AddBtnActionPerformed(evt);
             }
         });
@@ -245,17 +257,6 @@ public class AddMemberAdmin extends javax.swing.JPanel {
     }
 
     private void AddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBtnActionPerformed
-        MessageAlerts.getInstance().showMessage("Data Saving Failure", "Oops! We encountered an issue while attempting to save your data. Please try again later or contact support for assistance. Apologies for any inconvenience caused.", MessageAlerts.MessageType.ERROR, MessageAlerts.OK_OPTION, new PopupCallbackAction() {
-            @Override
-            public void action(PopupController pc, int i) {
-                if (i == MessageAlerts.OK_OPTION) {
-                    System.out.println("Click ok");
-                }
-            }
-        });
-
-
-
         if (checkfield()) {
             String name = AddMemNamein.getText();
             String rank = AddMemRk.getText();
