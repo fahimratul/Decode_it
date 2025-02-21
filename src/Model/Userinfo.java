@@ -21,7 +21,12 @@ public class Userinfo {
         this.profile = profile;
     }
 
-
+    public  String getEmail(){
+        return email;
+    }
+    public void setEmail(String email){
+        this.email = email;
+    }
 
     public String getName() {
         return name;
@@ -47,12 +52,12 @@ public class Userinfo {
         this.date = date;
     }
 
-    public double getSalary() {
-        return salary;
+    public String getMobile() {
+        return Mobile;
     }
 
-    public void setSalary(double salary) {
-        this.salary = salary;
+    public void setMobile(String mobile) {
+        this.Mobile = mobile;
     }
 
     public String getDescription() {
@@ -64,12 +69,13 @@ public class Userinfo {
     }
 
 
-    public Userinfo(String name, String Rank, Date date, double salary, String description,UserProfilepic profile) {
+    public Userinfo(String name, String Rank,String Email, Date date, String Mobile, String password,UserProfilepic profile) {
         this.name = name;
         this.Rank = Rank;
+        this.email = Email;
         this.date = date;
-        this.salary = salary;
-        this.description = description;
+        this.Mobile = Mobile;
+        this.description = password;
         this.profile = profile;
     }
 
@@ -79,14 +85,15 @@ public class Userinfo {
     private String name;
     private String Rank;
     private Date date;
-    private double salary;
+    private String Mobile;
     private String description;
     private UserProfilepic profile;
+    private String email;
 
     public Object[] toTableRow(int rowNum) {
         DateFormat df = new SimpleDateFormat("dd-MMMM-yyyy");
         NumberFormat nf = new DecimalFormat("$ #,##0.##");
-        return new Object[]{false, rowNum, this, date == null ? "" : df.format(date), nf.format(salary), description};
+        return new Object[]{false, rowNum, this, date == null ? "" : df.format(date), nf.format(Mobile), description};
     }
 
     @Override
