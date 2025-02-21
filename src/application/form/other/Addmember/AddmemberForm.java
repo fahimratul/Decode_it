@@ -11,14 +11,10 @@ import javaswingdev.picturebox.DefaultPictureBoxRender;
 import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 import jnafilechooser.api.JnaFileChooser;
-import sample.model.ModelEmployee;
-import sample.model.ModelPositions;
-import sample.model.other.ModelProfile;
-import sample.service.ServiceEmployee;
-
+import Model.Userinfo;
 /**
  *
- * @author RAVEN
+ * @author RATUL
  */
 public class AddmemberForm extends javax.swing.JPanel {
 
@@ -35,33 +31,22 @@ public class AddmemberForm extends javax.swing.JPanel {
                 return createRound(rectangle, UIScale.scale(10));
             }
         });
-        pic.setImage(new FlatSVGIcon("sample/icon/profile.svg", 5f));
+        pic.setImage(new FlatSVGIcon("/profile.svg", 5f));
         panelPic.putClientProperty(FlatClientProperties.STYLE, ""
                 + "border:0,0,0,0,$Component.borderColor,,10;"
                 + "background:$TextArea.background");
     }
 
-    public void loadData(ServiceEmployee service, ModelEmployee data) {
-        try {
-            for (ModelPositions pos : service.getServicePositions().getAll()) {
-                comboPosition.addItem(pos);
-                if (data != null && data.getPositions().getPositionsId() == pos.getPositionsId()) {
-                    comboPosition.setSelectedItem(pos);
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+    public void loadData(Userinfo data) {
         if (data != null) {
             txtName.setText(data.getName());
-            txtLocation.setText(data.getLocation());
+            txtRank.setText(data.getRank());
             if (data.getDate() != null) {
                 datePicker.setSelectedDate(data.getDate().toLocalDate());
             }
             txtSalary.setValue(data.getSalary());
             txtDescription.setText(data.getDescription());
-            profile = new ModelProfile(data.getProfile().getIcon());
+            profile = new UserProfilepic(data.getProfile().getIcon());
             if (profile.getIcon() != null) {
                 pic.setImage(profile.getIcon());
             }
@@ -81,13 +66,11 @@ public class AddmemberForm extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        txtLocation = new javax.swing.JTextField();
+        txtRank = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtDate = new javax.swing.JFormattedTextField();
         jLabel4 = new javax.swing.JLabel();
         txtSalary = new javax.swing.JFormattedTextField();
-        jLabel5 = new javax.swing.JLabel();
-        comboPosition = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtDescription = new javax.swing.JTextArea();
@@ -102,18 +85,15 @@ public class AddmemberForm extends javax.swing.JPanel {
         jLabel1.setText("Name");
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel2.setText("Location");
+        jLabel2.setText("Rank");
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel3.setText("Date");
+        jLabel3.setText("Date of Birth");
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel4.setText("Salary");
+        jLabel4.setText("Mobile No");
 
         txtSalary.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.##"))));
-
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel5.setText("Position");
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel6.setText("Description");
@@ -125,7 +105,7 @@ public class AddmemberForm extends javax.swing.JPanel {
         jScrollPane1.setViewportView(txtDescription);
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel7.setText("Position");
+        jLabel7.setText("Profile Pic");
 
         panelPic.setLayout(new java.awt.BorderLayout());
 
@@ -185,7 +165,6 @@ public class AddmemberForm extends javax.swing.JPanel {
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,10 +172,9 @@ public class AddmemberForm extends javax.swing.JPanel {
                         .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1)
-                            .addComponent(comboPosition, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtSalary)
                             .addComponent(txtDate)
-                            .addComponent(txtLocation)
+                            .addComponent(txtRank)
                             .addComponent(txtName)))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -213,7 +191,7 @@ public class AddmemberForm extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtRank, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -222,10 +200,6 @@ public class AddmemberForm extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtSalary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboPosition, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -245,25 +219,24 @@ public class AddmemberForm extends javax.swing.JPanel {
         if (act) {
             File file = ch.getSelectedFile();
             pic.setImage(new ImageIcon(file.getAbsolutePath()));
-            profile = new ModelProfile(file);
+            profile = new UserProfilepic(file);
         }
     }//GEN-LAST:event_cmdBrowseActionPerformed
 
-    private ModelProfile profile;
+    private UserProfilepic profile;
 
     private void cmdDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdDeleteActionPerformed
-        pic.setImage(new FlatSVGIcon("sample/icon/profile.svg", 5f));
+        pic.setImage(new FlatSVGIcon("/profile.svg", 5f));
         profile = null;
     }//GEN-LAST:event_cmdDeleteActionPerformed
 
-    public ModelEmployee getData() {
+    public Userinfo getData() {
         String name = txtName.getText().trim();
-        String location = txtLocation.getText().trim();
+        String location = txtRank.getText().trim();
         Date date = datePicker.isDateSelected() ? Date.valueOf(datePicker.getSelectedDate()) : null;
         double salary = Double.parseDouble(txtSalary.getValue().toString());
         String description = txtDescription.getText().trim();
-        ModelPositions positions = (ModelPositions) comboPosition.getSelectedItem();
-        return new ModelEmployee(0, name, location, date, salary, description, profile, positions);
+        return new Userinfo(name, location, date, salary, description, profile);
     }
 
     public void init() {
@@ -273,13 +246,11 @@ public class AddmemberForm extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cmdBrowse;
     private javax.swing.JButton cmdDelete;
-    private javax.swing.JComboBox<Object> comboPosition;
     private raven.datetime.component.date.DatePicker datePicker;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
@@ -288,8 +259,8 @@ public class AddmemberForm extends javax.swing.JPanel {
     private javaswingdev.picturebox.PictureBox pic;
     private javax.swing.JFormattedTextField txtDate;
     private javax.swing.JTextArea txtDescription;
-    private javax.swing.JTextField txtLocation;
     private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtRank;
     private javax.swing.JFormattedTextField txtSalary;
     // End of variables declaration//GEN-END:variables
 }
