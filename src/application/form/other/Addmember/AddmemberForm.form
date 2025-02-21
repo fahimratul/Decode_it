@@ -20,34 +20,37 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jLabel6" max="32767" attributes="0"/>
-                      <Component id="jLabel1" alignment="0" pref="100" max="32767" attributes="0"/>
-                      <Component id="jLabel2" pref="100" max="32767" attributes="0"/>
-                      <Component id="jLabel3" alignment="0" pref="100" max="32767" attributes="0"/>
-                      <Component id="jLabel4" alignment="0" pref="100" max="32767" attributes="0"/>
-                      <Component id="jLabel7" alignment="0" pref="100" max="32767" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jLabel6" max="32767" attributes="0"/>
+                              <Component id="jLabel1" alignment="0" pref="100" max="32767" attributes="0"/>
+                              <Component id="jLabel2" pref="100" max="32767" attributes="0"/>
+                              <Component id="jLabel3" alignment="0" pref="100" max="32767" attributes="0"/>
+                              <Component id="jLabel4" alignment="0" pref="100" max="32767" attributes="0"/>
+                              <Component id="jLabel7" alignment="0" pref="100" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="jLabel9" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="txtRank" alignment="1" max="32767" attributes="0"/>
+                          <Component id="txtDate" alignment="1" max="32767" attributes="0"/>
+                          <Component id="txtMobile" alignment="1" max="32767" attributes="0"/>
+                          <Component id="txtEmail" alignment="1" max="32767" attributes="0"/>
+                          <Component id="Password" alignment="1" max="32767" attributes="0"/>
+                          <Component id="txtName" alignment="1" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
-                  <Component id="jLabel9" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="118" pref="118" max="-2" attributes="0"/>
+                      <Component id="panelPic" pref="449" max="32767" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="txtDate" alignment="0" max="32767" attributes="0"/>
-                  <Component id="txtMobile" alignment="0" max="32767" attributes="0"/>
-                  <Component id="txtEmail" alignment="0" max="32767" attributes="0"/>
-                  <Component id="txtRank" alignment="0" max="32767" attributes="0"/>
-                  <Component id="txtName" alignment="0" max="32767" attributes="0"/>
-                  <Component id="Password" alignment="0" max="32767" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" attributes="0">
-              <EmptySpace min="118" pref="118" max="-2" attributes="0"/>
-              <Component id="panelPic" max="32767" attributes="0"/>
-              <EmptySpace min="108" pref="108" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -71,8 +74,8 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtMobile" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtMobile" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -125,13 +128,6 @@
         <Property name="text" type="java.lang.String" value="Mobile No"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="txtMobile">
-      <Properties>
-        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat(&quot;#####-######&quot;)))" type="code"/>
-        </Property>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="11"/>
@@ -153,7 +149,7 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="154" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="jToolBar1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -224,6 +220,8 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtRank">
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtMobile">
     </Component>
   </SubComponents>
 </Form>

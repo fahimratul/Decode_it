@@ -1,6 +1,5 @@
 package connection;
 
-
 import org.apache.commons.dbcp2.BasicDataSource;
 
 import java.sql.Connection;
@@ -17,6 +16,7 @@ public class DatabaseConnection {
     private String password = "LongLive@1";
 
 
+
     public static DatabaseConnection getInstance() {
         if (instance == null) {
             instance = new DatabaseConnection();
@@ -25,7 +25,12 @@ public class DatabaseConnection {
     }
 
     private DatabaseConnection() {
-
+        try {
+            connectToDatabase();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void connectToDatabase() throws SQLException {
