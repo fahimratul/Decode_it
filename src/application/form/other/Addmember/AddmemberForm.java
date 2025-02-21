@@ -44,7 +44,7 @@ public class AddmemberForm extends javax.swing.JPanel {
             if (data.getDate() != null) {
                 datePicker.setSelectedDate(data.getDate().toLocalDate());
             }
-            txtSalary.setValue(data.getMobile());
+            txtMobile.setValue(data.getMobile());
             txtDescription.setText(data.getDescription());
             profile = new UserProfilepic(data.getProfile().getIcon());
             if (profile.getIcon() != null) {
@@ -70,7 +70,7 @@ public class AddmemberForm extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         txtDate = new javax.swing.JFormattedTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtSalary = new javax.swing.JFormattedTextField();
+        txtMobile = new javax.swing.JFormattedTextField();
         jLabel7 = new javax.swing.JLabel();
         panelPic = new javax.swing.JPanel();
         pic = new javaswingdev.picturebox.PictureBox();
@@ -94,7 +94,7 @@ public class AddmemberForm extends javax.swing.JPanel {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel4.setText("Mobile No");
 
-        txtSalary.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.##"))));
+        txtMobile.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.##"))));
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel7.setText("Profile Pic");
@@ -173,7 +173,7 @@ public class AddmemberForm extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtSalary)
+                            .addComponent(txtMobile)
                             .addComponent(txtDate)
                             .addComponent(txtRank)
                             .addComponent(txtName)))
@@ -204,7 +204,7 @@ public class AddmemberForm extends javax.swing.JPanel {
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSalary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMobile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -244,7 +244,7 @@ public class AddmemberForm extends javax.swing.JPanel {
         String name = txtName.getText().trim();
         String rank = txtRank.getText().trim();
         Date date = datePicker.isDateSelected() ? Date.valueOf(datePicker.getSelectedDate()) : null;
-        double salary = Double.parseDouble(txtSalary.getValue().toString());
+        double salary = Double.parseDouble(txtMobile.getValue().toString());
         String description = txtDescription.getText().trim();
         return new Userinfo(name, location, date, salary, description, profile);
     }
@@ -270,8 +270,8 @@ public class AddmemberForm extends javax.swing.JPanel {
     private javax.swing.JPanel panelPic;
     private javaswingdev.picturebox.PictureBox pic;
     private javax.swing.JFormattedTextField txtDate;
+    private javax.swing.JFormattedTextField txtMobile;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtRank;
-    private javax.swing.JFormattedTextField txtSalary;
     // End of variables declaration//GEN-END:variables
 }
