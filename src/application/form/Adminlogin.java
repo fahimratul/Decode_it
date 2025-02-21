@@ -24,6 +24,7 @@ public class Adminlogin extends javax.swing.JPanel {
 
     private void init() {
        setLayout(new MigLayout("al center center"));
+       UserLoginBtn.setContentAreaFilled(false);
 
         lbTitle.putClientProperty(FlatClientProperties.STYLE, ""
                 + "font:$h1.font");
@@ -51,6 +52,8 @@ public class Adminlogin extends javax.swing.JPanel {
         txtPass = new MiscItem.swing.PasswordField();
         cmdLogin = new MiscItem.swing.Button();
         emptymsgbox = new javax.swing.JLabel();
+        UserLoginBtn = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
 
         background1.setBlur(panelLogin1);
 
@@ -92,13 +95,26 @@ public class Adminlogin extends javax.swing.JPanel {
         emptymsgbox.setText(" ");
         panelLogin1.add(emptymsgbox);
 
+        UserLoginBtn.setText("Login as User");
+        UserLoginBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UserLoginBtnActionPerformed(evt);
+            }
+        });
+
+        jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout background1Layout = new javax.swing.GroupLayout(background1);
         background1.setLayout(background1Layout);
         background1Layout.setHorizontalGroup(
             background1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(background1Layout.createSequentialGroup()
                 .addContainerGap(598, Short.MAX_VALUE)
-                .addComponent(panelLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(background1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(panelLogin1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(UserLoginBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSeparator1))
                 .addContainerGap(528, Short.MAX_VALUE))
         );
         background1Layout.setVerticalGroup(
@@ -106,7 +122,11 @@ public class Adminlogin extends javax.swing.JPanel {
             .addGroup(background1Layout.createSequentialGroup()
                 .addContainerGap(185, Short.MAX_VALUE)
                 .addComponent(panelLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(218, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(UserLoginBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(161, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -181,10 +201,18 @@ public class Adminlogin extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPassMouseClicked
 
+    private void UserLoginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserLoginBtnActionPerformed
+            Application.logout();
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UserLoginBtnActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton UserLoginBtn;
     private MiscItem.BACKGOUND.Background background1;
     private javax.swing.JButton cmdLogin;
     private javax.swing.JLabel emptymsgbox;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lbPass;
     private javax.swing.JLabel lbTitle;
     private javax.swing.JLabel lbUser;
