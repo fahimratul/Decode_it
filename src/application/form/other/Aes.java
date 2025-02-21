@@ -5,6 +5,7 @@
 package application.form.other;
 
 import Morsecode.AEScode;
+import com.formdev.flatlaf.FlatClientProperties;
 
 import java.util.Scanner;
 
@@ -21,6 +22,11 @@ public class Aes extends javax.swing.JPanel {
     public Aes() {
         
         initComponents();
+        real.putClientProperty(FlatClientProperties.STYLE, ""
+            +"font: $h0.font");
+
+
+
         SUBMIT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
 //
