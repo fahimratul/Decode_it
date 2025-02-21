@@ -12,10 +12,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.imageio.ImageIO;
+
+import connection.Connuser;
 import net.coobird.thumbnailator.Thumbnails;
-import connection.DatabaseConnection;
 import Model.Userinfo;
 import application.form.other.Addmember.UserProfilepic;
+import raven.toast.Notifications;
 
 /**
  *
@@ -24,12 +26,11 @@ import application.form.other.Addmember.UserProfilepic;
 public class Uploaddatabase {
 
     public List<Userinfo> getAll() throws SQLException {
-        Connection con = null;
-        PreparedStatement p = null;
         ResultSet r = null;
         try {
-            con = DatabaseConnection.getInstance().createConnection();
-            p = con.prepareStatement("select * from usersdata");
+            Connuser c = new Connuser();
+            String query = "SELECT * FROM usersdata";
+            PreparedStatement p = c.con.prepareStatement(query);
             r = p.executeQuery();
             List<Userinfo> list = new ArrayList<>();
             while (r.next()) {
@@ -41,19 +42,22 @@ public class Uploaddatabase {
                 UserProfilepic profile = new UserProfilepic(r.getBytes("pic"));
                 list.add(new Userinfo(name,rank, email,date,mobile,"",profile));
             }
+
+            r.close();
+            c.con.close();
             return list;
-        } finally {
-            DatabaseConnection.getInstance().close(r, p, con);
+        }
+        finally {
+            Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_CENTER,"Error while reading user data");
         }
     }
 
     public List<Userinfo> search(String search) throws SQLException {
-        Connection con = null;
-        PreparedStatement p = null;
         ResultSet r = null;
         try {
-            con = DatabaseConnection.getInstance().createConnection();
-            p = con.prepareStatement("select * from usersdata where (username like ? or rankofuser like ? or mobile like ?)");
+            Connuser c = new Connuser();
+            String query = "select * from usersdata where (username like ? or rankofuser like ? or mobile like ?)";
+            PreparedStatement p = c.con.prepareStatement(query);
             p.setString(1, "%" + search + "%");
             p.setString(2, "%" + search + "%");
             p.setString(3, "%" + search + "%");
@@ -68,24 +72,28 @@ public class Uploaddatabase {
                 UserProfilepic profile = new UserProfilepic(r.getBytes("pic"));
                 list.add(new Userinfo(name,rank, email,date,mobile,"",profile));
             }
+
+            r.close();
+            c.con.close();
             return list;
-        } finally {
-            DatabaseConnection.getInstance().close(r, p, con);
+        }
+        finally {
+            Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_CENTER,"Error while reading user data");
         }
     }
 
     public void create(Userinfo data) throws SQLException, IOException {
-        Connection con = null;
-        PreparedStatement p = null;
+        Connuser c = new Connuser();
+        String query= "INSERT INTO usersdata(username, rankofuser, email, dob, mobile,pass, pic) VALUES(?,?,?,?,?,?,?)";
         try {
-            con = DatabaseConnection.getInstance().createConnection();
-            p = con.prepareStatement("INSERT INTO usersdata(username, rankofuser, email, dob, mobile,pass, pic) VALUES(?,?,?,?,?,?,?)");
+            PreparedStatement p = c.con.prepareStatement(query);
+
             p.setString(1, data.getName());
             p.setString(2, data.getRank());
             p.setString(3, data.getEmail());
             p.setDate(4, data.getDate());
             p.setString(5, data.getMobile());
-            p.setString(6, data.getDescription());
+            p.setString(6, data.getPassword());
             if (data.getProfile() != null) {
                 p.setBytes(7, getByteImage(data.getProfile().getPath()));
             } else {
@@ -93,22 +101,9 @@ public class Uploaddatabase {
             }
             p.execute();
         } finally {
-            DatabaseConnection.getInstance().close(p, con);
+            c.con.close();
         }
     }
-//
-//    public void delete(int id) throws SQLException {
-//        Connection con = null;
-//        PreparedStatement p = null;
-//        try {
-//            con = DatabaseConnection.getInstance().createConnection();
-//            p = con.prepareStatement("delete from employee where ");
-//            p.setInt(1, id);
-//            p.execute();
-//        } finally {
-//            DatabaseConnection.getInstance().close(p, con);
-//        }
-//    }
 
     private byte[] getByteImage(File file) throws IOException {
         BufferedImage image = Thumbnails.of(file)

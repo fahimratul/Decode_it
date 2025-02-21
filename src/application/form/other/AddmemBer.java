@@ -36,19 +36,11 @@ public class AddmemBer extends javax.swing.JPanel {
 
         background1 = new MiscItem.BACKGOUND.Background();
         addmemberForm1 = new application.form.other.Addmember.AddmemberForm();
-        AddMember = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
 
         background1.setBlur(addmemberForm1);
 
         addmemberForm1.setOpaque(false);
-
-        AddMember.setText("Add Member");
-        AddMember.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddMemberActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout background1Layout = new javax.swing.GroupLayout(background1);
         background1.setLayout(background1Layout);
@@ -60,21 +52,15 @@ public class AddmemBer extends javax.swing.JPanel {
                     .addComponent(addmemberForm1, javax.swing.GroupLayout.DEFAULT_SIZE, 729, Short.MAX_VALUE)
                     .addComponent(jSeparator1))
                 .addContainerGap(112, Short.MAX_VALUE))
-            .addGroup(background1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(AddMember, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         background1Layout.setVerticalGroup(
             background1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, background1Layout.createSequentialGroup()
                 .addContainerGap(26, Short.MAX_VALUE)
                 .addComponent(addmemberForm1, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(AddMember, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(29, 29, 29)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -89,22 +75,10 @@ public class AddmemBer extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void AddMemberActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_AddMemberActionPerformed
-
-        try{
-            Uploaddatabase uploaddatabase=new Uploaddatabase();
-            uploaddatabase.create(form.getData());
-            MessageAlerts.getInstance().showMessage("MEMBER ADDED SUCCESSFULLY", form.getData().getName() + " Added Successfully. Please Remember the username and password for next login. Thank you for adding new member.", MessageAlerts.MessageType.SUCCESS);
-        }catch(SQLException| IOException e){
-            MessageAlerts.getInstance().showMessage("DATA SERVER ERROR", e.getMessage(), MessageAlerts.MessageType.ERROR);
-        }
-    }//GEN-LAST:event_AddMemberActionPerformed
-
 
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AddMember;
     private application.form.other.Addmember.AddmemberForm addmemberForm1;
     private MiscItem.BACKGOUND.Background background1;
     private javax.swing.JSeparator jSeparator1;

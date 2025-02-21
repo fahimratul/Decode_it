@@ -12,6 +12,9 @@ import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 import jnafilechooser.api.JnaFileChooser;
 import Model.Userinfo;
+import java.io.IOException;
+import java.sql.SQLException;
+import raven.alerts.MessageAlerts;
 /**
  *
  * @author RATUL
@@ -65,6 +68,7 @@ public class AddmemberForm extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         txtRank = new javax.swing.JTextField();
         txtMobile = new javax.swing.JTextField();
+        AddBtn = new javax.swing.JButton();
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel1.setText("Name");
@@ -134,6 +138,13 @@ public class AddmemberForm extends javax.swing.JPanel {
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel9.setText("Password");
 
+        AddBtn.setText("Add Member");
+        AddBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -141,6 +152,9 @@ public class AddmemberForm extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(118, 118, 118)
+                        .addComponent(panelPic, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -158,10 +172,8 @@ public class AddmemberForm extends javax.swing.JPanel {
                             .addComponent(txtMobile, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(Password, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtName, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(118, 118, 118)
-                        .addComponent(panelPic, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE)))
+                            .addComponent(txtName, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(AddBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(40, 40, 40))
         );
         layout.setVerticalGroup(
@@ -195,7 +207,9 @@ public class AddmemberForm extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
-                .addGap(50, 50, 50))
+                .addGap(18, 18, 18)
+                .addComponent(AddBtn)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -217,14 +231,36 @@ public class AddmemberForm extends javax.swing.JPanel {
         profile = null;
     }//GEN-LAST:event_cmdDeleteActionPerformed
 
+    private void AddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBtnActionPerformed
+        try{
+            Uploaddatabase uploaddatabase=new Uploaddatabase();
+            Userinfo userinfo=new Userinfo();
+            userinfo=getData();
+            uploaddatabase.create(userinfo);
+            MessageAlerts.getInstance().showMessage("MEMBER ADDED SUCCESSFULLY", userinfo.getName() + " Added Successfully. Please Remember the username and password for next login. Thank you for adding new member.", MessageAlerts.MessageType.SUCCESS);
+            SwingUtilities.invokeLater(() -> {
+                removeAll();
+                initComponents();
+                revalidate();
+                repaint();
+            });
+        }catch(SQLException| IOException e){
+            MessageAlerts.getInstance().showMessage("DATA SERVER ERROR", e.getMessage(), MessageAlerts.MessageType.ERROR);
+        }
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AddBtnActionPerformed
+
     public Userinfo getData() {
-        String name = txtName.getText().trim();
-        String rank = txtEmail.getText().trim();
-        String Mobile = txtMobile.getText().trim();
+        String name = txtName.getText();
+        String rank = txtEmail.getText();
+        String Mobile = txtMobile.getText();
         Date date = datePicker.isDateSelected() ? Date.valueOf(datePicker.getSelectedDate()) : null;
-        String email = txtEmail.getText().trim();
+        String email = txtEmail.getText();
         String pass = String.valueOf(Password.getPassword());
-        return new Userinfo(name, rank, email, date, Mobile,pass, profile);
+        Userinfo temp =new Userinfo(name, rank, email, date, Mobile,pass, profile);
+        return temp;
     }
 
     public void init() {
@@ -232,6 +268,7 @@ public class AddmemberForm extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AddBtn;
     private MiscItem.swing.PasswordField Password;
     private javax.swing.JButton cmdBrowse;
     private javax.swing.JButton cmdDelete;

@@ -1,21 +1,13 @@
 package connection;
 
-import org.apache.commons.dbcp2.BasicDataSource;
-
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class DatabaseConnection {
 
     private static DatabaseConnection instance;
-    private BasicDataSource dataSource;
-    private String host = "localhost";
-    private String port = "3306";
-    private String database = "decodeit_userinfo";
-    private String username = "root";
-    private String password = "LongLive@1";
-
-
 
     public static DatabaseConnection getInstance() {
         if (instance == null) {
@@ -24,25 +16,16 @@ public class DatabaseConnection {
         return instance;
     }
 
-    private DatabaseConnection() {
-        try {
-            connectToDatabase();
+    public Connection con;
+    public Statement st;
+    public void Connuser(){
+        try{
+            con= DriverManager.getConnection("jdbc:mysql://localhost:3306/decodeit_userinfo","root","LongLive@1");
+            st=con.createStatement();
         }
-        catch (SQLException e) {
-            e.printStackTrace();
+        catch (Exception e){
+
         }
-    }
-
-    public void connectToDatabase() throws SQLException {
-        dataSource = new BasicDataSource();
-        dataSource.setUrl("jdbc:mysql://" + host + ":" + port + "/" + database);
-        dataSource.setUsername(username);
-        dataSource.setPassword(password);
-        dataSource.start();
-    }
-
-    public Connection createConnection() throws SQLException {
-        return dataSource.getConnection();
     }
 
     public void close(AutoCloseable... close) throws SQLException {

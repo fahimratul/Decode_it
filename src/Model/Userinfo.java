@@ -60,12 +60,12 @@ public class Userinfo {
         this.Mobile = mobile;
     }
 
-    public String getDescription() {
-        return description;
+    public String getPassword() {
+        return pass;
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.pass = description;
     }
 
 
@@ -75,25 +75,26 @@ public class Userinfo {
         this.email = Email;
         this.date = date;
         this.Mobile = Mobile;
-        this.description = password;
+        this.pass = password;
         this.profile = profile;
     }
 
     public Userinfo() {
+        name="default";
     }
 
     private String name;
     private String Rank;
     private Date date;
     private String Mobile;
-    private String description;
+    private String pass;
     private UserProfilepic profile;
     private String email;
 
     public Object[] toTableRow(int rowNum) {
         DateFormat df = new SimpleDateFormat("dd-MMMM-yyyy");
         NumberFormat nf = new DecimalFormat("#####-######");
-        return new Object[]{false, rowNum, this, date == null ? "" : df.format(date), nf.format(Mobile), description};
+        return new Object[]{false, rowNum, this, date == null ? "" : df.format(date), nf.format(Mobile), pass};
     }
 
     @Override
