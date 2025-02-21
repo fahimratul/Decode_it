@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+
 /**
  *
  * @author Ratul
@@ -24,7 +25,7 @@ public class LoginForm extends javax.swing.JPanel {
 
     private void init() {
        setLayout(new MigLayout("al center center"));
-
+        AdminPanelBtn.setContentAreaFilled(false);
         lbTitle.putClientProperty(FlatClientProperties.STYLE, ""
                 + "font:$h1.font");
         
@@ -50,7 +51,9 @@ public class LoginForm extends javax.swing.JPanel {
         lbPass = new javax.swing.JLabel();
         txtPass = new MiscItem.swing.PasswordField();
         cmdLogin = new MiscItem.swing.Button();
-        emptymsgbox = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        AdminPanelBtn = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
 
         background1.setBlur(panelLogin1);
 
@@ -62,22 +65,10 @@ public class LoginForm extends javax.swing.JPanel {
 
         lbUser.setText("User Name");
         panelLogin1.add(lbUser);
-
-        txtUser.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtUserMouseClicked(evt);
-            }
-        });
         panelLogin1.add(txtUser);
 
         lbPass.setText("Password");
         panelLogin1.add(lbPass);
-
-        txtPass.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtPassMouseClicked(evt);
-            }
-        });
         panelLogin1.add(txtPass);
 
         cmdLogin.setText("Login");
@@ -87,10 +78,18 @@ public class LoginForm extends javax.swing.JPanel {
             }
         });
         panelLogin1.add(cmdLogin);
+        panelLogin1.add(jLabel1);
 
-        emptymsgbox.setForeground(new java.awt.Color(255, 51, 51));
-        emptymsgbox.setText(" ");
-        panelLogin1.add(emptymsgbox);
+        AdminPanelBtn.setText("Login as Admin");
+        AdminPanelBtn.setOpaque(true);
+        AdminPanelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AdminPanelBtnActionPerformed(evt);
+            }
+        });
+
+        jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout background1Layout = new javax.swing.GroupLayout(background1);
         background1.setLayout(background1Layout);
@@ -98,15 +97,22 @@ public class LoginForm extends javax.swing.JPanel {
             background1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(background1Layout.createSequentialGroup()
                 .addContainerGap(598, Short.MAX_VALUE)
-                .addComponent(panelLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(background1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(panelLogin1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(AdminPanelBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSeparator1))
                 .addContainerGap(528, Short.MAX_VALUE))
         );
         background1Layout.setVerticalGroup(
             background1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(background1Layout.createSequentialGroup()
-                .addContainerGap(185, Short.MAX_VALUE)
+                .addContainerGap(193, Short.MAX_VALUE)
                 .addComponent(panelLogin1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(218, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(AdminPanelBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(169, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -125,35 +131,28 @@ public class LoginForm extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private  boolean checkadmin(){
-        return (txtUser.getText().equals("admin") && txtPass.getText().equals("<PASSWORD>"));
-    }
     private boolean checkuser(){
         return (!txtUser.getText().isEmpty() && !txtPass.getText().isEmpty());
     }
     
     private void cmdLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLoginActionPerformed
-        if(checkadmin()){
-            Application.adminLoginshow();
-        }else{
-            if(checkuser()){
-                if(checkuser_password(txtUser.getText(),txtPass.getPassword())) {
-                    Application.user= new User(txtUser.getText());
-                    txtUser.setText("");
-                    txtPass.setText("");
-                    Application.login();
-                }
-                else{
-                    Notifications.getInstance().show(Notifications.Type.WARNING,Notifications.Location.TOP_CENTER,"Wrong Password or Username");
-                }
+        if(checkuser()){
+            if(checkuser_password(txtUser.getText(),txtPass.getPassword())) {
+                Application.user= new User(txtUser.getText());
+                txtUser.setText("");
+                txtPass.setText("");
+                Application.login();
             }
             else{
-                if(txtUser.getText().isEmpty()){
-                    Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Enter User Name");
-                }
-                if(txtPass.getText().isEmpty()){
-                    Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Enter Password ");
-                }
+                Notifications.getInstance().show(Notifications.Type.WARNING,Notifications.Location.TOP_CENTER,"Wrong Password or Username");
+            }
+        }
+        else{
+            if(txtUser.getText().isEmpty()){
+                Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Enter User Name");
+            }
+            if(txtPass.getText().isEmpty()){
+                Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Enter Password ");
             }
         }
     }
@@ -178,20 +177,17 @@ public class LoginForm extends javax.swing.JPanel {
     }
 //GEN-LAST:event_cmdLoginActionPerformed
 
-    private void txtUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUserMouseClicked
-        emptymsgbox.setText(" ");
 
-    }//GEN-LAST:event_txtUserMouseClicked
-
-    private void txtPassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPassMouseClicked
-        emptymsgbox.setText(" ");
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPassMouseClicked
+    private void AdminPanelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminPanelBtnActionPerformed
+        Application.adminLoginshow();
+    }//GEN-LAST:event_AdminPanelBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AdminPanelBtn;
     private MiscItem.BACKGOUND.Background background1;
     private javax.swing.JButton cmdLogin;
-    private javax.swing.JLabel emptymsgbox;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lbPass;
     private javax.swing.JLabel lbTitle;
     private javax.swing.JLabel lbUser;
