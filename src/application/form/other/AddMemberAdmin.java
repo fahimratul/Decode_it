@@ -67,16 +67,6 @@ public class AddMemberAdmin extends javax.swing.JPanel {
         AddBtn.setText("Add Member");
         AddBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-
-                MessageAlerts.getInstance().showMessage("Data Saving Failure", "Oops! We encountered an issue while attempting to save your data. Please try again later or contact support for assistance. Apologies for any inconvenience caused.", MessageAlerts.MessageType.ERROR, MessageAlerts.OK_OPTION, new PopupCallbackAction() {
-                    @Override
-                    public void action(PopupController pc, int i) {
-                        if (i == MessageAlerts.OK_OPTION) {
-                            System.out.println("Click ok");
-                        }
-                    }
-                });
-
                 AddBtnActionPerformed(evt);
             }
         });
@@ -255,7 +245,15 @@ public class AddMemberAdmin extends javax.swing.JPanel {
         }
             return flag;
     }
-
+    private void ClearTextfild(){
+        AddMemNamein.setText("");
+        AddMemRk.setText("");
+        AddMemEmail.setText("");
+        AddMemPass.setText("");
+        AddMemMobile.setText("");
+        AddMemRole.setText("");
+        AddMemDOB.setText("");
+    }
     private void AddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBtnActionPerformed
         if (checkfield()) {
             String name = AddMemNamein.getText();
@@ -265,16 +263,27 @@ public class AddMemberAdmin extends javax.swing.JPanel {
             String mobile = AddMemMobile.getText();
             String dob = AddMemDOB.getText();
             String role = AddMemRole.getText();
-            try {
-                Connuser c = new Connuser();
-                String query = "INSERT INTO users VALUES ('"+ name +"', '" +rank+"', '"+ email+"', '"+ dob+"', '"+password+"', '"+ role+"', '"+mobile+"');";
-                System.out.println(query);
-                c.st.executeUpdate(query);
-                Notifications.getInstance().show(Notifications.Type.SUCCESS, Notifications.Location.TOP_CENTER, "Member added successfully!");
-            } catch (Exception e) {
-                Notifications.getInstance().show(Notifications.Type.WARNING, Notifications.Location.TOP_CENTER, "Error Occurred. Please Try Again!");
-            }
+            MessageAlerts.getInstance().showMessage("ARE YOU SURE?", "You are going to add new member. Please confirm that all informations are correct. Please remember your username and password for  next login. ", MessageAlerts.MessageType.WARNING, MessageAlerts.YES_NO_OPTION, new PopupCallbackAction() {
+                @Override
+                public void action(PopupController pc, int i) {
+                    if (i == MessageAlerts.NO_OPTION) {
+                        return;
+                    }
+                    else {
 
+                        try {
+                            Connuser c = new Connuser();
+                            String query = "INSERT INTO users VALUES ('"+ name +"', '" +rank+"', '"+ email+"', '"+ dob+"', '"+password+"', '"+ role+"', '"+mobile+"');";
+                            System.out.println(query);
+                            c.st.executeUpdate(query);
+                            Notifications.getInstance().show(Notifications.Type.SUCCESS, Notifications.Location.TOP_CENTER, "Member added successfully!");
+                            ClearTextfild();
+                        } catch (Exception e) {
+                            Notifications.getInstance().show(Notifications.Type.WARNING, Notifications.Location.TOP_CENTER, "Error Occurred. Please Try Again!");
+                        }
+                    }
+                }
+            });
         };
 
     }//GEN-LAST:event_AddBtnActionPerformed
