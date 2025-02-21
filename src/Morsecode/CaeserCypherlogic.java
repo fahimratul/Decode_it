@@ -1,14 +1,20 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package Morsecode;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-class Caesercypher{
-    public Caesercypher(){
-        
-    }
-    private static StringBuilder encipher( String text , int key ) {
+/**
+ *
+ * @author tanzid
+ */
+public class CaeserCypherlogic {
+    public CaeserCypherlogic(){}
+        public static StringBuilder encipher( String text , int key ) {
         StringBuilder etext = new StringBuilder();
         for( char el:text.toCharArray() ){
             if( !Character.isAlphabetic(el) )
@@ -29,7 +35,7 @@ class Caesercypher{
         }
         return etext;
     }
-    private static StringBuilder decipher( String etext , int key ) {
+    public static StringBuilder decipher( String etext , int key ) {
         StringBuilder text = new StringBuilder();
         for( char el:etext.toCharArray() ){
             if( !Character.isAlphabetic(el) )
@@ -48,20 +54,20 @@ class Caesercypher{
         }
         return text;
     }
-//    public static void main(String[] args){
-//        try {
-//            BufferedReader br = new BufferedReader( new InputStreamReader( System.in ) );
-//            System.out.print("Enter integer key value:-");
-//            int key = Integer.parseInt( br.readLine() );
-//            System.out.print("Enter text value to be encrypted:-");
-//            String text = br.readLine();
-//            StringBuilder etext = encipher( text , key );
-//            System.out.println(etext);
-//            System.out.println(decipher( etext.toString() , key ));
-//
-//        } catch ( IOException e ) {
-//            /* TODO: handle exception */
-//            e.printStackTrace();
-//        }
-//    }
+    public static void main(String[] args){
+        try {
+            BufferedReader br = new BufferedReader( new InputStreamReader( System.in ) );
+            System.out.print("Enter integer key value:-");
+            int key = Integer.parseInt( br.readLine() );
+            System.out.print("Enter text value to be encrypted:-");
+            String text = br.readLine();
+            StringBuilder etext = encipher( text , key );
+            System.out.println(etext);
+            System.out.println(decipher( etext.toString() , key ));
+
+        } catch ( IOException e ) {
+            /* TODO: handle exception */
+            e.printStackTrace();
+        }
+    }
 }
