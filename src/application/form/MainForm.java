@@ -1,8 +1,6 @@
 package application.form;
 
-import application.form.other.Aes;
-import application.form.other.CCForm;
-import application.form.other.Morsecode;
+import application.form.other.*;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import com.formdev.flatlaf.util.UIScale;
@@ -19,7 +17,6 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import application.Application;
-import application.form.other.FormDashboard;
 import menu.Menu;
 import menu.MenuAction;
 import application.form.other.CCForm;
@@ -81,6 +78,9 @@ public class MainForm extends JLayeredPane {
                 }
                 else if(subIndex==3){
                     Application.showForm(new CCForm());
+                }
+                else if(subIndex==4){
+                    Application.showForm(new Rsa());
                 }
             } else if (index == 2) {
                 Application.logout();
