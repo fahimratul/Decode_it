@@ -79,7 +79,7 @@ public class MainForm extends JLayeredPane {
                 else if(subIndex==3){
                     Application.showForm(new CCForm());
                 }
-                else if(subIndex==4){
+                else if(subIndex==4) {
                     Application.showForm(new Rsa());
                 }
             } else if (index == 2) {
