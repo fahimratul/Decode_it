@@ -81,6 +81,9 @@ public class MainForm extends JLayeredPane {
                 }
                 else if(subIndex==4) {
                     Application.showForm(new Rsa());
+                } else if (subIndex==5) {
+                    Application.showForm(new Onetime());
+
                 }
             } else if (index == 2) {
                 Application.logout();
