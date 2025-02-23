@@ -8,6 +8,8 @@ import java.awt.Shape;
 import java.io.File;
 import java.sql.Date;
 import javaswingdev.picturebox.DefaultPictureBoxRender;
+import raven.toast.Notifications;
+import javax.management.Notification;
 import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 import jnafilechooser.api.JnaFileChooser;
@@ -232,6 +234,10 @@ public class AddmemberForm extends javax.swing.JPanel {
     }//GEN-LAST:event_cmdDeleteActionPerformed
 
     private void AddBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBtnActionPerformed
+        if(!isFormFilled()){
+            Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_RIGHT,"Please fill all the fields before proceeding.");
+            return;
+        }
         try{
             Uploaddatabase uploaddatabase=new Uploaddatabase();
             Userinfo userinfo=new Userinfo();
@@ -266,6 +272,16 @@ public class AddmemberForm extends javax.swing.JPanel {
     public void init() {
         txtName.grabFocus();
     }
+
+    public boolean isFormFilled() {
+        return !txtName.getText().trim().isEmpty() &&
+               !txtRank.getText().trim().isEmpty() &&
+               !txtDate.getText().trim().isEmpty() &&
+               !txtMobile.getText().trim().isEmpty() &&
+               !txtEmail.getText().trim().isEmpty() &&
+               Password.getPassword().length > 0;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddBtn;

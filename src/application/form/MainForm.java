@@ -20,6 +20,9 @@ import application.Application;
 import menu.Menu;
 import menu.MenuAction;
 import application.form.other.CCForm;
+import raven.alerts.MessageAlerts;
+import raven.popup.component.PopupCallbackAction;
+import raven.popup.component.PopupController;
 
 /**
  *
@@ -86,7 +89,14 @@ public class MainForm extends JLayeredPane {
 
                 }
             } else if (index == 2) {
-                Application.logout();
+                MessageAlerts.getInstance().showMessage("ARE YOU SURE?", "Are you sure you want to exit?Please Check back you data saved or not.", MessageAlerts.MessageType.WARNING, MessageAlerts.YES_NO_OPTION, new PopupCallbackAction() {
+                    @Override
+                    public void action(PopupController popupController, int i) {
+                        if(i== MessageAlerts.YES_OPTION){
+                            Application.logout();
+                        }
+                    }
+                });
             } else {
                 action.cancel();
             }

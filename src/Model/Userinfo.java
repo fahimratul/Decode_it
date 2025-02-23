@@ -93,8 +93,7 @@ public class Userinfo {
 
     public Object[] toTableRow(int rowNum) {
         DateFormat df = new SimpleDateFormat("dd-MMMM-yyyy");
-        NumberFormat nf = new DecimalFormat("#####-######");
-        return new Object[]{false, rowNum, this, date == null ? "" : df.format(date), nf.format(Mobile), pass};
+        return new Object[]{false, rowNum, this, date == null ? "" : df.format(date),Mobile, pass};
     }
 
     @Override

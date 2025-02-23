@@ -1,0 +1,76 @@
+from docx import Document
+from docx.shared import Pt
+from docx.oxml.ns import qn
+from docx.oxml import OxmlElement
+
+# Create a new Document
+doc = Document()
+
+# Add a title
+title = doc.add_heading('STUDENT OFFRS\' MESS - MIST, BLDG NO-14', level=1)
+title.alignment = 1  # Center alignment
+
+# Add the date
+date = doc.add_paragraph('Dr.14 Apr 2024')
+date.alignment = 1  # Center alignment
+
+# Add the table
+table = doc.add_table(rows=1, cols=13)
+table.style = 'Table Grid'
+
+# Add header row
+hdr_cells = table.rows[0].cells
+headers = ['', '412', '410', '408', '406', '404', '402', '414', '416', '418', '420', '422', '424']
+for i, header in enumerate(headers):
+    hdr_cells[i].text = header
+
+# Add data rows
+data = [
+    ['BD/14788', 'BDI/14794', 'BDI/14791', 'BDI/14786', 'BDI/14798', 'BDI/14802', 'BDI/14848', 'BDI/14784', 'BDI/14787', 'BDI/14789', 'BDI/14793', 'BDI/14795'],
+    ['Offr Cdt', 'Offr Cdt', 'Offr Cdt', 'Offr Cdt', 'Offr Cdt', 'Offr Cdt', 'Offr Cdt', 'Offr Cdt', 'Offr Cdt', 'Offr Cdt', 'Offr Cdt', 'Offr Cdt'],
+    ['Fail-in', 'Carver', 'Malvq', 'Rail', 'Aanjan', 'Farhan', 'Regib', 'Asif', 'Nazner', 'Mohin', 'Jetsk', 'Eman'],
+    ['CSE-23', 'CSE-23', 'EECE-21', 'ME-21', 'ME-21', 'ME-21', 'AE-14', 'AE-15', 'AE-16', 'AE-17', 'AE-18', 'AE-19'],
+    ['411', '405', '407', '405', '403', '401', '413', '415', '417', '415', '421', '425'],
+    ['BD/10652', 'BDI/10613', 'BDI/10617', 'BDI/10655', 'BDI/10683', 'BDI/10603', 'BDI/14797', 'BDI/14800', 'BDI/14801', 'BDI/10826', 'BDI/10924', 'BDI/10912'],
+    ['Fig Offr', 'Fig Offr', 'Fig Offr', 'Fig Offr', 'Fig Offr', 'Fig Offr', 'Sinnott', 'Sinnott', 'Offr Cdt', 'Fig Offr', 'Fig Offr', 'Fig Offr'],
+    ['Abrar', 'Fairian', 'Fairian', 'Malvq', 'Hainin', 'Alaoh', 'Shimon', 'Sunnoi', 'Mushingue', 'Izafinar', 'Saad', 'Taha'],
+    ['CSE-22', 'CSE-22', 'CSE-22', 'EECE-20', 'EECE-20', 'EECE-20', 'AE-15', 'AE-15', 'AE-16', 'ME-20', 'ME-20', 'AE-14'],
+    ['312', '310', '308', '306', '304', '302', '314', '316', '318', '320', '322', '324'],
+    ['BD/10607', 'BDI/10608', 'BDI/10606', 'BDI/10608', 'BDI/10609', 'BDI/10403', 'BDI/10588', 'BDI/10516', 'BDI/10520', 'BDI/10600', 'BDI/10621', 'BDI/10615'],
+    ['Fig Offr', 'Fig Offr', 'Fig Offr', 'Fig Offr', 'Offr', 'Fig Offr', 'Fig Offr', 'Fig Offr', 'Fig Offr', 'Fig Offr', 'Fig Offr', 'Fig Offr'],
+    ['Safrat', 'Shadman', 'Rajyan', 'Alavi', 'Injannam', 'Rafal', 'Romei', 'Munasseer', 'Kapit', 'Abid', 'Nahian', 'Astiver'],
+    ['AE-14', 'AE-14', 'AE-14', 'AE-14', 'AE-14', 'AE-13', 'AE-14', 'AE-14', 'ME-20', 'AE-14', 'AE-14', 'AE-14'],
+    ['311', '309', '307', '306', '303', '301', '313', '316', '317', '319', '321', '323'],
+    ['P No-3888', 'P No-3870', 'P No-3835', 'P No-3832', 'P No-3818', 'P No-3816', 'P No-3865', 'P No-3800', 'P No-3897', 'P No-3843', 'P No-3824', 'P No-3820'],
+    ['S Li Reyaz', 'S Li Shifat', 'S Li Ayaz', 'S Li Arlan', 'S Li Munafar', 'S Li Mahmud', 'S Li Monul', 'S Li Amoo', 'S Li Safiyan', 'S Li Mohin', 'S Li Farhan', 'S Li Jatin'],
+    ['EECE-20', 'EECE-20', 'EECE-20', 'EECE-20', 'EECE-20', 'EECE-20', 'EECE-20', 'EECE-20', 'EECE-20', 'ME-20', 'ME-20', 'ME-20'],
+    ['212', '210', '208', '206', '204', '202', '214', '216', '218', '220', '222', '224'],
+    ['P No-3705', 'P No-3686', 'P No-3671', 'P No-3690', 'P No-3670', 'P No-3772', 'P No-3813', 'P No-3802', 'P No-3834', 'P No-3795', 'P No-3891', 'P No-3880'],
+    ['Lt Fahad', 'Lt Taushif', 'Lt Sabdir', 'Lt Aerin', 'Lt Nahin', 'Lt Rufsun', 'S LT Tausif', 'S Lt Rabio', 'S Lt Marhen', 'S Lt Elaz', 'S Li Amoria', 'S Lt Ismann'],
+    ['EECE-19', 'EECE-19', 'EECE-19', 'EECE-19', 'EECE-19', 'ME-20', 'ME-20', 'NAME-10', 'NAME-10', 'NAME-10', 'NAME-10'],
+    ['211', '209', '207', '209', '203', '213', '215', '217', '219', '221', '223'],
+    ['P No-3978', 'P No-3679', 'P No-3794', 'P No-3744', 'P No-3752', 'P No-3765', 'P No-3765', 'P No-3773', 'P No-3773', 'P No-3787', 'P No-3787'],
+    ['Lt Ma-limud', 'Lt Pelat', 'Lt Erira', 'Lt Salih', 'Lt Zasgu', 'Lt Mosulab', 'Lt Turag', 'Lt Soyard', 'Lt Soyard', 'Lt Saclug', 'Lt Hasin', 'Lt Zaman'],
+    ['ME-19', 'ME-19', 'ME-19', 'ME-19', 'ME-19', 'ME-19', 'EECE-19', 'EECE-19', 'EECE-19', 'NAME-9', 'NAME-9', 'NAME-9'],
+    ['112', '110', '108', '108', '104', '102', '114', '116', '118', '120', '122', '124'],
+    ['BD/10668', 'BDI/10657', 'BDI/10858', 'BDI/10861', 'BDI/1482', 'BA-11408', 'P No-3890', 'P No-3701', 'BA-11526', 'BA-11529', 'BA-11362', 'BA-11478'],
+    ['Fig Offr Kabir', 'Fig Offr', 'Fig Offr', 'Fig Offr', 'Fig Offr', 'Fig Offr', 'Fig Offr', 'Fig Offr', 'Fig Offr', 'Fig Offr', 'Fig Offr', 'Fig Offr'],
+    ['AE-19', 'EECE-19', 'AE-19', 'AE-19', 'AE-19', 'ME-19', 'ME-19', 'ME-19', 'ME-19', 'ME-19', 'ME-19', 'ME-19'],
+    ['111', '109', '107', '108', '103', '101', '113', '115', '117', '119', '121', '123'],
+    ['SAF-17428', 'BA-11442', 'BA-11446', 'BA-11466', 'BA-11667', 'BA-11477', 'BA-11614', 'BA-11600', 'BA-11646', 'BA-11623', 'BA-11607', 'BA-11680'],
+    ['Fig Offr Fahmi', 'Lt Rifat', 'Lt Taufik', 'Lt Tousif', 'Lt Nyaz', 'Lt Samin', 'Lt Mahmud', 'Lt Mand', 'Lt Saad', 'Lt Saltkat', 'Lt Tanvir', 'Lt Ashraful'],
+    ['(Sudan)', 'ME-19', 'ME-19', 'ME-19', 'ME-19', 'ME-19', 'ME-19', 'ME-19', 'ME-19', 'CSE-21', 'CSE-21', 'CE-24'],
+    ['AE-13']
+]
+
+for row in data:
+    row_cells = table.add_row().cells
+    for i, cell in enumerate(row):
+        row_cells[i].text = cell
+
+# Add notes
+notes = doc.add_paragraph('Notes: Army = 16, Navy = 38 & Air Force = 42 Total = 96')
+notes.alignment = 1  # Center alignment
+
+# Save the document
+doc.save('student_offrs_mess.docx')
