@@ -42,15 +42,16 @@ public class Panel extends JComponent {
     private Icon image;
 
     public Panel() {
-        image = new ImageIcon(getClass().getResource("icon/png/1.png"));
+        image = new ImageIcon(getClass().getResource("/icon/png/1.png"));
         init();
+        start();
     }
 
     private void init() {
         String start = "40% 60% 60% 40% / 60% 30% 70% 40%";
         String end = "40% 60%";
         fancyAnimation = new FancyAnimation(start, end);
-        animator = new Animator(5000, new TimingTargetAdapter() {
+        animator = new Animator(3000, new TimingTargetAdapter() {
             @Override
             public void timingEvent(float fraction) {
                 animate = fraction;
@@ -73,10 +74,8 @@ public class Panel extends JComponent {
     }
 
     public void start() {
-        if (!animator.isRunning()) {
             animator.start();
             animatorRotate.start();
-        }
     }
 
     public void stop() {

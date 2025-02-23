@@ -16,16 +16,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-              <Component id="background1" min="-2" pref="963" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-          </Group>
+          <Component id="background1" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="background1" alignment="0" pref="690" max="32767" attributes="0"/>
+          <Component id="background1" alignment="1" pref="690" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -50,7 +46,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="240" y="160" width="510" height="350"/>
+              <AbsoluteConstraints x="160" y="260" width="510" height="260"/>
             </Constraint>
           </Constraints>
 
@@ -58,48 +54,48 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="-2" pref="124" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jRole" alignment="1" max="32767" attributes="0"/>
-                          <Component id="JMobile" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jRank" alignment="0" max="32767" attributes="0"/>
                           <Component id="jName" alignment="1" max="32767" attributes="0"/>
+                          <Component id="jRank" alignment="1" max="32767" attributes="0"/>
+                          <Component id="jRole" alignment="1" max="32767" attributes="0"/>
+                          <Component id="JMobile" alignment="1" pref="78" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="role" alignment="1" max="32767" attributes="0"/>
                           <Component id="rank" alignment="1" max="32767" attributes="0"/>
-                          <Component id="username" alignment="1" max="32767" attributes="0"/>
                           <Component id="mobileno" pref="308" max="32767" attributes="0"/>
+                          <Component id="username" alignment="0" pref="308" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="174" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jName" max="32767" attributes="0"/>
-                          <Component id="username" pref="74" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="username" alignment="3" min="-2" pref="74" max="-2" attributes="0"/>
+                          <Component id="jName" alignment="3" min="-2" pref="74" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="rank" pref="28" max="32767" attributes="0"/>
-                          <Component id="jRank" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="rank" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                          <Component id="jRank" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="role" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                           <Component id="jRole" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="mobileno" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                           <Component id="JMobile" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -128,21 +124,25 @@
             <Component class="javax.swing.JLabel" name="jName">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Name:"/>
+                <Property name="verticalAlignment" type="int" value="3"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jRole">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Role:"/>
+                <Property name="verticalAlignment" type="int" value="3"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jRank">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Rank:"/>
+                <Property name="verticalAlignment" type="int" value="3"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="JMobile">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Mobile No: "/>
+                <Property name="verticalAlignment" type="int" value="3"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -171,6 +171,17 @@
             </Constraint>
           </Constraints>
         </Component>
+        <Container class="MiscItem.Fancyborder.Panel" name="panel1">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="270" y="60" width="290" height="270"/>
+            </Constraint>
+          </Constraints>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+            <Property name="useNullLayout" type="boolean" value="true"/>
+          </Layout>
+        </Container>
       </SubComponents>
     </Container>
   </SubComponents>
