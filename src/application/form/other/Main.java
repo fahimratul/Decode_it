@@ -71,7 +71,14 @@ public class Main extends javax.swing.JFrame {
                 + "innerFocusWidth:0;"
                 + "margin:5,20,5,20;"
                 + "background:$Panel.background");
-
+        table.setDefaultRenderer(Object.class, new javax.swing.table.DefaultTableCellRenderer() {
+            @Override
+            public java.awt.Component getTableCellRendererComponent(javax.swing.JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                javax.swing.JLabel label = (javax.swing.JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+                return label;
+            }
+        });
         // init default modal
         ModalDialog.getDefaultOption()
                 .setOpacity(0.3f)
