@@ -1,5 +1,5 @@
 
-package application.form.other;
+package application.form.other.Addmember;
 
 import java.awt.Color;
 import java.io.IOException;

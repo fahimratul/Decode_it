@@ -252,12 +252,7 @@ public class AddmemberForm extends javax.swing.JPanel {
             userinfo=getData();
             uploaddatabase.create(userinfo);
             MessageAlerts.getInstance().showMessage("MEMBER ADDED SUCCESSFULLY", userinfo.getName() + " Added Successfully. Please Remember the username and password for next login. Thank you for adding new member.", MessageAlerts.MessageType.SUCCESS);
-            SwingUtilities.invokeLater(() -> {
-                removeAll();
-                initComponents();
-                revalidate();
-                repaint();
-            });
+            cleardata();
         }catch(SQLException| IOException e){
             MessageAlerts.getInstance().showMessage("DATA SERVER ERROR", e.getMessage(), MessageAlerts.MessageType.ERROR);
         }
@@ -285,9 +280,20 @@ public class AddmemberForm extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNameKeyReleased
 
+    private void cleardata(){
+        txtName.setText("");
+        txtRank.setText("");
+        txtDate.setText("");
+        txtMobile.setText("");
+        txtEmail.setText("");
+        Password.setText("");
+
+    }
+
+
     public Userinfo getData() {
         String name = txtName.getText();
-        String rank = txtEmail.getText();
+        String rank = txtRank.getText();
         String Mobile = txtMobile.getText();
         Date date = datePicker.isDateSelected() ? Date.valueOf(datePicker.getSelectedDate()) : null;
         String email = txtEmail.getText();

@@ -18,9 +18,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import application.Application;
 import application.form.other.FormDashboard;
-import application.form.other.AddmemBer;
+import application.form.other.Addmember.AddmemBer;
 import adminMenu.AdminMenu;
-import application.form.other.Allmember;
+import application.form.other.AllMember.Allmember;
 import raven.alerts.MessageAlerts;
 import raven.popup.component.PopupCallbackAction;
 import raven.popup.component.PopupController;
@@ -77,8 +77,7 @@ public class AdminMainForm extends JLayeredPane {
 
     private void initMenuEvent() {
         adminmenu.addMenuEvent((int index, int subIndex, AdminMenuAction action) -> {
-            // Application.mainForm.showForm(new DefaultForm("Form : " + index + " " + subIndex));
-            if (index == 0) {
+           if (index == 0) {
                 Application.showForm_admin(new FormDashboard());
             } else if (index == 1) {
                     Application.showForm_admin(new AddmemBer());

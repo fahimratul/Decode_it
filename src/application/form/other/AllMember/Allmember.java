@@ -1,5 +1,5 @@
 
-package application.form.other;
+package application.form.other.AllMember;
 
 import java.awt.Color;
 import java.io.IOException;
@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import Model.Userinfo;
 import application.form.other.Addmember.AddmemberForm;
 import application.form.other.Addmember.Uploaddatabase;
+import application.form.other.AllMember.ProfileTableRenderer;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import java.util.List;
@@ -63,8 +64,19 @@ public class Allmember extends javax.swing.JPanel {
             new String [] {
                 "Name", "Email", "Mobile", "Date of Birth"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         scroll.setViewportView(table);
+        if (table.getColumnModel().getColumnCount() > 0) {
+            table.getColumnModel().getColumn(0).setPreferredWidth(200);
+        }
 
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
@@ -132,7 +144,7 @@ private void init() {
                 + "font:bold;");
 
         table.putClientProperty(FlatClientProperties.STYLE, ""
-                + "rowHeight:70;"
+                + "rowHeight:90;"
                 + "showHorizontalLines:true;"
                 + "intercellSpacing:0,1;"
                 + "cellFocusColor:$TableHeader.hoverBackground;"
@@ -145,7 +157,9 @@ private void init() {
                 + "thumbInsets:3,3,3,3;"
                 + "background:$Table.background;");
 
+           table.getColumnModel().getColumn(0).setCellRenderer(new ProfileTableRenderer(table));
 
+        
         txtSearch.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Search...");
         txtSearch.putClientProperty(FlatClientProperties.TEXT_FIELD_LEADING_ICON, new FlatSVGIcon("icon/svg/search.svg",0.8f));
         txtSearch.putClientProperty(FlatClientProperties.STYLE, ""
@@ -155,6 +169,7 @@ private void init() {
                 + "innerFocusWidth:0;"
                 + "margin:5,20,5,20;"
                 + "background:$Panel.background");
+
         table.setDefaultRenderer(Object.class, new javax.swing.table.DefaultTableCellRenderer() {
             @Override
             public java.awt.Component getTableCellRendererComponent(javax.swing.JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
