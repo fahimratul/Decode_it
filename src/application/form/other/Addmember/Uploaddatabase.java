@@ -40,7 +40,7 @@ public class Uploaddatabase {
                 Date date = r.getDate("dob");
                 String mobile = r.getString("mobile");
                 UserProfilepic profile = new UserProfilepic(r.getBytes("pic"));
-                list.add(new Userinfo(name,rank, email,date,mobile,"",profile));
+                list.add(new Userinfo(name.toUpperCase(),rank, email,date,mobile,"",profile));
             }
 
             r.close();
