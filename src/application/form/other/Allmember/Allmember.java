@@ -4,17 +4,45 @@
  */
 package application.form.other.Allmember;
 
+import Model.Userinfo;
+import application.form.other.Addmember.Uploaddatabase;
+import com.formdev.flatlaf.FlatClientProperties;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author RATUL
  */
 public class Allmember extends javax.swing.JPanel {
 
+    private  Uploaddatabase uploaddatabase = new Uploaddatabase();
     /**
      * Creates new form Allmember
      */
     public Allmember() {
         initComponents();
+        intComp();
+        loadData();
+     
+
+        
+    }
+    
+     private void loadData() {
+        try {
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+            if (table.isEditing()) {
+                table.getCellEditor().stopCellEditing();
+            }
+            model.setRowCount(0);
+            List<Userinfo> list =uploaddatabase.getAll();
+            for (Userinfo d : list) {
+                model.addRow(d.toTableRow(table.getRowCount() + 1));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -27,16 +55,76 @@ public class Allmember extends javax.swing.JPanel {
     private void initComponents() {
 
         panel = new javax.swing.JPanel();
+        scroll = new javax.swing.JScrollPane();
+        table = new javax.swing.JTable();
+        Search = new MiscItem.Searchbutton.TextFieldSearchOption();
+
+        table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "NAME", "MOBILE NO", "EMAIL", "DATE OF BIRTH"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        scroll.setViewportView(table);
 
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 822, Short.MAX_VALUE)
+            .addGroup(panelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
+                    .addGroup(panelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(Search, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 492, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(Search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
+                .addGap(42, 42, 42))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -44,21 +132,53 @@ public class Allmember extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addGap(54, 54, 54)
+                .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(49, 49, 49))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addGap(40, 40, 40)
+                .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(40, 40, 40))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private MiscItem.Searchbutton.TextFieldSearchOption Search;
     private javax.swing.JPanel panel;
+    private javax.swing.JScrollPane scroll;
+    private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
+
+    private void intComp() {
+        panel.putClientProperty(FlatClientProperties.STYLE, ""
+                + "arc:25;"
+                + "background:$Table.background");
+
+        table.getTableHeader().putClientProperty(FlatClientProperties.STYLE, ""
+                + "height:30;"
+                + "hoverBackground:null;"
+                + "pressedBackground:null;"
+                + "separatorColor:$TableHeader.background;"
+                + "font:bold;");
+
+        table.putClientProperty(FlatClientProperties.STYLE, ""
+                + "rowHeight:70;"
+                + "showHorizontalLines:true;"
+                + "intercellSpacing:0,1;"
+                + "cellFocusColor:$TableHeader.hoverBackground;"
+                + "selectionBackground:$TableHeader.hoverBackground;"
+                + "selectionForeground:$Table.foreground;");
+
+        scroll.getVerticalScrollBar().putClientProperty(FlatClientProperties.STYLE, ""
+                + "trackArc:999;"
+                + "trackInsets:3,3,3,3;"
+                + "thumbInsets:3,3,3,3;"
+                + "background:$Table.background;");
+
+    
+    }
 }
