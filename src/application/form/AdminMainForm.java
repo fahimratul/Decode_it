@@ -20,6 +20,10 @@ import application.Application;
 import application.form.other.FormDashboard;
 import application.form.other.AddmemBer;
 import adminMenu.AdminMenu;
+import application.form.other.Allmember;
+import raven.alerts.MessageAlerts;
+import raven.popup.component.PopupCallbackAction;
+import raven.popup.component.PopupController;
 
 /**
  *
@@ -77,17 +81,24 @@ public class AdminMainForm extends JLayeredPane {
             if (index == 0) {
                 Application.showForm_admin(new FormDashboard());
             } else if (index == 1) {
-
-                System.out.println(index);
-                Application.showForm_admin(new AddmemBer());
+                    Application.showForm_admin(new AddmemBer());
             }
-            else if (index == 2) {
-                System.out.println(subIndex);
-                //Application.showForm_admin();
+            else if (index == 2) {    
+                    Application.showForm(new Allmember());
             }
-            else if (index == 3) {
-                Application.logout();
-            } else {
+            else if (index==3){
+                
+            }
+            else if (index == 4) {
+                 MessageAlerts.getInstance().showMessage("ARE YOU SURE?", "Are you sure you want to exit?Please Check back you data saved or not.", MessageAlerts.MessageType.WARNING, MessageAlerts.YES_NO_OPTION, new PopupCallbackAction() {
+                    @Override
+                    public void action(PopupController popupController, int i) {
+                        if(i== MessageAlerts.YES_OPTION){
+                            Application.logout();
+                        }
+                    }
+                });}
+            else {
                 action.cancel();
             }
         });
