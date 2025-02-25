@@ -84,7 +84,8 @@ public class AdminMainForm extends JLayeredPane {
                     Application.showForm_admin(new AddmemBer());
             }
             else if (index == 2) {    
-                    Application.showForm(new Allmember());
+               
+                Application.showForm_admin(new Allmember());
             }
             else if (index==3){
                 

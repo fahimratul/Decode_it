@@ -22,12 +22,14 @@ import raven.alerts.MessageAlerts;
  * @author RATUL
  */
 public class AddmemberForm extends javax.swing.JPanel {
+    private Uploaddatabase uploaddatabase;
 
     /**
      * Creates new form Create
      */
     public AddmemberForm() {
         initComponents();
+        uploaddatabase = new Uploaddatabase();
         datePicker.setCloseAfterSelected(true);
         datePicker.setEditor(txtDate);
         pic.setPictureBoxRender(new DefaultPictureBoxRender() {
@@ -36,10 +38,11 @@ public class AddmemberForm extends javax.swing.JPanel {
                 return createRound(rectangle, UIScale.scale(10));
             }
         });
-        pic.setImage(new FlatSVGIcon("/icon/svg/profile.svg", 5f));
+        pic.setImage(new FlatSVGIcon("icon/svg/profile.svg", 5f));
         panelPic.putClientProperty(FlatClientProperties.STYLE, ""
                 + "border:0,0,0,0,$Component.borderColor,,10;"
                 + "background:$TextArea.background");
+        AddBtn.setEnabled(false);    
     }
 
     /**
@@ -74,6 +77,12 @@ public class AddmemberForm extends javax.swing.JPanel {
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel1.setText("Name");
+
+        txtName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNameKeyReleased(evt);
+            }
+        });
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel2.setText("Rank");
@@ -211,7 +220,7 @@ public class AddmemberForm extends javax.swing.JPanel {
                     .addComponent(jLabel9))
                 .addGap(18, 18, 18)
                 .addComponent(AddBtn)
-                .addContainerGap())
+                .addContainerGap(33, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -239,7 +248,6 @@ public class AddmemberForm extends javax.swing.JPanel {
             return;
         }
         try{
-            Uploaddatabase uploaddatabase=new Uploaddatabase();
             Userinfo userinfo=new Userinfo();
             userinfo=getData();
             uploaddatabase.create(userinfo);
@@ -257,6 +265,25 @@ public class AddmemberForm extends javax.swing.JPanel {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_AddBtnActionPerformed
+
+    private void txtNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyReleased
+           try{
+               if(!txtName.getText().equals("")){
+                   if(uploaddatabase.search_username(txtName.getText())){
+                       Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_RIGHT,""+txtName.getText()+" is already exist");
+                       return;
+                   }
+                   else{
+                    AddBtn.setEnabled(true);
+                   }
+               }
+           }
+           catch (SQLException e){
+
+           }
+           
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNameKeyReleased
 
     public Userinfo getData() {
         String name = txtName.getText();

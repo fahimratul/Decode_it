@@ -52,6 +52,26 @@ public class Uploaddatabase {
         }
     }
 
+    public boolean search_username(String search) throws SQLException {
+        ResultSet r = null;
+        boolean flag;
+        try {
+            Connuser c = new Connuser();
+            String query = "select * from usersdata where (username like ?)";
+            PreparedStatement p = c.con.prepareStatement(query);
+            p.setString(1, "%" + search + "%");
+            r = p.executeQuery();
+            flag=r.next();
+            r.close();
+            c.con.close();
+            return flag;
+        }
+        finally {
+        
+        }
+    }
+    
+    
     public List<Userinfo> search(String search) throws SQLException {
         ResultSet r = null;
         try {
