@@ -37,7 +37,7 @@ public class PanelCustom extends JComponent {
     public void paint(Graphics grphcs) {
         super.paint(grphcs);
         Graphics2D g2 = (Graphics2D) grphcs.create();
-        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha * 0.8f));
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha * 0.5f));
         g2.setColor(getBackground());
         g2.fill(new Rectangle2D.Double(0, 0, getWidth(), getHeight()));
         g2.dispose();

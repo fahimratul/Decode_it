@@ -14,20 +14,19 @@ import org.jdesktop.animation.timing.interpolation.PropertySetter;
 public class Morsecode_to_text extends javax.swing.JPanel {
 
     private MigLayout layout;
-    private Register register;
-    private Morse2text login;
+    private Text2Morse text2Morse;
+    private Morse2text morse2text;
     private Animator animator;
     private boolean isLogin;
-    public static Color mainColor = new Color(246, 207, 104);
-
+    
     public void setAnimate(int animate) {
-        layout.setComponentConstraints(register, "pos (50%)-280px-" + animate + " 0.5al n n");
-        layout.setComponentConstraints(login, "pos (50%)-20px+" + animate + " 0.5al n n");
+        layout.setComponentConstraints(text2Morse, "pos (50%)-350px-" + animate + " 0.5al n n");
+        layout.setComponentConstraints(morse2text, "pos (50%)-10px+" + animate + " 0.5al n n");
         if (animate == 30) {
             if (isLogin) {
-                setComponentZOrder(login, 0);
+                setComponentZOrder(morse2text, 0);
             } else {
-                setComponentZOrder(register, 0);
+                setComponentZOrder(text2Morse, 0);
             }
         }
         revalidate();
@@ -44,11 +43,11 @@ public class Morsecode_to_text extends javax.swing.JPanel {
             @Override
             public void timingEvent(float fraction) {
                 if (isLogin) {
-                    register.setAlpha(fraction);
-                    login.setAlpha(1f - fraction);
+                    text2Morse.setAlpha(fraction);
+                    morse2text.setAlpha(1f - fraction);
                 } else {
-                    register.setAlpha(1f - fraction);
-                    login.setAlpha(fraction);
+                    text2Morse.setAlpha(1f - fraction);
+                    morse2text.setAlpha(fraction);
                 }
             }
         });
@@ -60,13 +59,13 @@ public class Morsecode_to_text extends javax.swing.JPanel {
         //setBackground(mainColor);
         layout = new MigLayout("fill", "fill", "fill");
         setLayout(layout);
-        register = new Register();
-        login = new Morse2text();
-        applyEvent(register, false);
-        applyEvent(login, true);
-        add(register, "pos (50%)-280px 0.5al n n");
-        add(login, "pos (50%)-20px 0.5al n n");
-        register.addMouseListener(new MouseAdapter() {
+        text2Morse = new Text2Morse();
+        morse2text = new Morse2text();
+        applyEvent(text2Morse, false);
+        applyEvent(morse2text, true);
+        add(text2Morse, "pos (50%)-350px 0.5al n n");
+        add(morse2text, "pos (50%)-10px 0.5al n n");
+        text2Morse.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent me) {
                 if (SwingUtilities.isLeftMouseButton(me)) {
@@ -74,7 +73,7 @@ public class Morsecode_to_text extends javax.swing.JPanel {
                 }
             }
         });
-        login.addMouseListener(new MouseAdapter() {
+        morse2text.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent me) {
                 if (SwingUtilities.isLeftMouseButton(me)) {
@@ -89,6 +88,8 @@ public class Morsecode_to_text extends javax.swing.JPanel {
             if (!animator.isRunning()) {
                 isLogin = show;
                 animator.start();
+                
+                
             }
         }
     }

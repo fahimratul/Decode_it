@@ -33,7 +33,7 @@ public class Morsecode extends javax.swing.JPanel implements KeyListener {
 
         Outputbox.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT,"Your morse code will be here");
         Outputbox.setEditable(false);
-        Outputbox.putClientProperty(FlatClientProperties.STYLE, ""+ "font: 130% $h2.font");
+        Outputbox.putClientProperty(FlatClientProperties.STYLE, ""+ "font: 130% $h2.font;");
 
         TextBox.setLineWrap(true);
         TextBox.setWrapStyleWord(true);

@@ -27,7 +27,7 @@ public class TextField_Round extends JTextField {
         setBorder(new EmptyBorder(10, 10, 10, 10));
         setBackground(new Color(0, 0, 0, 0));
         setHorizontalAlignment(JTextField.CENTER);
-        setSelectionColor(Morsecode_to_text.mainColor);
+        setSelectionColor(new Color(75, 61, 106, 255));
     }
 
     @Override

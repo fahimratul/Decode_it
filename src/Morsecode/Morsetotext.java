@@ -96,7 +96,6 @@ public class Morsetotext {
         reverseMorseCodeMap.put("-.-.--", '!');
     }
 
-    // Function to decode Morse Code into English text
     public String decodeMorseCode(String morseCode) {
         StringBuilder decodedMessage = new StringBuilder();
 
@@ -115,15 +114,5 @@ public class Morsetotext {
         return decodedMessage.toString().trim();
     }
 
-    // Test the Morse decoder
-    public static void main(String[] args) {
-        Morsetotext decoder = new Morsetotext();
 
-        // Test cases
-        String morse1 = "..s. --- ..."; // SOS
-        String morse2 = "-- ..- -..- / .. ... / .- -- .- --.. .. -. --."; // MUX IS AMAZING
-
-        System.out.println("Decoded: " + decoder.decodeMorseCode(morse1));
-        System.out.println("Decoded: " + decoder.decodeMorseCode(morse2));
-    }
 }

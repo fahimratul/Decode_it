@@ -34,7 +34,7 @@ public class Morse2text extends PanelCustom{
                 PlaysoundActionPerformed(evt);
             }
         });
-
+        setBackground(new java.awt.Color(0, 102, 102, 225)); // Set background color with some transparency
     }
 
     /**
@@ -50,6 +50,7 @@ public class Morse2text extends PanelCustom{
         ChangeButton = new MiscItem.swing.Button_Round();
         Playsound = new MiscItem.swing.Button_Round();
         TextBox = new MiscItem.swing.TextField_Round();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 102, 102));
 
@@ -61,6 +62,8 @@ public class Morse2text extends PanelCustom{
         Playsound.setText("Play Sound");
 
         TextBox.setHint("Text");
+
+        jLabel1.setText("Text To Morse");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -74,11 +77,17 @@ public class Morse2text extends PanelCustom{
                     .addComponent(ChangeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Playsound, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE))
                 .addGap(38, 38, 38))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(77, 77, 77)
+                .addGap(19, 19, 19)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(TextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(Outputbox, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -127,5 +136,6 @@ public class Morse2text extends PanelCustom{
     private MiscItem.swing.TextField_Round Outputbox;
     private MiscItem.swing.Button_Round Playsound;
     private MiscItem.swing.TextField_Round TextBox;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

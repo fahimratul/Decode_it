@@ -31,7 +31,7 @@ public class MorseFinal extends javax.swing.JPanel {
 
         morsecode_to_text2.setOpaque(false);
         background1.add(morsecode_to_text2);
-        morsecode_to_text2.setBounds(100, 40, 850, 500);
+        morsecode_to_text2.setBounds(80, 60, 920, 540);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
