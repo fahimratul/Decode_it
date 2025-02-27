@@ -50,7 +50,7 @@ public class UserProfilepic {
             return null;
         }
         if (avatar == null) {
-            AvatarIcon ai = new AvatarIcon(icon, 50, 50, 3f);
+            AvatarIcon ai = new AvatarIcon(icon, 85, 85, 3f);
             ai.setType(AvatarIcon.Type.MASK_SQUIRCLE);
             avatar = ai;
         }
