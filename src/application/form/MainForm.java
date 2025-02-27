@@ -21,7 +21,6 @@ import application.Application;
 import menu.Menu;
 import menu.MenuAction;
 import application.form.other.CCForm;
-import application.form.other.MorseCode.MorseFinal;
 import raven.alerts.MessageAlerts;
 import raven.popup.component.PopupCallbackAction;
 import raven.popup.component.PopupController;
@@ -77,7 +76,7 @@ public class MainForm extends JLayeredPane {
                 Application.showForm(new FormDashboard());
             } else if (index == 1) {
                 if (subIndex == 1) {
-                    Application.showForm(new MorseFinal());
+                    Application.showForm(new Morsecode_to_text());
                 } else if (subIndex == 2) {
                     Application.showForm(new Aes());
                 }

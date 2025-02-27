@@ -14,7 +14,7 @@ import java.awt.event.ActionEvent;
  *
  * @author RATUL
  */
-public class Text2Morse extends PanelCustom {
+public class Text2Morse extends javax.swing.JPanel {
     private Morsetotext morsetotext;
     /**
      * Creates new form Text2Morse
@@ -23,14 +23,12 @@ public class Text2Morse extends PanelCustom {
         initComponents();
         init();
         morsetotext = new Morsetotext();
-        setBackground(new java.awt.Color(167, 211, 224, 220)); // Set background color with some transparency
+        setBackground(new java.awt.Color(167, 211, 224, 255)); // Set background color with some transparency
         Convert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ConvertButtonActionPerformed(evt);
             }
         });
-
-
     }
 
     private void ConvertButtonActionPerformed(ActionEvent evt) {
@@ -73,28 +71,31 @@ public class Text2Morse extends PanelCustom {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(OScroll, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
-                    .addComponent(TScroll, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(OScroll)
+                    .addComponent(TScroll)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Convert, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Title, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                                .addComponent(Title, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Convert, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 21, Short.MAX_VALUE)))
+                .addGap(40, 40, 40))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(Title, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(TScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(OScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(TScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(OScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Convert, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32))
         );
@@ -106,7 +107,7 @@ public class Text2Morse extends PanelCustom {
         TxtInput.setEditable(true);
         TxtInput.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Enter your Morse Code here");
         TxtInput.putClientProperty(FlatClientProperties.STYLE, ""+ "font: $h2.font;");
-
+        TxtInput.setBackground(new java.awt.Color(0, 0, 0, 0)); // Set background color to light yellow
         TScroll.putClientProperty("ScrollBar.thumbInsets", new Insets(2, 2, 2, 2));
         TScroll.putClientProperty("ScrollBar.track", Color.DARK_GRAY);
         TScroll.putClientProperty("ScrollBar.trackArc", 999);

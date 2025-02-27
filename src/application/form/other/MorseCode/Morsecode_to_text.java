@@ -1,5 +1,6 @@
 package application.form.other.MorseCode;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -16,16 +17,19 @@ public class Morsecode_to_text extends javax.swing.JPanel {
     private Text2Morse text2Morse;
     private Morse2text morse2text;
     private Animator animator;
-    private boolean isLogin;
+    private boolean flag; 
     
     public void setAnimate(int animate) {
-        layout.setComponentConstraints(text2Morse, "pos (50%)-350px-" + animate + " 0.5al n n");
-        layout.setComponentConstraints(morse2text, "pos (50%)-10px+" + animate + " 0.5al n n");
+        layout.setComponentConstraints(text2Morse, "pos (30%)-240px-" + animate + " 0.5al n n");
+        layout.setComponentConstraints(morse2text, "pos (40%)-30px+" + animate + " 0.5al n n");
         if (animate == 30) {
-            if (isLogin) {
+            if (flag) {
                 setComponentZOrder(morse2text, 0);
+               
             } else {
                 setComponentZOrder(text2Morse, 0);
+                morse2text.setBackground(new java.awt.Color(167, 211, 224, 25));
+                
             }
         }
         revalidate();
@@ -41,12 +45,14 @@ public class Morsecode_to_text extends javax.swing.JPanel {
         animator = new Animator(1000, new TimingTargetAdapter() {
             @Override
             public void timingEvent(float fraction) {
-                if (isLogin) {
-                    text2Morse.setAlpha(fraction);
-                    morse2text.setAlpha(1f - fraction);
-                } else {
-                    text2Morse.setAlpha(1f - fraction);
-                    morse2text.setAlpha(fraction);
+                if (flag) {
+                     text2Morse.setBackground(new java.awt.Color(167, 211, 224, 25)); // Set background color with some transparency
+                     morse2text.setBackground(new java.awt.Color(0, 102, 102, 255)); // Set background color with some transparency
+                    
+                }
+                else {                   
+                    morse2text.setBackground(new java.awt.Color(0, 102, 102, 25)); // Set background color with some transparency
+                    text2Morse.setBackground(new java.awt.Color(167, 211, 224, 255)); // Set background color with some transparency
                 }
             }
         });
@@ -55,20 +61,21 @@ public class Morsecode_to_text extends javax.swing.JPanel {
     }
 
     private void init() {
-        //setBackground(mainColor);
+       
         layout = new MigLayout("fill", "fill", "fill");
         setLayout(layout);
         text2Morse = new Text2Morse();
         morse2text = new Morse2text();
-        applyEvent(text2Morse, false);
-        applyEvent(morse2text, true);
-        add(text2Morse, "pos (50%)-350px 0.5al n n");
-        add(morse2text, "pos (50%)-10px 0.5al n n");
+        add(text2Morse, "pos (30%)-240px 0.5al n n");
+        add(morse2text, "pos (40%)-30px 0.5al n n");
         text2Morse.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent me) {
                 if (SwingUtilities.isLeftMouseButton(me)) {
-                    showLogin(false);
+                    if(flag==true){
+                        flag=false;
+                        animator.start();
+                    }
                 }
             }
         });
@@ -76,32 +83,13 @@ public class Morsecode_to_text extends javax.swing.JPanel {
             @Override
             public void mousePressed(MouseEvent me) {
                 if (SwingUtilities.isLeftMouseButton(me)) {
-                    showLogin(true);
+                    if(flag==false){
+                        flag=true;
+                        animator.start();
+                    }
                 }
             }
         });
-    }
-
-    public void showLogin(boolean show) {
-        if (show != isLogin) {
-            if (!animator.isRunning()) {
-                isLogin = show;
-                animator.start();
-                
-                
-            }
-        }
-    }
-
-    private void applyEvent(JComponent panel, boolean login) {
-        for (Component com : panel.getComponents()) {
-            com.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mousePressed(MouseEvent me) {
-                    showLogin(login);
-                }
-            });
-        }
     }
 
 
