@@ -1,7 +1,5 @@
-package application.form.other.MorseCode;
+package application.form.other.AES_1;
 
-import application.form.other.AES.CodeToText;
-import application.form.other.AES.TxtToCode;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.SwingUtilities;
@@ -10,16 +8,16 @@ import org.jdesktop.animation.timing.Animator;
 import org.jdesktop.animation.timing.TimingTargetAdapter;
 import org.jdesktop.animation.timing.interpolation.PropertySetter;
 
-public class MorseForm extends javax.swing.JPanel {
+public class CC extends javax.swing.JPanel {
 
     private MigLayout layout;
-    private TextToMorse Text;
-    private Morse2text Morse;
+    private CCencode Text;
+    private CCdecode Morse;
     private Animator animator;
     private boolean flag;
 
     public void setAnimate(int animate) {
-        layout.setComponentConstraints(Text, "pos (40%)-290px-" + animate + " 0.5al n n");
+        layout.setComponentConstraints(Text, "pos (50%)-290px-" + animate + " 0.5al n n");
         layout.setComponentConstraints(Morse, "pos (50%)-10px+" + animate + " 0.5al n n");
         if (animate == 30) {
             if (flag) {
@@ -31,7 +29,7 @@ public class MorseForm extends javax.swing.JPanel {
         revalidate();
     }
 
-    public MorseForm() {
+    public CC() {
         initComponents();
         init();
         initAnimator();
@@ -57,9 +55,9 @@ public class MorseForm extends javax.swing.JPanel {
     private void init() {
         layout = new MigLayout("fill", "fill", "fill");
         setLayout(layout);
-        Text = new TextToMorse();
-        Morse = new Morse2text();
-        add(Text, "pos (40%)-290px 0.5al n n");
+        Text = new CCencode();
+        Morse = new CCdecode();
+        add(Text, "pos (50%)-290px 0.5al n n");
         add(Morse, "pos (50%)-10px 0.5al n n");
         Text.addMouseListener(new MouseAdapter() {
             @Override

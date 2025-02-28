@@ -27,12 +27,12 @@ public class AesShow extends javax.swing.JPanel {
     private void initComponents() {
 
         background1 = new MiscItem.BACKGOUND.Background();
-        morseForm1 = new application.form.other.MorseCode.MorseForm();
+        aESFORM1 = new application.form.other.AES.AESFORM();
 
         background1.setLayout(new java.awt.BorderLayout());
 
-        morseForm1.setOpaque(false);
-        background1.add(morseForm1, java.awt.BorderLayout.CENTER);
+        aESFORM1.setOpaque(false);
+        background1.add(aESFORM1, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -52,7 +52,7 @@ public class AesShow extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private application.form.other.AES.AESFORM aESFORM1;
     private MiscItem.BACKGOUND.Background background1;
-    private application.form.other.MorseCode.MorseForm morseForm1;
     // End of variables declaration//GEN-END:variables
 }

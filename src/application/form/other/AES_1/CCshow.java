@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package application.form.other.MorseCode;
+package application.form.other.AES_1;
 
 /**
  *
  * @author RATUL
  */
-public class Morse extends javax.swing.JPanel {
+public class CCshow extends javax.swing.JPanel {
 
     /**
      * Creates new form Morse
      */
-    public Morse() {
+    public CCshow() {
         initComponents();
     }
 
@@ -27,32 +27,32 @@ public class Morse extends javax.swing.JPanel {
     private void initComponents() {
 
         background1 = new MiscItem.BACKGOUND.Background();
-        morseForm1 = new application.form.other.MorseCode.MorseForm();
+        aESFORM1 = new application.form.other.AES.AESFORM();
 
         background1.setLayout(new java.awt.BorderLayout());
 
-        morseForm1.setOpaque(false);
-        background1.add(morseForm1, java.awt.BorderLayout.CENTER);
+        aESFORM1.setOpaque(false);
+        background1.add(aESFORM1, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(background1, javax.swing.GroupLayout.DEFAULT_SIZE, 1040, Short.MAX_VALUE)
+                .addComponent(background1, javax.swing.GroupLayout.DEFAULT_SIZE, 1034, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(background1, javax.swing.GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE)
+                .addComponent(background1, javax.swing.GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private application.form.other.AES.AESFORM aESFORM1;
     private MiscItem.BACKGOUND.Background background1;
-    private application.form.other.MorseCode.MorseForm morseForm1;
     // End of variables declaration//GEN-END:variables
 }

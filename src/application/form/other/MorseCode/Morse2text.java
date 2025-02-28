@@ -107,6 +107,7 @@ public class Morse2text extends PanelCustom {
 
     private void ConvertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConvertActionPerformed
             String output=morsetotext.decodeMorseCode(TxtInput.getText());
+            
             TxtOut.setText(output);
     
 

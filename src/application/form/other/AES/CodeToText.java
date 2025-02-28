@@ -56,7 +56,7 @@ public class CodeToText extends PanelCustom {
         Convert = new javax.swing.JButton();
         Title = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(247, 247, 247));
+        setBackground(new java.awt.Color(255, 232, 214));
 
         TxtInput.setColumns(20);
         TxtInput.setRows(5);

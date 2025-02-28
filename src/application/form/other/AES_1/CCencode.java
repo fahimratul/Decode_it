@@ -1,4 +1,4 @@
-package application.form.other.AES;
+package application.form.other.AES_1;
 
 import MiscItem.BACKGOUND.PanelCustom;
 import Morsecode.AEScode;
@@ -10,10 +10,10 @@ import javax.sound.sampled.LineUnavailableException;
 import raven.toast.Notifications;
 
 
-public class TxtToCode extends PanelCustom {
+public class CCencode extends PanelCustom {
      private AEScode logic=new AEScode();
     
-    public TxtToCode() {
+    public CCencode() {
         initComponents();
         
         
