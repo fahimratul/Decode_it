@@ -1,7 +1,6 @@
 package application.form;
 
 import application.form.other.*;
-import application.form.other.MorseCode.Morsecode_to_text;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import com.formdev.flatlaf.util.UIScale;
@@ -21,6 +20,7 @@ import application.Application;
 import menu.Menu;
 import menu.MenuAction;
 import application.form.other.CCForm;
+import application.form.other.MorseCode.Morse;
 import raven.alerts.MessageAlerts;
 import raven.popup.component.PopupCallbackAction;
 import raven.popup.component.PopupController;
@@ -76,7 +76,7 @@ public class MainForm extends JLayeredPane {
                 Application.showForm(new FormDashboard());
             } else if (index == 1) {
                 if (subIndex == 1) {
-                    Application.showForm(new Morsecode_to_text());
+                    Application.showForm(new Morse());
                 } else if (subIndex == 2) {
                     Application.showForm(new Aes());
                 }
