@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package application.form.other.AES_1;
+package application.form.other.CC;
 
 /**
  *
@@ -27,7 +27,7 @@ public class CCshow extends javax.swing.JPanel {
     private void initComponents() {
 
         background1 = new MiscItem.BACKGOUND.Background();
-        cC1 = new application.form.other.AES_1.CC();
+        cC1 = new application.form.other.CC.CC();
 
         background1.setLayout(new java.awt.BorderLayout());
 
@@ -53,6 +53,6 @@ public class CCshow extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private MiscItem.BACKGOUND.Background background1;
-    private application.form.other.AES_1.CC cC1;
+    private application.form.other.CC.CC cC1;
     // End of variables declaration//GEN-END:variables
 }

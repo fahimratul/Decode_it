@@ -3,8 +3,10 @@
 <Form version="1.8" maxVersion="1.9">
   <Properties>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-      <Color blue="d6" green="e8" red="ff" type="rgb"/>
+      <Color blue="fc" green="fb" red="e0" type="rgb"/>
     </Property>
+    <Property name="toolTipText" type="java.lang.String" value=""/>
+    <Property name="autoscrolls" type="boolean" value="true"/>
   </Properties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>

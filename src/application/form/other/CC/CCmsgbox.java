@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package application.form.other.AES_1;
+package application.form.other.CC;
 
 import com.formdev.flatlaf.FlatClientProperties;
 import java.awt.Color;
