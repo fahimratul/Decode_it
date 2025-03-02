@@ -20,7 +20,7 @@ import application.Application;
 import application.form.other.AES.AesShow;
 import menu.Menu;
 import menu.MenuAction;
-import application.form.other.CCForm;
+import application.form.other.AES_1.*;
 import application.form.other.MorseCode.Morse;
 import raven.alerts.MessageAlerts;
 import raven.popup.component.PopupCallbackAction;
@@ -83,7 +83,7 @@ public class MainForm extends JLayeredPane {
                     Application.showForm(new AesShow());
                 }
                 else if(subIndex==3){
-                    Application.showForm(new CCForm());
+                    Application.showForm(new CCshow());
                 }
                 else if(subIndex==4) {
                     Application.showForm(new Rsa());

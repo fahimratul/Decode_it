@@ -1,15 +1,18 @@
 package application.form.other.AES_1;
 
 import MiscItem.BACKGOUND.PanelCustom;
-import Morsecode.AEScode;
-import Morsecode.Morsetotext;
+import Morsecode.CaeserCypherlogic;
 import com.formdev.flatlaf.FlatClientProperties;
 import java.awt.Color;
 import java.awt.Insets;
+import raven.popup.DefaultOption;
+import raven.popup.GlassPanePopup;
+import raven.popup.component.SimplePopupBorder;
+import raven.toast.Notifications;
 
 
 public class CCdecode extends PanelCustom {
-    private AEScode logic=new AEScode();
+    private CaeserCypherlogic logic = new CaeserCypherlogic();
    
    
     public CCdecode() {
@@ -73,54 +76,75 @@ public class CCdecode extends PanelCustom {
             }
         });
 
-        Title.setText("AES DECODING");
+        Title.setText("CAESERCYPHER  DECODING");
         Title.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(30, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(10, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(Convert, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(OScroll)
-                    .addComponent(TScroll)
-                    .addComponent(Title, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(28, Short.MAX_VALUE))
+                    .addComponent(OScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
+                    .addComponent(TScroll))
+                .addGap(10, 10, 10))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Title, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(10, 10, 10)
+                .addComponent(Title, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(TScroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(OScroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Convert, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
+                .addGap(35, 35, 35))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void ConvertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConvertActionPerformed
-        try {
-            logic.initFromStrings("CHuO1Fjd8YgJqTyapibFBQ==", "e3IYYJC2hxe24/EO");
-
-
-
-            // Decrypt the message
-
-            String decryptedMessage = logic.decrypt(TxtInput.getText());
-            TxtOut.setText(decryptedMessage);
-
-
-        } catch (Exception d) {
-            d.printStackTrace(); // Handle exceptions properly
+         if(TxtInput.getText().equals("")){
+            Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_LEFT, "Please enter your text");
         }
-
-        // TODO add your handling code here:
+        else {
+            String str = "Enter the key for decoding. If you don't know the key then you are requested to contect with the Admin.";
+            CCmsgbox cCmsgbox = new CCmsgbox(str);
+            try {
+                DefaultOption defaultOption = new DefaultOption() {
+                    @Override
+                    public boolean closeWhenClickOutside() {
+                        return true;
+                    }
+                };
+                String actions[] = new String[]{"Cancel", "Decode"};
+                GlassPanePopup.showPopup(new SimplePopupBorder(cCmsgbox, "Enter your Key", actions, (popupController, i) -> {
+                    if (i == 1) {
+                        try {
+                            int key = cCmsgbox.getKey();
+                            StringBuilder output = logic.decipher(TxtInput.getText(), key);
+                            TxtOut.setText(output.toString());
+                            popupController.closePopup();
+                        }
+                        catch (NumberFormatException e){
+                            cCmsgbox.changemsg(" \t Invalid key!\r Because of "+ e + ". Please enter correct numeric value.\rEnter the key for encoding. If you don't know the key then you are requested to contect with the Admin.");
+                            cCmsgbox.Txtclear();
+                        }
+                    } else {
+                        popupController.closePopup();
+                    }
+                }), defaultOption);
+            } catch (Exception e) {
+                
+            }
+        }
     }//GEN-LAST:event_ConvertActionPerformed
 
 

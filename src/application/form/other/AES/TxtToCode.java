@@ -15,6 +15,7 @@ public class TxtToCode extends PanelCustom {
     
     public TxtToCode() {
         initComponents();
+        setBackground(new Color(34,34,59, 200));
         
         
         TxtInput.setLineWrap(true);

@@ -13,14 +13,11 @@ import java.awt.Color;
  */
 public class CCmsgbox extends javax.swing.JPanel {
 
-    /**
-     * Creates new form CCmsgbox
-     */
     public CCmsgbox(String s) {
         initComponents();
-        setBackground(new Color(2, 128, 144, 150));
+        //setBackground(new Color(2, 128, 144, 150));
         key.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Enter your key");
-        jLabel2.setText("Enter the key for "+s+". If you don't know the key then you are requested to contect with the Admin.");
+        msg.setText(s);
         
     }
     public  int getKey(){
@@ -29,7 +26,12 @@ public class CCmsgbox extends javax.swing.JPanel {
         int keyint = Integer.parseInt(s);
         return keyint;    
     }
-    
+    public void changemsg(String str){
+        msg.setText(str);
+    }
+    public void Txtclear(){
+        key.setText("");
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -40,36 +42,36 @@ public class CCmsgbox extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
         key = new javax.swing.JTextField();
+        msg = new javax.swing.JTextPane();
+
+        msg.setOpaque(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(key)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addGap(72, 72, 72)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(key, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(msg, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(72, 72, 72))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(16, 16, 16)
+                .addComponent(msg, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(key, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(23, 23, 23))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField key;
+    private javax.swing.JTextPane msg;
     // End of variables declaration//GEN-END:variables
 }

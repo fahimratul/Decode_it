@@ -27,12 +27,12 @@ public class CCshow extends javax.swing.JPanel {
     private void initComponents() {
 
         background1 = new MiscItem.BACKGOUND.Background();
-        aESFORM1 = new application.form.other.AES.AESFORM();
+        cC1 = new application.form.other.AES_1.CC();
 
         background1.setLayout(new java.awt.BorderLayout());
 
-        aESFORM1.setOpaque(false);
-        background1.add(aESFORM1, java.awt.BorderLayout.CENTER);
+        cC1.setOpaque(false);
+        background1.add(cC1, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -52,7 +52,7 @@ public class CCshow extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private application.form.other.AES.AESFORM aESFORM1;
     private MiscItem.BACKGOUND.Background background1;
+    private application.form.other.AES_1.CC cC1;
     // End of variables declaration//GEN-END:variables
 }

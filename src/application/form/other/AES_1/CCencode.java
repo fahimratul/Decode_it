@@ -1,22 +1,25 @@
 package application.form.other.AES_1;
 
 import MiscItem.BACKGOUND.PanelCustom;
-import Morsecode.AEScode;
-import Morsecode.MorsecodeLogic;
+import Morsecode.CaeserCypherlogic;
 import com.formdev.flatlaf.FlatClientProperties;
 import java.awt.Color;
 import java.awt.Insets;
 import javax.sound.sampled.LineUnavailableException;
+
+import raven.popup.DefaultOption;
+import raven.popup.GlassPanePopup;
+import raven.popup.component.SimplePopupBorder;
 import raven.toast.Notifications;
 
 
 public class CCencode extends PanelCustom {
-     private AEScode logic=new AEScode();
+    private CaeserCypherlogic logic = new CaeserCypherlogic();
     
     public CCencode() {
         initComponents();
         
-        
+        setBackground(new Color(102, 106, 134, 180));
         TxtInput.setLineWrap(true);
         TxtInput.setWrapStyleWord(true);
         TxtInput.setEditable(true);
@@ -44,7 +47,11 @@ public class CCencode extends PanelCustom {
 
         Title.putClientProperty(FlatClientProperties.STYLE, ""+ "font: $h1.font;");
 
+
+
     }
+
+
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -70,7 +77,7 @@ public class CCencode extends PanelCustom {
         TxtOut.setMaximumSize(new java.awt.Dimension(350, 400));
         OScroll.setViewportView(TxtOut);
 
-        Title.setText("AES ENCODING");
+        Title.setText("CAESERCYPHER ENCODING");
         Title.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         Convert.setText("CONVERT");
@@ -84,52 +91,65 @@ public class CCencode extends PanelCustom {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(OScroll, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(OScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
                     .addComponent(Convert, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TScroll))
+                    .addComponent(TScroll, javax.swing.GroupLayout.Alignment.LEADING))
                 .addGap(20, 20, 20))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Title, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Title, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Title, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(TScroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(OScroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Convert, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+                .addGap(46, 46, 46))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void ConvertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConvertActionPerformed
-        
-        try {
-            // Initialize with a predefined key and IV (Base64-encoded)
-            logic.initFromStrings("CHuO1Fjd8YgJqTyapibFBQ==", "e3IYYJC2hxe24/EO");
-
-            String encryptedMessage = logic.encrypt(TxtInput.getText());
-
-            TxtOut.setText(encryptedMessage);
-
-            // Decrypt the message
-
-
-
-        } catch (Exception d) {
-            d.printStackTrace(); // Handle exceptions properly
+        if(TxtInput.getText().equals("")){
+            Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_LEFT, "Please enter your text");
         }
-        
-        
+        else {
+            String str = "Enter the key for encoding. If you don't know the key then you are requested to contect with the Admin.";
+            CCmsgbox cCmsgbox = new CCmsgbox(str);
+            try {
+                DefaultOption defaultOption = new DefaultOption() {
+                    @Override
+                    public boolean closeWhenClickOutside() {
+                        return true;
+                    }
+                };
+                String actions[] = new String[]{"Cancel", "Encode"};
+                GlassPanePopup.showPopup(new SimplePopupBorder(cCmsgbox, "Enter your Key", actions, (popupController, i) -> {
+                    if (i == 1) {
+                        try {
+                            int key = cCmsgbox.getKey();
+                            StringBuilder output = logic.encipher(TxtInput.getText(), key);
+                            TxtOut.setText(output.toString());
+                            popupController.closePopup();
+                        }
+                        catch (NumberFormatException e){
+                            cCmsgbox.changemsg(" Invalid key!/r Because of "+ e + " Please enter correct numeric value.Enter the key for encoding. If you don't know the key then you are requested to contect with the Admin.");
+                            cCmsgbox.Txtclear();
+                        }
+                    } else {
+                        popupController.closePopup();
+                    }
+                }), defaultOption);
+            } catch (Exception e) {
+                
+            }
+        }
     }//GEN-LAST:event_ConvertActionPerformed
 
 
