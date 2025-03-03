@@ -22,9 +22,13 @@ import application.form.other.AES.AesShow;
 import menu.Menu;
 import menu.MenuAction;
 import application.form.other.MorseCode.Morse;
+import application.form.other.about.Aboutshow;
 import raven.alerts.MessageAlerts;
+import raven.popup.DefaultOption;
+import raven.popup.GlassPanePopup;
 import raven.popup.component.PopupCallbackAction;
 import raven.popup.component.PopupController;
+import raven.popup.component.SimplePopupBorder;
 
 /**
  *
@@ -73,35 +77,43 @@ public class MainForm extends JLayeredPane {
 
     private void initMenuEvent() {
         menu.addMenuEvent((int index, int subIndex, MenuAction action) -> {
-            if (index == 0) {
-                Application.showForm(new FormDashboard());
-            } else if (index == 1) {
-                if (subIndex == 1) {
+            switch (index) {
+                case 0:
+                    Application.showForm(new FormDashboard());
+                    break;
+                case 1:
                     Application.showForm(new Morse());
-                } else if (subIndex == 2) {
-//                    
+                    break;
+                case 2:          
                     Application.showForm(new AesShow());
-                }
-                else if(subIndex==3){
+                    break;
+                case 3:
                     Application.showForm(new CCshow());
-                }
-                else if(subIndex==4) {
+                    break;
+                case 4:
                     Application.showForm(new Rsa());
-                } else if (subIndex==5) {
+                    break;
+                case 5:
                     Application.showForm(new Onetime());
-
-                }
-            } else if (index == 2) {
-                MessageAlerts.getInstance().showMessage("ARE YOU SURE?", "Are you sure you want to exit?Please Check back you data saved or not.", MessageAlerts.MessageType.WARNING, MessageAlerts.YES_NO_OPTION, new PopupCallbackAction() {
-                    @Override
-                    public void action(PopupController popupController, int i) {
-                        if(i== MessageAlerts.YES_OPTION){
-                            Application.logout();
+                    break;
+                case 6:
+                    break;
+                case 7:
+                    show_about();
+                    break;
+                        
+                case 8:
+                    MessageAlerts.getInstance().showMessage("ARE YOU SURE?", "Are you sure you want to exit?Please Check back you data saved or not.", MessageAlerts.MessageType.WARNING, MessageAlerts.YES_NO_OPTION, new PopupCallbackAction() {
+                        @Override
+                        public void action(PopupController popupController, int i) {
+                            if(i== MessageAlerts.YES_OPTION){
+                                Application.logout();
+                            }
                         }
-                    }
-                });
-            } else {
-                action.cancel();
+                    }); break;
+                default:
+                    action.cancel();
+                    break;
             }
         });
     }
@@ -190,5 +202,21 @@ public class MainForm extends JLayeredPane {
                 panelBody.setBounds(bodyx, bodyy, bodyWidth, bodyHeight);
             }
         }
+    }
+    
+    
+    private void show_about(){
+        try {
+                Aboutshow about= new Aboutshow();
+                DefaultOption defaultOption = new DefaultOption() {
+                    @Override
+                    public boolean closeWhenClickOutside() {
+                        return true;
+                    }
+                };
+                GlassPanePopup.showPopup(new SimplePopupBorder(about,""));
+            } catch (Exception e) {
+                
+            }
     }
 }

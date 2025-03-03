@@ -27,7 +27,15 @@ public class Menu extends JPanel {
     private final String menuItems[][] = {
         {"~MAIN~"},
         {"Dashboard"},
-        {"DECODE", "Morse Code","AES Code","CeaserCypher", "RSA","ONE TIME PAD"},
+        {"~DECODE & ENDCODE~"},
+        {"Morse Code"},
+        {"AES Code"},
+        {"CeaserCypher"},
+        {"RSA"},
+        {"One Time Pad"},
+        {"~Others~"},
+        {"Settings"},
+        {"About us"},
         {"Logout"}
     };
 
