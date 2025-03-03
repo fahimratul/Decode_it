@@ -7,6 +7,7 @@ package application.form.other.MorsecodeChange;
 import application.form.other.CC.*;
 import com.formdev.flatlaf.FlatClientProperties;
 import java.awt.Color;
+import application.Application;
 
 /**
  *
@@ -19,9 +20,12 @@ public class UserPassMsgbox extends javax.swing.JPanel {
         msg.setText("For security purposes, please enter your password to verify your identity.\n" +
                     "This verification helps protect your account from unauthorized access and ensures the safety of your data.");
         
-        
+        Pass.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "PASSWORD");
     }
-    
+
+    public Boolean CheckPassword() {
+
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
