@@ -21,6 +21,7 @@ import application.form.other.FormDashboard;
 import application.form.other.Addmember.AddmemBer;
 import adminMenu.AdminMenu;
 import application.form.other.AllMember.Allmember;
+import application.form.other.MorsecodeChange.MorseChngForm;
 import raven.alerts.MessageAlerts;
 import raven.popup.component.PopupCallbackAction;
 import raven.popup.component.PopupController;
@@ -77,29 +78,31 @@ public class AdminMainForm extends JLayeredPane {
 
     private void initMenuEvent() {
         adminmenu.addMenuEvent((int index, int subIndex, AdminMenuAction action) -> {
-           if (index == 0) {
-                Application.showForm_admin(new FormDashboard());
-            } else if (index == 1) {
+            switch (index) {
+                case 0:
+                    Application.showForm_admin(new FormDashboard());
+                    break;
+                case 1:
                     Application.showForm_admin(new AddmemBer());
-            }
-            else if (index == 2) {    
-               
-                Application.showForm_admin(new Allmember());
-            }
-            else if (index==3){
-                
-            }
-            else if (index == 4) {
-                 MessageAlerts.getInstance().showMessage("ARE YOU SURE?", "Are you sure you want to exit?Please Check back you data saved or not.", MessageAlerts.MessageType.WARNING, MessageAlerts.YES_NO_OPTION, new PopupCallbackAction() {
-                    @Override
-                    public void action(PopupController popupController, int i) {
-                        if(i== MessageAlerts.YES_OPTION){
-                            Application.logout();
+                    break;
+                case 2:
+                    Application.showForm_admin(new Allmember());
+                    break;
+                case 3:
+                    Application.showForm_admin(new MorseChngForm());
+                    break;
+                case 4:
+                    MessageAlerts.getInstance().showMessage("ARE YOU SURE?", "Are you sure you want to exit?Please Check back you data saved or not.", MessageAlerts.MessageType.WARNING, MessageAlerts.YES_NO_OPTION, new PopupCallbackAction() {
+                        @Override
+                        public void action(PopupController popupController, int i) {
+                            if(i== MessageAlerts.YES_OPTION){
+                                Application.logout();
+                            }
                         }
-                    }
-                });}
-            else {
-                action.cancel();
+                    }); break;
+                default:
+                    action.cancel();
+                    break;
             }
         });
     }
@@ -186,4 +189,6 @@ public class AdminMainForm extends JLayeredPane {
             }
         }
     }
+    
+    
 }
