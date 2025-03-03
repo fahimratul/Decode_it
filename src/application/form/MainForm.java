@@ -208,12 +208,6 @@ public class MainForm extends JLayeredPane {
     private void show_about(){
         try {
                 Aboutshow about= new Aboutshow();
-                DefaultOption defaultOption = new DefaultOption() {
-                    @Override
-                    public boolean closeWhenClickOutside() {
-                        return true;
-                    }
-                };
                 GlassPanePopup.showPopup(new SimplePopupBorder(about,""));
             } catch (Exception e) {
                 

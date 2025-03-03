@@ -37,6 +37,7 @@ public class About extends JPanel {
 
         add(title);
         add(description);
+        add(createDevloperInformation());
         add(createSystemInformation());
     }
 
@@ -57,8 +58,7 @@ public class About extends JPanel {
         String text = "This project is a Java-based application designed to perform encoding and decoding operations on input data."+
                 " The application allows users to securely encode text or messages and later decode them back to their original form."+
                 " The primary objective of this project is to demonstrate data security techniques through simple yet effective algorithms. " +
-                "For source code, visit the <a href=\"https://github.com/fahimratul/Decode_it\">Decode it.</a>";
-
+                "For source code, visit the <a href=\"https://github.com/fahimratul/Decode_it\">Decode it.</a>";                
         return text;
     }
 
@@ -69,7 +69,36 @@ public class About extends JPanel {
 
         return text;
     }
+    private String getDevloperInformationText() {
+        String text = "<b>Name: </b>%s<br/>" +
+                "<b>Name: </b>%s<br/>" +
+                "<b>Name: </b>%s<br/>";
 
+        return text;
+    }
+    
+    private JComponent createDevloperInformation() {
+        JPanel panel = new JPanel(new MigLayout("wrap"));
+        panel.setBorder(new TitledBorder("Developer Information"));
+        JTextPane textPane = createText("");
+        textPane.setContentType("text/html");
+        String name1 = "Md Fahim Morshed Ratul";
+        String name2 ="Md Tanveer Jakaria"; 
+        String name3 = "Tanzid Morshed Shahed";
+        String text = String.format(getDevloperInformationText(),
+                name1,
+                name2,
+                name3);
+        textPane.setText(text);
+        panel.add(textPane);
+        return panel;
+    }
+
+    
+    
+    
+    
+    
     private JComponent createSystemInformation() {
         JPanel panel = new JPanel(new MigLayout("wrap"));
         panel.setBorder(new TitledBorder("System Information"));
