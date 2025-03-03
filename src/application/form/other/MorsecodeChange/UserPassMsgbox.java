@@ -4,9 +4,7 @@
  */
 package application.form.other.MorsecodeChange;
 
-import application.form.other.CC.*;
 import com.formdev.flatlaf.FlatClientProperties;
-import java.awt.Color;
 import application.Application;
 
 /**
@@ -24,7 +22,9 @@ public class UserPassMsgbox extends javax.swing.JPanel {
     }
 
     public Boolean CheckPassword() {
-
+            String password=Application.user.getPassword();
+            String input= String.valueOf(Pass.getPassword());
+            return input.equals(password);   
     }
     /**
      * This method is called from within the constructor to initialize the form.
