@@ -19,6 +19,7 @@ import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
 import MiscItem.border.FancyBorderRadius;
 import MiscItem.shadow.ShadowRenderer;
+import java.util.Random;
 
 /**
  *
@@ -46,7 +47,9 @@ public class Background extends JComponent {
     private Component blur;
 
     public Background() {
-            image= new ImageIcon(getClass().getResource("/MiscItem/BACKGOUND/img_1.jpg"));
+        Random random = new Random();
+        int randomNumber = random.nextInt(7); // Generates a random number between 0 (inclusive) and 7 (exclusive)
+        image= new ImageIcon(getClass().getResource("/MiscItem/BACKGOUND/1.jpg"));
     }
     private void createImage() {
         if (image != null) {

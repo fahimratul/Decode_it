@@ -38,12 +38,6 @@ public class AEScode {
         this.IV = decode(IV);
     }
 
-    /**
-     * Encrypts a message using AES-GCM.
-     *
-     * @param message The plaintext message to encrypt.
-     * @return The encrypted message as a Base64-encoded string.
-     */
     public String encrypt(String message) throws Exception {
         byte[] messageInBytes = message.getBytes();
         Cipher encryptionCipher = Cipher.getInstance("AES/GCM/NoPadding");
@@ -53,12 +47,6 @@ public class AEScode {
         return encode(encryptedBytes);
     }
 
-    /**
-     * Decrypts an encrypted message using AES-GCM.
-     *
-     * @param encryptedMessage The encrypted message as a Base64-encoded string.
-     * @return The decrypted plaintext message.
-     */
     public String decrypt(String encryptedMessage) throws Exception {
         byte[] encryptedBytes = decode(encryptedMessage);
         Cipher decryptionCipher = Cipher.getInstance("AES/GCM/NoPadding");
@@ -68,44 +56,12 @@ public class AEScode {
         return new String(decryptedBytes);
     }
 
-    /**
-     * Encodes a byte array to a Base64 string.
-     */
     private String encode(byte[] data) {
         return Base64.getEncoder().encodeToString(data);
     }
 
-    /**
-     * Decodes a Base64 string to a byte array.
-     */
     private byte[] decode(String data) {
         return Base64.getDecoder().decode(data);
     }
 
-    /**
-     * Main method to test encryption and decryption.
-     */
-    public static void main(String[] args) {
-        try {
-            AEScode aes = new AEScode();
-            // Initialize with a predefined key and IV (Base64-encoded)
-            aes.initFromStrings("CHuO1Fjd8YgJqTyapibFBQ==", "e3IYYJC2hxe24/EO");
-
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Enter Your Message:");
-            String input = scanner.nextLine();
-
-            // Encrypt the message
-            String encryptedMessage = aes.encrypt(input);
-            System.out.println("Encrypted Message: " + encryptedMessage);
-
-            // Decrypt the message
-            String decryptedMessage = aes.decrypt(encryptedMessage);
-            System.out.println("Decrypted Message: " + decryptedMessage);
-
-            scanner.close();
-        } catch (Exception d) {
-            d.printStackTrace(); // Handle exceptions properly
-        }
-    }
 }

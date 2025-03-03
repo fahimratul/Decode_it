@@ -40,7 +40,7 @@ public class Uploaddatabase {
                 Date date = r.getDate("dob");
                 String mobile = r.getString("mobile");
                 UserProfilepic profile = new UserProfilepic(r.getBytes("pic"));
-                list.add(new Userinfo(name,rank, email,date,mobile,"",profile));
+                list.add(new Userinfo(name.toUpperCase(),rank, email,date,mobile,"",profile));
             }
 
             r.close();
@@ -48,10 +48,30 @@ public class Uploaddatabase {
             return list;
         }
         finally {
-            Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_CENTER,"Error while reading user data");
+            Notifications.getInstance().show(Notifications.Type.SUCCESS, Notifications.Location.TOP_CENTER,"All MEMBER DATA IS UPLOADED");
         }
     }
 
+    public boolean search_username(String search) throws SQLException {
+        ResultSet r = null;
+        boolean flag;
+        try {
+            Connuser c = new Connuser();
+            String query = "select * from usersdata where (username like ?)";
+            PreparedStatement p = c.con.prepareStatement(query);
+            p.setString(1, "%" + search + "%");
+            r = p.executeQuery();
+            flag=r.next();
+            r.close();
+            c.con.close();
+            return flag;
+        }
+        finally {
+        
+        }
+    }
+    
+    
     public List<Userinfo> search(String search) throws SQLException {
         ResultSet r = null;
         try {
@@ -70,7 +90,7 @@ public class Uploaddatabase {
                 Date date = r.getDate("dob");
                 String mobile = r.getString("mobile");
                 UserProfilepic profile = new UserProfilepic(r.getBytes("pic"));
-                list.add(new Userinfo(name,rank, email,date,mobile,"",profile));
+                list.add(new Userinfo(name.toUpperCase(),rank, email,date,mobile,"",profile));
             }
 
             r.close();
@@ -78,7 +98,7 @@ public class Uploaddatabase {
             return list;
         }
         finally {
-            Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_CENTER,"Error while reading user data");
+            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER,"SHOWING THE SEARCH RESULTS OF "+search);
         }
     }
 

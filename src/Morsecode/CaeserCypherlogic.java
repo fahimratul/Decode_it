@@ -54,20 +54,4 @@ public class CaeserCypherlogic {
         }
         return text;
     }
-    public static void main(String[] args){
-        try {
-            BufferedReader br = new BufferedReader( new InputStreamReader( System.in ) );
-            System.out.print("Enter integer key value:-");
-            int key = Integer.parseInt( br.readLine() );
-            System.out.print("Enter text value to be encrypted:-");
-            String text = br.readLine();
-            StringBuilder etext = encipher( text , key );
-            System.out.println(etext);
-            System.out.println(decipher( etext.toString() , key ));
-
-        } catch ( IOException e ) {
-            /* TODO: handle exception */
-            e.printStackTrace();
-        }
-    }
 }

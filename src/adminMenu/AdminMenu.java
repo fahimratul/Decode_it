@@ -41,7 +41,9 @@ public class AdminMenu extends JPanel {
     private final String menuItems[][] = {
         {"~MAIN~"},
         {"Dashboard"},
-        {"New Member"},
+        {"~Member Management~"},
+        {"Add Member"},
+        { "Member List"},
         {"~Change Code~"},
         {"Morse code"},
         {"~OTHER~"},
