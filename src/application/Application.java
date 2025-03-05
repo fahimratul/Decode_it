@@ -32,6 +32,7 @@ public class Application extends javax.swing.JFrame {
     private final Adminlogin adminlogin;
     private final AdminMainForm adminMainForm;
     public static User user;
+    public static  boolean saved;
 
     public Application() {
         initComponents();
@@ -41,6 +42,7 @@ public class Application extends javax.swing.JFrame {
         loginForm = new LoginForm();
         adminlogin = new Adminlogin();
         adminMainForm = new AdminMainForm();
+        saved = true;
         setContentPane(loginForm);
         getRootPane().putClientProperty(FlatClientProperties.FULL_WINDOW_CONTENT, true);
         Notifications.getInstance().setJFrame(this);
@@ -68,8 +70,21 @@ public class Application extends javax.swing.JFrame {
         app.mainForm.showForm(component);
     }
     public static void showForm_admin(Component component) {
-        component.applyComponentOrientation(app.getComponentOrientation());
-        app.adminMainForm.showForm(component);
+        if(saved){
+            component.applyComponentOrientation(app.getComponentOrientation());
+            app.adminMainForm.showForm(component);
+        }
+        else{
+            MessageAlerts.getInstance().showMessage("Data is not saved", "It looks like you haven’t saved your data yet. Please make sure to save your work before proceeding to avoid any loss. Do you want to continue", MessageAlerts.MessageType.WARNING, MessageAlerts.YES_NO_OPTION, new PopupCallbackAction() {
+                @Override
+                public void action(PopupController popupController, int i) {
+                    if(i== MessageAlerts.YES_OPTION){
+                        component.applyComponentOrientation(app.getComponentOrientation());
+                        app.adminMainForm.showForm(component);
+                    }
+                }
+            });
+        }
     }
 
     public static void adminLoginshow() {

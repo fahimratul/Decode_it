@@ -20,6 +20,8 @@ public class MorseChngForm extends javax.swing.JPanel {
         initComponents();
     }
 
+
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -454,7 +456,7 @@ public class MorseChngForm extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SavebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SavebtnActionPerformed
-
+        Application.saved=true;
         // TODO add your handling code here:
     }//GEN-LAST:event_SavebtnActionPerformed
 
