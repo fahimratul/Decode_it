@@ -16,7 +16,6 @@ import javax.swing.JButton;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import application.Application;
 import application.form.other.FormDashboard;
 import application.form.other.Addmember.AddmemBer;
 import adminMenu.AdminMenu;
@@ -25,6 +24,8 @@ import application.form.other.MorsecodeChange.MorseChngForm;
 import raven.alerts.MessageAlerts;
 import raven.popup.component.PopupCallbackAction;
 import raven.popup.component.PopupController;
+import application.Application;
+import raven.popup.GlassPanePopup;
 
 /**
  *
@@ -36,9 +37,11 @@ public class AdminMainForm extends JLayeredPane {
     private AdminMenu adminmenu;
     private JPanel panelBody;
     private JButton menuButton;
+    public static boolean saved;
 
     public AdminMainForm() {
         init();
+        saved= true;
     }
 
     private void init() {
@@ -76,7 +79,19 @@ public class AdminMainForm extends JLayeredPane {
         menuButton.setIcon(new FlatSVGIcon("icon/svg/" + icon, 0.8f));
     }
 
-    private void initMenuEvent() {
+    private void initMenuEvent() { 
+        if(saved==false) {
+            MessageAlerts.getInstance().showMessage("Data is not saved", "It looks like you haven’t saved your data yet. Please make sure to save your work before proceeding to avoid any loss.", MessageAlerts.MessageType.WARNING, MessageAlerts.YES_NO_OPTION, new PopupCallbackAction() {
+                @Override
+                public void action(PopupController popupController, int i) {
+                    if(i==MessageAlerts.YES_OPTION) {
+                        saved= true;
+                    }
+                }
+            });
+        }
+        
+        if(saved){   
         adminmenu.addMenuEvent((int index, int subIndex, AdminMenuAction action) -> {
             switch (index) {
                 case 0:
@@ -90,6 +105,7 @@ public class AdminMainForm extends JLayeredPane {
                     break;
                 case 3:
                     Application.showForm_admin(new MorseChngForm());
+                    saved=false;
                     break;
                 case 4:
                     MessageAlerts.getInstance().showMessage("ARE YOU SURE?", "Are you sure you want to exit?Please Check back you data saved or not.", MessageAlerts.MessageType.WARNING, MessageAlerts.YES_NO_OPTION, new PopupCallbackAction() {
@@ -104,7 +120,8 @@ public class AdminMainForm extends JLayeredPane {
                     action.cancel();
                     break;
             }
-        });
+        }); 
+        }
     }
 
     private void setMenuFull(boolean full) {
@@ -189,6 +206,5 @@ public class AdminMainForm extends JLayeredPane {
             }
         }
     }
-    
     
 }

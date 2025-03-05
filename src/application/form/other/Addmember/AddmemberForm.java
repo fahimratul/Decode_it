@@ -283,7 +283,6 @@ public class AddmemberForm extends javax.swing.JPanel {
     private void cleardata(){
         txtName.setText("");
         txtRank.setText("");
-        txtDate.setText("");
         txtMobile.setText("");
         txtEmail.setText("");
         Password.setText("");
