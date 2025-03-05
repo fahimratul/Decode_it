@@ -36,7 +36,6 @@ public class AdminMainForm extends JLayeredPane {
     private AdminMenu adminmenu;
     private JPanel panelBody;
     private JButton menuButton;
-    public static boolean saved;
 
     public AdminMainForm() {
         init();
