@@ -191,8 +191,7 @@ public class AdminMainForm extends JLayeredPane {
                 int bodyWidth = width - menuWidth - gap;
                 int bodyHeight = height;
                 int bodyx = ltr ? (x + menuWidth + gap) : x;
-                int bodyy = y;
-                panelBody.setBounds(bodyx, bodyy, bodyWidth, bodyHeight);
+                panelBody.setBounds(bodyx, y, bodyWidth, bodyHeight);
             }
         }
     }
