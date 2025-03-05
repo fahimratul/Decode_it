@@ -44,7 +44,6 @@ public class Application extends javax.swing.JFrame {
         setContentPane(loginForm);
         getRootPane().putClientProperty(FlatClientProperties.FULL_WINDOW_CONTENT, true);
         Notifications.getInstance().setJFrame(this);
-
         GlassPanePopup.install(this);
         revalidate();
         repaint();

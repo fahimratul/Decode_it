@@ -25,7 +25,6 @@ import raven.alerts.MessageAlerts;
 import raven.popup.component.PopupCallbackAction;
 import raven.popup.component.PopupController;
 import application.Application;
-import raven.popup.GlassPanePopup;
 
 /**
  *
@@ -41,7 +40,6 @@ public class AdminMainForm extends JLayeredPane {
 
     public AdminMainForm() {
         init();
-        saved= true;
     }
 
     private void init() {
@@ -79,49 +77,70 @@ public class AdminMainForm extends JLayeredPane {
         menuButton.setIcon(new FlatSVGIcon("icon/svg/" + icon, 0.8f));
     }
 
-    private void initMenuEvent() { 
-        if(saved==false) {
-            MessageAlerts.getInstance().showMessage("Data is not saved", "It looks like you haven’t saved your data yet. Please make sure to save your work before proceeding to avoid any loss.", MessageAlerts.MessageType.WARNING, MessageAlerts.YES_NO_OPTION, new PopupCallbackAction() {
-                @Override
-                public void action(PopupController popupController, int i) {
-                    if(i==MessageAlerts.YES_OPTION) {
-                        saved= true;
-                    }
+    private void initMenuEvent() {
+
+
+            adminmenu.addMenuEvent((int index, int subIndex, AdminMenuAction action) -> {
+                switch (index) {
+                    case 0:
+                        MessageAlerts.getInstance().showMessage("Data is not saved", "It looks like you haven’t saved your data yet. Please make sure to save your work before proceeding to avoid any loss. Do you want to continue", MessageAlerts.MessageType.WARNING, MessageAlerts.YES_NO_OPTION, new PopupCallbackAction() {
+                            @Override
+                            public void action(PopupController popupController, int i) {
+                                if(i== MessageAlerts.YES_OPTION){
+                                    Application.showForm_admin(new FormDashboard());
+                                }
+                            }
+                        });
+                        break;
+                    case 1:
+                        MessageAlerts.getInstance().showMessage("Data is not saved", "It looks like you haven’t saved your data yet. Please make sure to save your work before proceeding to avoid any loss. Do you want to continue", MessageAlerts.MessageType.WARNING, MessageAlerts.YES_NO_OPTION, new PopupCallbackAction() {
+                            @Override
+                            public void action(PopupController popupController, int i) {
+                                if(i== MessageAlerts.YES_OPTION){
+                                    Application.showForm_admin(new AddmemBer());
+                                }
+                            }
+                        });
+                        break;
+                    case 2:
+                        MessageAlerts.getInstance().showMessage("Data is not saved", "It looks like you haven’t saved your data yet. Please make sure to save your work before proceeding to avoid any loss. Do you want to continue", MessageAlerts.MessageType.WARNING, MessageAlerts.YES_NO_OPTION, new PopupCallbackAction() {
+                            @Override
+                            public void action(PopupController popupController, int i) {
+                                if(i== MessageAlerts.YES_OPTION){
+                                    Application.showForm_admin(new Allmember());
+                                }
+                            }
+                        });
+                        break;
+                    case 3:
+                        MessageAlerts.getInstance().showMessage("Data is not saved", "It looks like you haven’t saved your data yet. Please make sure to save your work before proceeding to avoid any loss. Do you want to continue", MessageAlerts.MessageType.WARNING, MessageAlerts.YES_NO_OPTION, new PopupCallbackAction() {
+                            @Override
+                            public void action(PopupController popupController, int i) {
+                                if(i== MessageAlerts.YES_OPTION){
+                                    Application.showForm_admin(new MorseChngForm());
+                                }
+                            }
+                        });
+                        break;
+                    case 4:
+                        MessageAlerts.getInstance().showMessage("ARE YOU SURE?", "Are you sure you want to exit?Please Check back you data saved or not.", MessageAlerts.MessageType.WARNING, MessageAlerts.YES_NO_OPTION, new PopupCallbackAction() {
+                            @Override
+                            public void action(PopupController popupController, int i) {
+                                if(i== MessageAlerts.YES_OPTION){
+                                    Application.logout();
+                                }
+                            }
+                        });
+                        break;
+                    default:
+                        action.cancel();
+                        break;
                 }
             });
-        }
-        
-        if(saved){   
-        adminmenu.addMenuEvent((int index, int subIndex, AdminMenuAction action) -> {
-            switch (index) {
-                case 0:
-                    Application.showForm_admin(new FormDashboard());
-                    break;
-                case 1:
-                    Application.showForm_admin(new AddmemBer());
-                    break;
-                case 2:
-                    Application.showForm_admin(new Allmember());
-                    break;
-                case 3:
-                    Application.showForm_admin(new MorseChngForm());
-                    saved=false;
-                    break;
-                case 4:
-                    MessageAlerts.getInstance().showMessage("ARE YOU SURE?", "Are you sure you want to exit?Please Check back you data saved or not.", MessageAlerts.MessageType.WARNING, MessageAlerts.YES_NO_OPTION, new PopupCallbackAction() {
-                        @Override
-                        public void action(PopupController popupController, int i) {
-                            if(i== MessageAlerts.YES_OPTION){
-                                Application.logout();
-                            }
-                        }
-                    }); break;
-                default:
-                    action.cancel();
-                    break;
-            }
-        }); 
-        }
+
+
+
+
     }
 
     private void setMenuFull(boolean full) {
@@ -206,5 +225,4 @@ public class AdminMainForm extends JLayeredPane {
             }
         }
     }
-    
 }

@@ -4,6 +4,7 @@
  */
 package application.form.other.MorsecodeChange;
 
+import application.Application;
 import application.form.AdminMainForm;
 
 /**
@@ -454,8 +455,6 @@ public class MorseChngForm extends javax.swing.JPanel {
 
     private void SavebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SavebtnActionPerformed
 
-
-        AdminMainForm.saved=true;
         // TODO add your handling code here:
     }//GEN-LAST:event_SavebtnActionPerformed
 
