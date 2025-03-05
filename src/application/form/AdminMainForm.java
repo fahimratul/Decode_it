@@ -83,44 +83,16 @@ public class AdminMainForm extends JLayeredPane {
             adminmenu.addMenuEvent((int index, int subIndex, AdminMenuAction action) -> {
                 switch (index) {
                     case 0:
-                        MessageAlerts.getInstance().showMessage("Data is not saved", "It looks like you haven’t saved your data yet. Please make sure to save your work before proceeding to avoid any loss. Do you want to continue", MessageAlerts.MessageType.WARNING, MessageAlerts.YES_NO_OPTION, new PopupCallbackAction() {
-                            @Override
-                            public void action(PopupController popupController, int i) {
-                                if(i== MessageAlerts.YES_OPTION){
-                                    Application.showForm_admin(new FormDashboard());
-                                }
-                            }
-                        });
+                        Application.showForm_admin(new FormDashboard());
                         break;
                     case 1:
-                        MessageAlerts.getInstance().showMessage("Data is not saved", "It looks like you haven’t saved your data yet. Please make sure to save your work before proceeding to avoid any loss. Do you want to continue", MessageAlerts.MessageType.WARNING, MessageAlerts.YES_NO_OPTION, new PopupCallbackAction() {
-                            @Override
-                            public void action(PopupController popupController, int i) {
-                                if(i== MessageAlerts.YES_OPTION){
-                                    Application.showForm_admin(new AddmemBer());
-                                }
-                            }
-                        });
+                        Application.showForm_admin(new AddmemBer());
                         break;
                     case 2:
-                        MessageAlerts.getInstance().showMessage("Data is not saved", "It looks like you haven’t saved your data yet. Please make sure to save your work before proceeding to avoid any loss. Do you want to continue", MessageAlerts.MessageType.WARNING, MessageAlerts.YES_NO_OPTION, new PopupCallbackAction() {
-                            @Override
-                            public void action(PopupController popupController, int i) {
-                                if(i== MessageAlerts.YES_OPTION){
-                                    Application.showForm_admin(new Allmember());
-                                }
-                            }
-                        });
+                        Application.showForm_admin(new Allmember());
                         break;
                     case 3:
-                        MessageAlerts.getInstance().showMessage("Data is not saved", "It looks like you haven’t saved your data yet. Please make sure to save your work before proceeding to avoid any loss. Do you want to continue", MessageAlerts.MessageType.WARNING, MessageAlerts.YES_NO_OPTION, new PopupCallbackAction() {
-                            @Override
-                            public void action(PopupController popupController, int i) {
-                                if(i== MessageAlerts.YES_OPTION){
-                                    Application.showForm_admin(new MorseChngForm());
-                                }
-                            }
-                        });
+                        Application.showForm_admin(new MorseChngForm());
                         break;
                     case 4:
                         MessageAlerts.getInstance().showMessage("ARE YOU SURE?", "Are you sure you want to exit?Please Check back you data saved or not.", MessageAlerts.MessageType.WARNING, MessageAlerts.YES_NO_OPTION, new PopupCallbackAction() {
