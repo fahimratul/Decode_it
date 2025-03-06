@@ -8,7 +8,7 @@ import org.jdesktop.animation.timing.Animator;
 import org.jdesktop.animation.timing.TimingTargetAdapter;
 import org.jdesktop.animation.timing.interpolation.PropertySetter;
 
-public class RSA extends javax.swing.JPanel {
+public class RSAform extends javax.swing.JPanel {
 
     private MigLayout layout;
     private RSAencoding Text;
@@ -29,7 +29,7 @@ public class RSA extends javax.swing.JPanel {
         revalidate();
     }
 
-    public RSA() {
+    public RSAform() {
         initComponents();
         init();
         initAnimator();

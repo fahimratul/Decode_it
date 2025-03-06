@@ -5,7 +5,6 @@ import Logics.CaeserCypherlogic;
 import com.formdev.flatlaf.FlatClientProperties;
 import java.awt.Color;
 import java.awt.Insets;
-import javax.sound.sampled.LineUnavailableException;
 
 import raven.popup.DefaultOption;
 import raven.popup.GlassPanePopup;

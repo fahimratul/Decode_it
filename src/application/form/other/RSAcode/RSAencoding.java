@@ -1,12 +1,15 @@
 package application.form.other.RSAcode;
 
+import Logics.RSA;
 import MiscItem.BACKGOUND.PanelCustom;
+import MiscItem.swing.FileLoader;
 import com.formdev.flatlaf.FlatClientProperties;
 import java.awt.Color;
 import java.awt.Insets;
 import java.io.*;
 
 import jnafilechooser.api.JnaFileChooser;
+import raven.alerts.MessageAlerts;
 import raven.popup.DefaultOption;
 import raven.popup.GlassPanePopup;
 import raven.popup.component.SimplePopupBorder;
@@ -16,8 +19,18 @@ import javax.swing.*;
 
 
 public class RSAencoding extends PanelCustom {
-    File file;
+
+    private RSA logic;
+
     public RSAencoding() {
+
+        try {
+            logic= new RSA();
+        } catch (Exception e) {
+            MessageAlerts.getInstance().showMessage("DATA SERVER ERROR", "Error while loading RSA. We are sorry for this unwanted error. You are requested to try again or You can contact with admin. Thank you.", MessageAlerts.MessageType.ERROR);
+        }
+
+
         initComponents();
         setBackground(new Color(240, 93, 94, 180));
         TxtInput.setLineWrap(true);
@@ -63,7 +76,7 @@ public class RSAencoding extends PanelCustom {
         TxtOut = new javax.swing.JTextArea();
         Title = new javax.swing.JLabel();
         Convert = new javax.swing.JButton();
-        Load = new javax.swing.JButton();
+        Save = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(34, 34, 59));
         setMaximumSize(new java.awt.Dimension(700, 700));
@@ -88,10 +101,10 @@ public class RSAencoding extends PanelCustom {
             }
         });
 
-        Load.setText("LOAD");
-        Load.addActionListener(new java.awt.event.ActionListener() {
+        Save.setText("SAVE");
+        Save.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LoadActionPerformed(evt);
+                SaveActionPerformed(evt);
             }
         });
 
@@ -103,12 +116,11 @@ public class RSAencoding extends PanelCustom {
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(Convert, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Convert, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(Load, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Save, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(9, 9, 9))
-                    .addComponent(Title, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Title, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(OScroll, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
@@ -117,7 +129,7 @@ public class RSAencoding extends PanelCustom {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Title, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                .addComponent(Title, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(TScroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -125,8 +137,8 @@ public class RSAencoding extends PanelCustom {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Convert, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Load, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46))
+                    .addComponent(Save, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -135,39 +147,35 @@ public class RSAencoding extends PanelCustom {
             Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_CENTER, "Please enter your text");
         }
         else {
-         
+            if(logic==null){
+                MessageAlerts.getInstance().showMessage("DATA SERVER ERROR", "Error while loading RSA. We are sorry for this unwanted error. You are requested to try again or You can contact with admin. Thank you.", MessageAlerts.MessageType.ERROR);
+            }
+            else {
+                String input=TxtInput.getText();
+                String output= null;
+                try {
+                    output = logic.encrypt(input);
+                } catch (Exception e) {
+                    MessageAlerts.getInstance().showMessage("FAILED TO ENCRYPT", "Error occured due to "+e.toString()+" .Sorry for the failure. Please try again later.", MessageAlerts.MessageType.ERROR);
+                }
+                TxtOut.setText(output);
+            }
         }
     }//GEN-LAST:event_ConvertActionPerformed
 
-    private void LoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoadActionPerformed
-        JnaFileChooser chooser=new JnaFileChooser();
-        chooser.addFilter("Text File (*.txt)", "txt");
-        boolean action = chooser.showOpenDialog(SwingUtilities.getWindowAncestor(this));
-        if(action){
-            file=chooser.getSelectedFile();
-            String path=file.getAbsolutePath();
-            try {
-                FileReader fr=new FileReader(path);
-                BufferedReader br=new BufferedReader(fr);
-                TxtInput.read(br,null);
-                br.close();
-                TxtInput.requestFocus();
-
-            } catch (FileNotFoundException e) {
-                Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_CENTER, "File is not found.Please try again");
-            } catch (IOException e) {
-                Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_CENTER, "Error occurred while reading file. Please try again");
+    private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
+            if(TxtOut.getText().equals("")){
+                Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_CENTER, "Please encrypt your text first");
+                return;
             }
-        }
-    }//GEN-LAST:event_LoadActionPerformed
-
-
+            FileLoader.saved(TxtOut.getText(),this);
+    }//GEN-LAST:event_SaveActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Convert;
-    private javax.swing.JButton Load;
     private javax.swing.JScrollPane OScroll;
+    private javax.swing.JButton Save;
     private javax.swing.JScrollPane TScroll;
     private javax.swing.JLabel Title;
     private javax.swing.JTextArea TxtInput;

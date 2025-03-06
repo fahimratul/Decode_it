@@ -44,7 +44,7 @@ public class FormDashboard extends javax.swing.JPanel {
     private void initComponents() {
 
         background1 = new MiscItem.BACKGOUND.Background();
-        jPanel1 = new application.form.other.pannelcolor("#24AF11");
+        jPanel1 = new javax.swing.JPanel();
         mobileno = new javax.swing.JLabel();
         username = new javax.swing.JLabel();
         rank = new javax.swing.JLabel();

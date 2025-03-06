@@ -28,13 +28,12 @@
               <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                      <Component id="Convert" max="32767" attributes="0"/>
+                      <Component id="Convert" min="-2" pref="171" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="Load" min="-2" pref="161" max="-2" attributes="0"/>
+                      <Component id="Save" min="-2" pref="161" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="Title" alignment="1" max="32767" attributes="0"/>
+                  <Component id="Title" alignment="1" min="-2" pref="365" max="-2" attributes="0"/>
                   <Component id="OScroll" alignment="1" min="-2" pref="365" max="-2" attributes="0"/>
                   <Component id="TScroll" alignment="0" min="-2" pref="365" max="-2" attributes="0"/>
               </Group>
@@ -46,7 +45,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="Title" pref="100" max="32767" attributes="0"/>
+              <Component id="Title" min="-2" pref="100" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="TScroll" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -54,9 +53,9 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="Convert" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                  <Component id="Load" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                  <Component id="Save" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+              <EmptySpace pref="46" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -112,12 +111,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ConvertActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="Load">
+    <Component class="javax.swing.JButton" name="Save">
       <Properties>
-        <Property name="text" type="java.lang.String" value="LOAD"/>
+        <Property name="text" type="java.lang.String" value="SAVE"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LoadActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SaveActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

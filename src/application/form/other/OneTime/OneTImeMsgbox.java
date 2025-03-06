@@ -6,6 +6,7 @@ package application.form.other.OneTime;
 
 import com.formdev.flatlaf.FlatClientProperties;
 import java.awt.Color;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -24,7 +25,9 @@ public class OneTImeMsgbox extends javax.swing.JPanel {
     public void setkey(String s){
         key.setText(s);
     }
-
+    public JTextArea keyseting(){
+        return key;
+    }
     public void Keyedit(Boolean flag){
         key.setEditable(flag);
     }

@@ -1,7 +1,6 @@
 package application.form.other.OneTime;
 
 import MiscItem.BACKGOUND.PanelCustom;
-import Logics.CaeserCypherlogic;
 import Logics.ONE_TIME_PAD;
 import com.formdev.flatlaf.FlatClientProperties;
 import java.awt.Color;
@@ -10,6 +9,8 @@ import raven.popup.DefaultOption;
 import raven.popup.GlassPanePopup;
 import raven.popup.component.SimplePopupBorder;
 import raven.toast.Notifications;
+import MiscItem.swing.FileLoader;
+
 
 
 public class OneTimeDecode extends PanelCustom {
@@ -128,9 +129,9 @@ public class OneTimeDecode extends PanelCustom {
                          return true;
                      }
                  };
-                 String actions[] = new String[]{"Cancel", "Decode"};
+                 String actions[] = new String[]{"Cancel", "Load", "Decode"};
                  GlassPanePopup.showPopup(new SimplePopupBorder(cCmsgbox, "Enter your Key", actions, (popupController, i) -> {
-                     if (i == 1) {
+                     if (i == 2){
                          if(TxtInput.getText().equals("")){
                              Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_RIGHT, "Please enter your text");
                          }
@@ -140,6 +141,9 @@ public class OneTimeDecode extends PanelCustom {
                              TxtOut.setText(output);
                              popupController.closePopup();
                          }
+                     }
+                     else if(i == 1){
+                         FileLoader.loadFile("Enter Your Key",cCmsgbox.keyseting(), this);
                      }
                      else{
                          popupController.closePopup();

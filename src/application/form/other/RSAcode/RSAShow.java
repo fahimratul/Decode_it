@@ -27,12 +27,12 @@ public class RSAShow extends javax.swing.JPanel {
     private void initComponents() {
 
         background1 = new MiscItem.BACKGOUND.Background();
-        rSA1 = new application.form.other.RSAcode.RSA();
+        rSAform1 = new application.form.other.RSAcode.RSAform();
 
         background1.setLayout(new java.awt.BorderLayout());
 
-        rSA1.setOpaque(false);
-        background1.add(rSA1, java.awt.BorderLayout.CENTER);
+        rSAform1.setOpaque(false);
+        background1.add(rSAform1, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -53,6 +53,6 @@ public class RSAShow extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private MiscItem.BACKGOUND.Background background1;
-    private application.form.other.RSAcode.RSA rSA1;
+    private application.form.other.RSAcode.RSAform rSAform1;
     // End of variables declaration//GEN-END:variables
 }

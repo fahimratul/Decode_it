@@ -1,13 +1,13 @@
 package application.form.other.OneTime;
 
 import MiscItem.BACKGOUND.PanelCustom;
-import Logics.CaeserCypherlogic;
 import Logics.ONE_TIME_PAD;
+import MiscItem.swing.FileLoader;
 import com.formdev.flatlaf.FlatClientProperties;
 import java.awt.Color;
 import java.awt.Insets;
-import java.util.Random;
 
+import raven.alerts.MessageAlerts;
 import raven.popup.DefaultOption;
 import raven.popup.GlassPanePopup;
 import raven.popup.component.SimplePopupBorder;
@@ -24,7 +24,7 @@ public class OneTImeEncode extends PanelCustom {
         TxtInput.setWrapStyleWord(true);
         TxtInput.setEditable(true);
         TxtInput.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Enter your Morse Code here");
-        TxtInput.putClientProperty(FlatClientProperties.STYLE, ""+ "font: $h2.font;");
+        TxtInput.putClientProperty(FlatClientProperties.STYLE, "font: $h2.font;");
         
         TScroll.putClientProperty("ScrollBar.thumbInsets", new Insets(2, 2, 2, 2));
         TScroll.putClientProperty("ScrollBar.track", Color.white);
@@ -36,7 +36,7 @@ public class OneTImeEncode extends PanelCustom {
         TxtOut.setWrapStyleWord(true);
         TxtOut.setEditable(false);
         TxtOut.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Enter your Txt will appear here");
-        TxtOut.putClientProperty(FlatClientProperties.STYLE, ""+ "font: 130% $h2.font;");
+        TxtOut.putClientProperty(FlatClientProperties.STYLE, "font: 130% $h2.font;");
 
         
         OScroll.putClientProperty("ScrollBar.thumbInsets", new Insets(2, 2, 2, 2));
@@ -45,7 +45,7 @@ public class OneTImeEncode extends PanelCustom {
         OScroll.putClientProperty("ScrollBar.thumbArc", 999);
         OScroll.putClientProperty("ScrollBar.trackInsets", new Insets(2, 4, 2, 4) );
 
-        Title.putClientProperty(FlatClientProperties.STYLE, ""+ "font: $h1.font;");
+        Title.putClientProperty(FlatClientProperties.STYLE, "font: $h1.font;");
 
 
 
@@ -140,14 +140,25 @@ public class OneTImeEncode extends PanelCustom {
                         return true;
                     }
                 };
-
-                GlassPanePopup.showPopup(new SimplePopupBorder(cCmsgbox,"Encrypted Key"));
+                String[] actions = new String[]{"Cancel", "Save"};
+                GlassPanePopup.showPopup(new SimplePopupBorder(cCmsgbox,"Encrypted Key",actions,(popupController, i) -> {
+                    if(i==1){
+                        if(FileLoader.saveFile(EncryptionKey, this)){
+                        popupController.closePopup();
+                            MessageAlerts.getInstance().showMessage("Data Saved Successfully", "You have successfully saved your encrypted key", MessageAlerts.MessageType.SUCCESS);
+                        }
+                    }
+                    else {
+                        popupController.closePopup();
+                    }
+                }),option);
 
             }catch (Exception e){
                 Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_CENTER, "Error to generated enrypiton key because of "+e.getMessage());
             }
         }
     }//GEN-LAST:event_ConvertActionPerformed
+
 
 
 

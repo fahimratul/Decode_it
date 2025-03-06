@@ -1,22 +1,28 @@
 package application.form.other.RSAcode;
 
+import Logics.RSA;
 import MiscItem.BACKGOUND.PanelCustom;
+import MiscItem.swing.FileLoader;
 import com.formdev.flatlaf.FlatClientProperties;
 import java.awt.Color;
 import java.awt.Insets;
-import raven.popup.DefaultOption;
-import raven.popup.GlassPanePopup;
-import raven.popup.component.SimplePopupBorder;
+
+import raven.alerts.MessageAlerts;
 import raven.toast.Notifications;
 
 
 public class RSAdecode extends PanelCustom {
-   
-   
+
+    private RSA logic;
+
     public RSAdecode() {
         initComponents();
         setAlpha(1);
-        
+        try {
+            logic= new RSA();
+        } catch (Exception e) {
+            MessageAlerts.getInstance().showMessage("DATA SERVER ERROR", "Error while loading RSA. We are sorry for this unwanted error. You are requested to try again or You can contact with admin. Thank you.", MessageAlerts.MessageType.ERROR);
+        }
         TxtInput.setLineWrap(true);
         TxtInput.setWrapStyleWord(true);
         TxtInput.setEditable(true);
@@ -56,6 +62,7 @@ public class RSAdecode extends PanelCustom {
         TxtOut = new javax.swing.JTextArea();
         Convert = new javax.swing.JButton();
         Title = new javax.swing.JLabel();
+        Load = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(216, 164, 127));
         setToolTipText("");
@@ -79,21 +86,32 @@ public class RSAdecode extends PanelCustom {
         Title.setText("RSA DECRYPTION");
         Title.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
+        Load.setText("LOAD");
+        Load.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LoadActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(Convert, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(OScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
-                    .addComponent(TScroll))
-                .addGap(10, 10, 10))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Convert, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Load, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(OScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(Title, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -101,12 +119,14 @@ public class RSAdecode extends PanelCustom {
                 .addGap(10, 10, 10)
                 .addComponent(Title, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TScroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(OScroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(OScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Convert, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Convert, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Load, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -115,14 +135,34 @@ public class RSAdecode extends PanelCustom {
             Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_LEFT, "Please enter your text");
         }
         else {
-            String input = TxtInput.getText();
-            String str = "Enter the key for decoding. If you don't know the key then you are requested to contect with the Admin.";           
+             if(logic==null){
+                 MessageAlerts.getInstance().showMessage("DATA SERVER ERROR", "Error while loading RSA. We are sorry for this unwanted error. You are requested to try again or You can contact with admin. Thank you.", MessageAlerts.MessageType.ERROR);
+             }
+             else {
+                 String input=TxtInput.getText();
+                 String output= null;
+                 try {
+                     output = logic.decrypt(input);
+                 } catch (Exception e) {
+                     MessageAlerts.getInstance().showMessage("FAILED TO DECRYPT", "Error occured due to "+e.toString()+" .Sorry for the failure. Please try again later.", MessageAlerts.MessageType.ERROR);
+                 }
+                 TxtOut.setText(output);
+             }
+        
         }
     }//GEN-LAST:event_ConvertActionPerformed
+
+    private void LoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoadActionPerformed
+    
+        FileLoader.loadFile("Open File For RSA Decryption", TxtInput, this);
+    
+        // TODO add your handling code here:
+   }//GEN-LAST:event_LoadActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Convert;
+    private javax.swing.JButton Load;
     private javax.swing.JScrollPane OScroll;
     private javax.swing.JScrollPane TScroll;
     private javax.swing.JLabel Title;
