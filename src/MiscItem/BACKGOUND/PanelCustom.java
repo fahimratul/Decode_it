@@ -12,7 +12,7 @@ import javax.swing.JComponent;
 
 public class PanelCustom extends JComponent {
     
-    public static Color mainColor = new Color(0, 10, 5,100);
+    public static Color mainColor = new Color(0, 109, 119,100);
     
     public float getAlpha() {
         return alpha;

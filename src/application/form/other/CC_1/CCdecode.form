@@ -3,7 +3,7 @@
 <Form version="1.8" maxVersion="1.9">
   <Properties>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-      <Color blue="fc" green="fb" red="e0" type="rgb"/>
+      <Color blue="ff" green="c6" red="e7" type="rgb"/>
     </Property>
     <Property name="toolTipText" type="java.lang.String" value=""/>
     <Property name="autoscrolls" type="boolean" value="true"/>
@@ -96,7 +96,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="Title">
       <Properties>
-        <Property name="text" type="java.lang.String" value="CAESERCYPHER  DECODING"/>
+        <Property name="text" type="java.lang.String" value="ONE TIME DECODING"/>
         <Property name="horizontalTextPosition" type="int" value="0"/>
       </Properties>
     </Component>

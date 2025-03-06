@@ -59,7 +59,7 @@ public class CCdecode extends PanelCustom {
         Convert = new javax.swing.JButton();
         Title = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(224, 251, 252));
+        setBackground(new java.awt.Color(231, 198, 255));
         setToolTipText("");
         setAutoscrolls(true);
 
@@ -78,7 +78,7 @@ public class CCdecode extends PanelCustom {
             }
         });
 
-        Title.setText("CAESERCYPHER  DECODING");
+        Title.setText("ONE TIME DECODING");
         Title.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

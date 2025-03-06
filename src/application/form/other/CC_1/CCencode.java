@@ -18,7 +18,7 @@ public class CCencode extends PanelCustom {
     public CCencode() {
         initComponents();
         
-        setBackground(new Color(102, 106, 134, 180));
+        setBackground(new Color(90, 24, 154, 180));
         TxtInput.setLineWrap(true);
         TxtInput.setWrapStyleWord(true);
         TxtInput.setEditable(true);
