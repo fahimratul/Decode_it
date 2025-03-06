@@ -59,7 +59,7 @@ public class RSAencoding extends PanelCustom {
         OScroll.putClientProperty("ScrollBar.trackInsets", new Insets(2, 4, 2, 4) );
 
         Title.putClientProperty(FlatClientProperties.STYLE, ""+ "font: $h1.font;");
-
+        Title.setForeground(Color.white);
 
 
     }
