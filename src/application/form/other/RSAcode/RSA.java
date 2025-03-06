@@ -1,4 +1,4 @@
-package application.form.other.OneTime_1;
+package application.form.other.RSAcode;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;

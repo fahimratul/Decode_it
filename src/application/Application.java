@@ -49,6 +49,7 @@ public class Application extends javax.swing.JFrame {
         GlassPanePopup.install(this);
         revalidate();
         repaint();
+        setIconImage(new ImageIcon(getClass().getResource("/icon/png/logo.png")).getImage());
     }
 
 

@@ -3,10 +3,11 @@
 <Form version="1.8" maxVersion="1.9">
   <Properties>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-      <Color blue="ff" green="c6" red="e7" type="rgb"/>
+      <Color blue="3b" green="22" red="22" type="rgb"/>
     </Property>
-    <Property name="toolTipText" type="java.lang.String" value=""/>
-    <Property name="autoscrolls" type="boolean" value="true"/>
+    <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[700, 700]"/>
+    </Property>
   </Properties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -23,34 +24,39 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="10" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="2" attributes="0">
-                  <Component id="Convert" alignment="2" min="-2" pref="163" max="-2" attributes="0"/>
-                  <Component id="OScroll" alignment="2" pref="328" max="32767" attributes="0"/>
-                  <Component id="TScroll" alignment="2" max="32767" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-          </Group>
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="Title" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                      <Component id="Convert" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="Load" min="-2" pref="161" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="Title" alignment="1" max="32767" attributes="0"/>
+                  <Component id="OScroll" alignment="1" min="-2" pref="365" max="-2" attributes="0"/>
+                  <Component id="TScroll" alignment="0" min="-2" pref="365" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-              <Component id="Title" min="-2" pref="75" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
+              <Component id="Title" pref="100" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="TScroll" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="OScroll" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="Convert" min="-2" pref="33" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="Convert" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                  <Component id="Load" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -67,6 +73,9 @@
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
+            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[350, 400]"/>
+            </Property>
           </Properties>
         </Component>
       </SubComponents>
@@ -82,10 +91,19 @@
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
+            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[350, 400]"/>
+            </Property>
           </Properties>
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JLabel" name="Title">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="RSA ENCRYPTION"/>
+        <Property name="horizontalTextPosition" type="int" value="0"/>
+      </Properties>
+    </Component>
     <Component class="javax.swing.JButton" name="Convert">
       <Properties>
         <Property name="text" type="java.lang.String" value="CONVERT"/>
@@ -94,11 +112,13 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ConvertActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="Title">
+    <Component class="javax.swing.JButton" name="Load">
       <Properties>
-        <Property name="text" type="java.lang.String" value="ONE TIME DECODING"/>
-        <Property name="horizontalTextPosition" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" value="LOAD"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LoadActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

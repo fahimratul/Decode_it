@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package application.form.other.OneTime_1;
+package application.form.other.RSAcode;
 
 /**
  *
@@ -27,8 +27,12 @@ public class RSAShow extends javax.swing.JPanel {
     private void initComponents() {
 
         background1 = new MiscItem.BACKGOUND.Background();
+        rSA1 = new application.form.other.RSAcode.RSA();
 
         background1.setLayout(new java.awt.BorderLayout());
+
+        rSA1.setOpaque(false);
+        background1.add(rSA1, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -49,5 +53,6 @@ public class RSAShow extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private MiscItem.BACKGOUND.Background background1;
+    private application.form.other.RSAcode.RSA rSA1;
     // End of variables declaration//GEN-END:variables
 }
