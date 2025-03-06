@@ -1,8 +1,8 @@
 package application.form.other.OneTime;
 
 import MiscItem.BACKGOUND.PanelCustom;
-import Morsecode.CaeserCypherlogic;
-import Morsecode.ONE_TIME_PAD;
+import Logics.CaeserCypherlogic;
+import Logics.ONE_TIME_PAD;
 import com.formdev.flatlaf.FlatClientProperties;
 import java.awt.Color;
 import java.awt.Insets;

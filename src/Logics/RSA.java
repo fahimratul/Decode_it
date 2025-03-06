@@ -1,4 +1,4 @@
-package Morsecode;
+package Logics;
 import java.security.*;
 import javax.crypto.Cipher;
 import java.util.Base64;

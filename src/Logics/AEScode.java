@@ -1,6 +1,6 @@
 
 
-     package Morsecode;
+     package Logics;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;

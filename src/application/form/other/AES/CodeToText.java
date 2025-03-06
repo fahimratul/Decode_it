@@ -1,8 +1,8 @@
 package application.form.other.AES;
 
 import MiscItem.BACKGOUND.PanelCustom;
-import Morsecode.AEScode;
-import Morsecode.Morsetotext;
+import Logics.AEScode;
+import Logics.Morsetotext;
 import com.formdev.flatlaf.FlatClientProperties;
 import java.awt.Color;
 import java.awt.Insets;

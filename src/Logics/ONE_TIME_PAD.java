@@ -1,10 +1,8 @@
-package Morsecode;
+package Logics;
 import java.security.SecureRandom;
 import java.util.Scanner;
 
 public class ONE_TIME_PAD {
-
-
 
         public static String generateKey(int length) {
             SecureRandom random = new SecureRandom();
@@ -14,7 +12,7 @@ public class ONE_TIME_PAD {
             }
             return key.toString();
         }
-
+         
         public static String xorCipher(String text, String key) {
             StringBuilder result = new StringBuilder();
             for (int i = 0; i < text.length(); i++) {
@@ -23,19 +21,5 @@ public class ONE_TIME_PAD {
             return result.toString();
         }
 
-        public static void main(String[] args) {
-            Scanner scanner = new Scanner(System.in);
-
-            System.out.print("Enter message to encrypt: ");
-            String message = scanner.nextLine();
-            String key = generateKey(message.length());
-            System.out.println("Generated Key: " + key); // Key must be kept secret!
-            String encryptedText = xorCipher(message, key);
-            System.out.println("Encrypted Text: " + encryptedText);
-            String decryptedText = xorCipher(encryptedText, key);
-            System.out.println("Decrypted Text: " + decryptedText);
-
-            scanner.close();
-        }
     }
 

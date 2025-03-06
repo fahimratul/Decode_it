@@ -1,7 +1,7 @@
 package application.form.other.CC;
 
 import MiscItem.BACKGOUND.PanelCustom;
-import Morsecode.CaeserCypherlogic;
+import Logics.CaeserCypherlogic;
 import com.formdev.flatlaf.FlatClientProperties;
 import java.awt.Color;
 import java.awt.Insets;

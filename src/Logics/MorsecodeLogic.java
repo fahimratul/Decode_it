@@ -1,4 +1,4 @@
-package Morsecode;
+package Logics;
 
 
 import java.util.HashMap;

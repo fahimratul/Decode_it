@@ -1,4 +1,4 @@
-package Morsecode;
+package Logics;
 import java.util.Scanner;
 public class XOR_CIPHER {
 

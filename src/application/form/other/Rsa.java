@@ -1,7 +1,7 @@
 
 package application.form.other;
 
-import Morsecode.RSA;
+import Logics.RSA;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,7 +13,6 @@ public class Rsa extends javax.swing.JPanel {
         try {
             rsaCipher = new RSA(); // Ensure RSA instance is properly initialized
         } catch (Exception e) {
-            e.printStackTrace();
             JOptionPane.showMessageDialog(this, "RSA Initialization Failed: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             rsaCipher = null; // Set to null to prevent further errors
         }
