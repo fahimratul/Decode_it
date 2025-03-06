@@ -1,4 +1,4 @@
-package application.form.other.CC_1;
+package application.form.other.OneTime;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -8,11 +8,11 @@ import org.jdesktop.animation.timing.Animator;
 import org.jdesktop.animation.timing.TimingTargetAdapter;
 import org.jdesktop.animation.timing.interpolation.PropertySetter;
 
-public class CC extends javax.swing.JPanel {
+public class OneTime extends javax.swing.JPanel {
 
     private MigLayout layout;
-    private CCencode Text;
-    private CCdecode Morse;
+    private OneTImeEncode Text;
+    private OneTimeDecode Morse;
     private Animator animator;
     private boolean flag;
 
@@ -29,7 +29,7 @@ public class CC extends javax.swing.JPanel {
         revalidate();
     }
 
-    public CC() {
+    public OneTime() {
         initComponents();
         init();
         initAnimator();
@@ -55,8 +55,8 @@ public class CC extends javax.swing.JPanel {
     private void init() {
         layout = new MigLayout("fill", "fill", "fill");
         setLayout(layout);
-        Text = new CCencode();
-        Morse = new CCdecode();
+        Text = new OneTImeEncode();
+        Morse = new OneTimeDecode();
         add(Text, "pos (50%)-290px 0.5al n n");
         add(Morse, "pos (50%)-10px 0.5al n n");
         Text.addMouseListener(new MouseAdapter() {

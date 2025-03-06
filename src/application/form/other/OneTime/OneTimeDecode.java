@@ -1,7 +1,8 @@
-package application.form.other.CC_1;
+package application.form.other.OneTime;
 
 import MiscItem.BACKGOUND.PanelCustom;
 import Morsecode.CaeserCypherlogic;
+import Morsecode.ONE_TIME_PAD;
 import com.formdev.flatlaf.FlatClientProperties;
 import java.awt.Color;
 import java.awt.Insets;
@@ -11,11 +12,10 @@ import raven.popup.component.SimplePopupBorder;
 import raven.toast.Notifications;
 
 
-public class CCdecode extends PanelCustom {
-    private CaeserCypherlogic logic = new CaeserCypherlogic();
+public class OneTimeDecode extends PanelCustom {
    
    
-    public CCdecode() {
+    public OneTimeDecode() {
         initComponents();
         setAlpha(1);
         
@@ -117,35 +117,39 @@ public class CCdecode extends PanelCustom {
             Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_LEFT, "Please enter your text");
         }
         else {
+            String input = TxtInput.getText();
             String str = "Enter the key for decoding. If you don't know the key then you are requested to contect with the Admin.";
-            CCmsgbox cCmsgbox = new CCmsgbox(str);
-            try {
-                DefaultOption defaultOption = new DefaultOption() {
-                    @Override
-                    public boolean closeWhenClickOutside() {
-                        return true;
-                    }
-                };
-                String actions[] = new String[]{"Cancel", "Decode"};
-                GlassPanePopup.showPopup(new SimplePopupBorder(cCmsgbox, "Enter your Key", actions, (popupController, i) -> {
-                    if (i == 1) {
-                        try {
-                            int key = cCmsgbox.getKey();
-                            StringBuilder output = logic.decipher(TxtInput.getText(), key);
-                            TxtOut.setText(output.toString());
-                            popupController.closePopup();
-                        }
-                        catch (NumberFormatException e){
-                            cCmsgbox.changemsg(" \t Invalid key!\r Because of "+ e + ". Please enter correct numeric value.\rEnter the key for encoding. If you don't know the key then you are requested to contect with the Admin.");
-                            cCmsgbox.Txtclear();
-                        }
-                    } else {
-                        popupController.closePopup();
-                    }
-                }), defaultOption);
-            } catch (Exception e) {
-                
-            }
+            OneTImeMsgbox cCmsgbox = new OneTImeMsgbox(str);
+            cCmsgbox.Keyedit(true);
+             try {
+                 DefaultOption defaultOption = new DefaultOption() {
+                     @Override
+                     public boolean closeWhenClickOutside() {
+                         return true;
+                     }
+                 };
+                 String actions[] = new String[]{"Cancel", "Decode"};
+                 GlassPanePopup.showPopup(new SimplePopupBorder(cCmsgbox, "Enter your Key", actions, (popupController, i) -> {
+                     if (i == 1) {
+                         if(TxtInput.getText().equals("")){
+                             Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_RIGHT, "Please enter your text");
+                         }
+                         else {
+                             String key = cCmsgbox.getkey();
+                             String output = ONE_TIME_PAD.xorCipher(input,key);
+                             TxtOut.setText(output);
+                             popupController.closePopup();
+                         }
+                     }
+                     else{
+                         popupController.closePopup();
+                     }
+                 }), defaultOption);
+             } catch (Exception e) {
+                 Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_LEFT, e.toString());
+             }
+
+            
         }
     }//GEN-LAST:event_ConvertActionPerformed
 

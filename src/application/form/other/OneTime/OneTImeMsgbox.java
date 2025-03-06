@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package application.form.other.CC_1;
+package application.form.other.OneTime;
 
 import com.formdev.flatlaf.FlatClientProperties;
 import java.awt.Color;
@@ -11,15 +11,30 @@ import java.awt.Color;
  *
  * @author RATUL
  */
-public class CCmsgbox extends javax.swing.JPanel {
+public class OneTImeMsgbox extends javax.swing.JPanel {
 
-    public CCmsgbox(String s) {
+    public OneTImeMsgbox(String s) {
         initComponents();
         //setBackground(new Color(2, 128, 144, 150));
         msg.setText(s);
-        
+        key.setLineWrap(true);
+        key.setWrapStyleWord(true);
     }
-    
+
+    public void setkey(String s){
+        key.setText(s);
+    }
+
+    public void Keyedit(Boolean flag){
+        key.setEditable(flag);
+    }
+
+    public String getkey(){
+        return key.getText();
+    }
+    public  void clearkey(){
+        key.setText("");
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,13 +46,13 @@ public class CCmsgbox extends javax.swing.JPanel {
 
         msg = new javax.swing.JTextPane();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        key = new javax.swing.JTextArea();
 
         msg.setOpaque(false);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        key.setColumns(20);
+        key.setRows(5);
+        jScrollPane1.setViewportView(key);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -64,7 +79,7 @@ public class CCmsgbox extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea key;
     private javax.swing.JTextPane msg;
     // End of variables declaration//GEN-END:variables
 }

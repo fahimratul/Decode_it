@@ -1,10 +1,12 @@
-package application.form.other.CC_1;
+package application.form.other.OneTime;
 
 import MiscItem.BACKGOUND.PanelCustom;
 import Morsecode.CaeserCypherlogic;
+import Morsecode.ONE_TIME_PAD;
 import com.formdev.flatlaf.FlatClientProperties;
 import java.awt.Color;
 import java.awt.Insets;
+import java.util.Random;
 
 import raven.popup.DefaultOption;
 import raven.popup.GlassPanePopup;
@@ -12,12 +14,11 @@ import raven.popup.component.SimplePopupBorder;
 import raven.toast.Notifications;
 
 
-public class CCencode extends PanelCustom {
-    private CaeserCypherlogic logic = new CaeserCypherlogic();
-    
-    public CCencode() {
+public class OneTImeEncode extends PanelCustom {
+    private String EncryptionKey;
+
+    public OneTImeEncode() {
         initComponents();
-        
         setBackground(new Color(90, 24, 154, 180));
         TxtInput.setLineWrap(true);
         TxtInput.setWrapStyleWord(true);
@@ -116,40 +117,39 @@ public class CCencode extends PanelCustom {
 
     private void ConvertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConvertActionPerformed
         if(TxtInput.getText().equals("")){
-            Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_LEFT, "Please enter your text");
+            Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_CENTER, "Please enter your text");
         }
         else {
-            String str = "Enter the key for encoding. If you don't know the key then you are requested to contect with the Admin.";
-            CCmsgbox cCmsgbox = new CCmsgbox(str);
-            try {
-                DefaultOption defaultOption = new DefaultOption() {
+            String input = TxtInput.getText();
+            if(input.equals("")){
+                Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_CENTER, "Please enter your text");
+                return;
+            }
+            EncryptionKey= ONE_TIME_PAD.generateKey(input.length());
+            String Encryptedmsg= ONE_TIME_PAD.xorCipher(input,EncryptionKey);
+            TxtOut.setText(Encryptedmsg);
+
+            String str = "Here is your Key for encryption, Please remember the key for future decryption";
+            OneTImeMsgbox cCmsgbox = new OneTImeMsgbox(str);
+            cCmsgbox.setkey(EncryptionKey);
+            cCmsgbox.Keyedit(false);
+            try{
+                DefaultOption option = new DefaultOption(){
                     @Override
                     public boolean closeWhenClickOutside() {
                         return true;
                     }
                 };
-                String actions[] = new String[]{"Cancel", "Encode"};
-                GlassPanePopup.showPopup(new SimplePopupBorder(cCmsgbox, "Enter your Key", actions, (popupController, i) -> {
-                    if (i == 1) {
-                        try {
-                            int key = cCmsgbox.getKey();
-                            StringBuilder output = logic.encipher(TxtInput.getText(), key);
-                            TxtOut.setText(output.toString());
-                            popupController.closePopup();
-                        }
-                        catch (NumberFormatException e){
-                            cCmsgbox.changemsg(" Invalid key!/r Because of "+ e + " Please enter correct numeric value.Enter the key for encoding. If you don't know the key then you are requested to contect with the Admin.");
-                            cCmsgbox.Txtclear();
-                        }
-                    } else {
-                        popupController.closePopup();
-                    }
-                }), defaultOption);
-            } catch (Exception e) {
-                
+
+                GlassPanePopup.showPopup(new SimplePopupBorder(cCmsgbox,"Encrypted Key"));
+
+            }catch (Exception e){
+                Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_CENTER, "Error to generated enrypiton key because of "+e.getMessage());
             }
         }
     }//GEN-LAST:event_ConvertActionPerformed
+
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

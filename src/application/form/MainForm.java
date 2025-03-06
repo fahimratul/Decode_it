@@ -2,6 +2,7 @@ package application.form;
 
 import application.form.other.CC.CCshow;
 import application.form.other.*;
+import application.form.other.OneTime.OneTimeShow;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import com.formdev.flatlaf.util.UIScale;
@@ -94,7 +95,7 @@ public class MainForm extends JLayeredPane {
                     Application.showForm(new Rsa());
                     break;
                 case 5:
-                    Application.showForm(new Onetime());
+                    Application.showForm(new OneTimeShow());
                     break;
                 case 6:
                     break;

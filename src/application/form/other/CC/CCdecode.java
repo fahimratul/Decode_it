@@ -136,7 +136,7 @@ public class CCdecode extends PanelCustom {
                             popupController.closePopup();
                         }
                         catch (NumberFormatException e){
-                            cCmsgbox.changemsg(" \t Invalid key!\r Because of "+ e + ". Please enter correct numeric value.\rEnter the key for encoding. If you don't know the key then you are requested to contect with the Admin.");
+                            Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_LEFT, "Please enter a valid key");
                             cCmsgbox.Txtclear();
                         }
                     } else {
@@ -144,7 +144,7 @@ public class CCdecode extends PanelCustom {
                     }
                 }), defaultOption);
             } catch (Exception e) {
-                
+                Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_LEFT, e.toString());
             }
         }
     }//GEN-LAST:event_ConvertActionPerformed

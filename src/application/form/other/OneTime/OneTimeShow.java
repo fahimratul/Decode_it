@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package application.form.other.CC_1;
+package application.form.other.OneTime;
 
 /**
  *
  * @author RATUL
  */
-public class CCshow extends javax.swing.JPanel {
+public class OneTimeShow extends javax.swing.JPanel {
 
     /**
      * Creates new form Morse
      */
-    public CCshow() {
+    public OneTimeShow() {
         initComponents();
     }
 
@@ -27,8 +27,12 @@ public class CCshow extends javax.swing.JPanel {
     private void initComponents() {
 
         background1 = new MiscItem.BACKGOUND.Background();
+        oneTime1 = new application.form.other.OneTime.OneTime();
 
         background1.setLayout(new java.awt.BorderLayout());
+
+        oneTime1.setOpaque(false);
+        background1.add(oneTime1, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -49,5 +53,6 @@ public class CCshow extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private MiscItem.BACKGOUND.Background background1;
+    private application.form.other.OneTime.OneTime oneTime1;
     // End of variables declaration//GEN-END:variables
 }
