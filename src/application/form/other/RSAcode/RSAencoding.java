@@ -50,7 +50,6 @@ public class RSAencoding extends PanelCustom {
         TxtOut.setEditable(false);
         TxtOut.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Enter your Txt will appear here");
         TxtOut.putClientProperty(FlatClientProperties.STYLE, ""+ "font: 130% $h2.font;");
-
         
         OScroll.putClientProperty("ScrollBar.thumbInsets", new Insets(2, 2, 2, 2));
         OScroll.putClientProperty("ScrollBar.track", Color.WHITE);
