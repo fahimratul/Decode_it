@@ -149,7 +149,7 @@ public class Adminlogin extends javax.swing.JPanel {
     private void cmdLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLoginActionPerformed
             if(checkuser()){
                 if(checkuser_password(txtUser.getText(),txtPass.getPassword())) {
-                    Application.user= new User(txtUser.getText());
+                    Application.useradmin= new User(txtUser.getText());
                     txtUser.setText("");
                     txtPass.setText("");
                     Application.adminloginmenu();

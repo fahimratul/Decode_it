@@ -1,6 +1,7 @@
 package application;
 
 import Model.User;
+import Model.Userinfo;
 import application.form.Adminlogin;
 import application.form.LoginForm;
 import com.formdev.flatlaf.FlatClientProperties;
@@ -31,7 +32,8 @@ public class Application extends javax.swing.JFrame {
     private final LoginForm loginForm;
     private final Adminlogin adminlogin;
     private final AdminMainForm adminMainForm;
-    public static User user;
+    public static Userinfo user;
+    public static User useradmin;
     public static  boolean saved;
 
     public Application() {

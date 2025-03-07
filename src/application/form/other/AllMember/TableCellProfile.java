@@ -17,7 +17,7 @@ public class TableCellProfile extends javax.swing.JPanel {
         lbRank.putClientProperty(FlatClientProperties.STYLE, ""
                 + "foreground:$Label.disabledForeground");
         if (data.getProfile().getIcon() != null) {
-            pic.setIcon(data.getProfile().getAvatarIcon());
+            pic.setIcon(data.getProfile().getAvatarIcon(85,85));
         }
 
     }
