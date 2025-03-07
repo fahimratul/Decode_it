@@ -19,6 +19,7 @@ import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
 import MiscItem.border.FancyBorderRadius;
 import MiscItem.shadow.ShadowRenderer;
+import java.util.Random;
 
 /**
  *
@@ -46,7 +47,9 @@ public class Background extends JComponent {
     private Component blur;
 
     public Background() {
-            image= new ImageIcon(getClass().getResource("/MiscItem/BACKGOUND/img_1.jpg"));
+        Random random = new Random();
+        int randomNumber = random.nextInt(7); // Generates a random number between 0 (inclusive) and 7 (exclusive)
+        image= new ImageIcon(getClass().getResource("/MiscItem/BACKGOUND/2.jpg"));
     }
     private void createImage() {
         if (image != null) {
@@ -81,10 +84,10 @@ public class Background extends JComponent {
             g2.setComposite(AlphaComposite.SrcIn);
             g2.drawImage(ImageUtil.blur(bufferedImage.getSubimage(x, y, width, height), 30f), 0, 0, null);
             g2.setComposite(AlphaComposite.SrcOver);
-            g2.setColor(new Color(255, 255, 255, 10));
+            g2.setColor(new Color(0, 0, 0, 125));
             g2.fill(shape);
             g2.dispose();
-            g.drawImage(new ShadowRenderer(shadow, 0.3f, new Color(0, 0, 0)).createShadow(img), (int) (x - shadow * 0.8f), (int) (y - shadow * 0.8f), null);
+            g.drawImage(new ShadowRenderer(shadow, 0.3f, new Color(0, 0, 0)).createShadow(img), (int) (x - shadow * 0.9f), (int) (y - shadow * 0.9f), null);
             g.drawImage(img, x, y, null);
         }
     }

@@ -2,9 +2,11 @@ package application.form;
 
 import Model.User;
 import application.Application;
+import application.form.other.Addmember.Uploaddatabase;
 import com.formdev.flatlaf.FlatClientProperties;
 import connection.Connuser;
 import net.miginfocom.swing.MigLayout;
+import raven.alerts.MessageAlerts;
 import raven.toast.Notifications;
 
 import java.sql.PreparedStatement;
@@ -32,9 +34,6 @@ public class LoginForm extends javax.swing.JPanel {
         txtPass.putClientProperty(FlatClientProperties.STYLE, ""
                 + "showRevealButton:true;"
                 + "showCapsLock:true");
-        cmdLogin.putClientProperty(FlatClientProperties.STYLE, ""
-                + "borderWidth:0;"
-                + "focusWidth:0");
         txtUser.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "User Name");
         txtPass.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Password");
     }
@@ -138,7 +137,14 @@ public class LoginForm extends javax.swing.JPanel {
     private void cmdLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLoginActionPerformed
         if(checkuser()){
             if(checkuser_password(txtUser.getText(),txtPass.getPassword())) {
-                Application.user= new User(txtUser.getText());
+                try {
+                    String username=txtUser.getText();
+                    Uploaddatabase service= new Uploaddatabase();
+                    service.getUser(username);
+                }
+                catch(SQLException e) {
+                    MessageAlerts.getInstance().showMessage("Login Error", "Ww could not load you user info. Sorry for the error . Please try again.", MessageAlerts.MessageType.ERROR);
+                }
                 txtUser.setText("");
                 txtPass.setText("");
                 Application.login();
@@ -159,7 +165,7 @@ public class LoginForm extends javax.swing.JPanel {
 
     private boolean checkuser_password(String name, char[] password) {
         Connuser c = new Connuser();
-        String query = "SELECT * FROM users WHERE username = ? AND password = ?";
+        String query = "SELECT * FROM usersdata WHERE username = ? AND pass = ?";
         try (PreparedStatement pstmt = c.con.prepareStatement(query)) {
             pstmt.setString(1, name);
             pstmt.setString(2, String.valueOf(password));

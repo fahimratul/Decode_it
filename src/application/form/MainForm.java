@@ -1,6 +1,8 @@
 package application.form;
 
+import application.form.other.CC.CCshow;
 import application.form.other.*;
+import application.form.other.OneTime.OneTimeShow;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import com.formdev.flatlaf.util.UIScale;
@@ -17,12 +19,18 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import application.Application;
+import application.form.other.AES.AesShow;
 import menu.Menu;
 import menu.MenuAction;
-import application.form.other.CCForm;
+import application.form.other.MorseCode.Morse;
+import application.form.other.RSAcode.RSAShow;
+import application.form.other.about.Aboutshow;
 import raven.alerts.MessageAlerts;
+import raven.popup.DefaultOption;
+import raven.popup.GlassPanePopup;
 import raven.popup.component.PopupCallbackAction;
 import raven.popup.component.PopupController;
+import raven.popup.component.SimplePopupBorder;
 
 /**
  *
@@ -71,34 +79,43 @@ public class MainForm extends JLayeredPane {
 
     private void initMenuEvent() {
         menu.addMenuEvent((int index, int subIndex, MenuAction action) -> {
-            if (index == 0) {
-                Application.showForm(new FormDashboard());
-            } else if (index == 1) {
-                if (subIndex == 1) {
-                    Application.showForm(new Morsecode());
-                } else if (subIndex == 2) {
-                    Application.showForm(new Aes());
-                }
-                else if(subIndex==3){
-                    Application.showForm(new CCForm());
-                }
-                else if(subIndex==4) {
-                    Application.showForm(new Rsa());
-                } else if (subIndex==5) {
-                    Application.showForm(new Onetime());
-
-                }
-            } else if (index == 2) {
-                MessageAlerts.getInstance().showMessage("ARE YOU SURE?", "Are you sure you want to exit?Please Check back you data saved or not.", MessageAlerts.MessageType.WARNING, MessageAlerts.YES_NO_OPTION, new PopupCallbackAction() {
-                    @Override
-                    public void action(PopupController popupController, int i) {
-                        if(i== MessageAlerts.YES_OPTION){
-                            Application.logout();
+            switch (index) {
+                case 0:
+                    Application.showForm(new FormDashboard());
+                    break;
+                case 1:
+                    Application.showForm(new Morse());
+                    break;
+                case 2:          
+                    Application.showForm(new AesShow());
+                    break;
+                case 3:
+                    Application.showForm(new CCshow());
+                    break;
+                case 4:
+                    Application.showForm(new RSAShow());
+                    break;
+                case 5:
+                    Application.showForm(new OneTimeShow());
+                    break;
+                case 6:
+                    break;
+                case 7:
+                    show_about();
+                    break;
+                        
+                case 8:
+                    MessageAlerts.getInstance().showMessage("ARE YOU SURE?", "Are you sure you want to exit?Please Check back you data saved or not.", MessageAlerts.MessageType.WARNING, MessageAlerts.YES_NO_OPTION, new PopupCallbackAction() {
+                        @Override
+                        public void action(PopupController popupController, int i) {
+                            if(i== MessageAlerts.YES_OPTION){
+                                Application.logout();
+                            }
                         }
-                    }
-                });
-            } else {
-                action.cancel();
+                    }); break;
+                default:
+                    action.cancel();
+                    break;
             }
         });
     }
@@ -187,5 +204,15 @@ public class MainForm extends JLayeredPane {
                 panelBody.setBounds(bodyx, bodyy, bodyWidth, bodyHeight);
             }
         }
+    }
+    
+    
+    private void show_about(){
+        try {
+                Aboutshow about= new Aboutshow();
+                GlassPanePopup.showPopup(new SimplePopupBorder(about,""));
+            } catch (Exception e) {
+                
+            }
     }
 }

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.imageio.ImageIO;
 
+import application.Application;
 import connection.Connuser;
 import net.coobird.thumbnailator.Thumbnails;
 import Model.Userinfo;
@@ -125,6 +126,33 @@ public class Uploaddatabase {
         }
     }
 
+
+    public  void getUser(String username) throws SQLException {
+        ResultSet r = null;
+        try {
+            Connuser c = new Connuser();
+            String query = "SELECT * FROM usersdata WHERE username = ?";
+
+            PreparedStatement p = c.con.prepareStatement(query);
+            p.setString(1, username);
+            r = p.executeQuery();
+            while (r.next()) {
+                String name = r.getString("username");
+                String rank = r.getString("rankofuser");
+                String email = r.getString("email");
+                Date date = r.getDate("dob");
+                String mobile = r.getString("mobile");
+                UserProfilepic profile = new UserProfilepic(r.getBytes("pic"));
+                Application.user=new Userinfo(name.toUpperCase(),rank, email,date,mobile,"",profile);
+            }
+            r.close();
+            c.con.close();
+        }
+        finally {
+            Notifications.getInstance().show(Notifications.Type.SUCCESS, Notifications.Location.TOP_CENTER,"All MEMBER DATA IS UPLOADED");
+        }
+    }
+    
     private byte[] getByteImage(File file) throws IOException {
         BufferedImage image = Thumbnails.of(file)
                 .width(500)
