@@ -23,7 +23,7 @@ import application.form.other.AES.AesShow;
 import menu.Menu;
 import menu.MenuAction;
 import application.form.other.MorseCode.Morse;
-import application.form.other.RSAcode.RSAShow;
+import application.form.other.RSAcode.BlowfishExample;
 import application.form.other.about.Aboutshow;
 import raven.alerts.MessageAlerts;
 import raven.popup.DefaultOption;
@@ -93,7 +93,7 @@ public class MainForm extends JLayeredPane {
                     Application.showForm(new CCshow());
                     break;
                 case 4:
-                    Application.showForm(new RSAShow());
+                    Application.showForm(new BlowfishExample());
                     break;
                 case 5:
                     Application.showForm(new OneTimeShow());

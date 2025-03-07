@@ -1,7 +1,5 @@
-package application.form.other.RSAcode;
+package application.form.other.Blowfish;
 
-import application.form.other.Blowfish.RSAdecode;
-import application.form.other.Blowfish.RSAencoding;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.SwingUtilities;
@@ -10,7 +8,7 @@ import org.jdesktop.animation.timing.Animator;
 import org.jdesktop.animation.timing.TimingTargetAdapter;
 import org.jdesktop.animation.timing.interpolation.PropertySetter;
 
-public class RSAform extends javax.swing.JPanel {
+public class Blowfishform extends javax.swing.JPanel {
 
     private MigLayout layout;
     private RSAencoding Text;
@@ -31,7 +29,7 @@ public class RSAform extends javax.swing.JPanel {
         revalidate();
     }
 
-    public RSAform() {
+    public Blowfishform() {
         initComponents();
         init();
         initAnimator();
