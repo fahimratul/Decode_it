@@ -102,6 +102,7 @@ public class MorseChngForm extends javax.swing.JPanel {
         Savebtn = new javax.swing.JButton();
         Tittle = new javax.swing.JLabel();
         Pattern = new MiscItem.swing.TextField();
+        jProgressBar1 = new javax.swing.JProgressBar();
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel1.setText("A : ");
@@ -460,14 +461,15 @@ public class MorseChngForm extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(95, 95, 95)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(Tittle, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Pattern, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jTabbedPane1))
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.LEADING))
                 .addGap(195, 195, 195))
         );
         layout.setVerticalGroup(
@@ -479,7 +481,9 @@ public class MorseChngForm extends javax.swing.JPanel {
                     .addComponent(Pattern, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane1)
-                .addGap(65, 65, 65))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -499,7 +503,7 @@ public class MorseChngForm extends javax.swing.JPanel {
             }
          
         } else {
-            MessageAlerts.getInstance().showMessage("Duplicate Morse code found", "There are duplicate Morse code in the text fields. Please make sure all the Morse code are unique.Please try again.", MessageAlerts.MessageType.WARNING);
+           // MessageAlerts.getInstance().showMessage("Duplicate Morse code found", "There are duplicate Morse code in the text fields. Please make sure all the Morse code are unique.Please try again.", MessageAlerts.MessageType.WARNING);
 
         }
                // TODO add your handling code here:
@@ -507,9 +511,13 @@ public class MorseChngForm extends javax.swing.JPanel {
 
 
     private boolean areTextFieldsUnique() {
-        Set<String> set = new HashSet<String>(Arrays.asList(textFields));
-        if(set.size() < textFields.length) {
-            return false;
+        for(int i = 0; i < textFields.length-1; i++){
+            for(int j = i+1; j < textFields.length; j++){
+                if(textFields[i].equals(textFields[j])){
+                    MessageAlerts.getInstance().showMessage(textFields[i],textFields[j],MessageAlerts.MessageType.ERROR );
+                    return false;
+                }
+            }
         }
         return true;
     }
@@ -575,6 +583,7 @@ public class MorseChngForm extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JPanel j_to_p;
     private javax.swing.JPanel q_to_Z;
