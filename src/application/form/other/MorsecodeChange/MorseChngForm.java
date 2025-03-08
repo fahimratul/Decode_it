@@ -4,8 +4,13 @@
  */
 package application.form.other.MorsecodeChange;
 
-import application.Application;
-import application.form.AdminMainForm;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Arrays;
+
+import com.formdev.flatlaf.FlatClientProperties;
+import raven.alerts.MessageAlerts;
+import raven.toast.Notifications;
 
 /**
  *
@@ -13,11 +18,19 @@ import application.form.AdminMainForm;
  */
 public class MorseChngForm extends javax.swing.JPanel {
 
+    private String[] textFields = new String[26];
     /**
      * Creates new form MorseChngForm
      */
     public MorseChngForm() {
+
         initComponents();
+
+        Tittle.putClientProperty(FlatClientProperties.STYLE, ""
+                + "font:$h1.font");
+        Pattern.putClientProperty(FlatClientProperties.STYLE, ""+
+                "font:$h1.font");
+        Pattern.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT,"Enter your Pattern Name");
     }
 
 
@@ -88,6 +101,8 @@ public class MorseChngForm extends javax.swing.JPanel {
         jLabel26 = new javax.swing.JLabel();
         textField26 = new MiscItem.swing.TextField();
         Savebtn = new javax.swing.JButton();
+        Tittle = new javax.swing.JLabel();
+        Pattern = new javax.swing.JTextField();
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel1.setText("A : ");
@@ -437,32 +452,125 @@ public class MorseChngForm extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Q - Z", q_to_Z);
 
+        Tittle.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        Tittle.setText("Pattern Name : ");
+
+        Pattern.setEnabled(false);
+        Pattern.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                PatternFocusLost(evt);
+            }
+        });
+        Pattern.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PatternActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(95, 95, 95)
-                .addComponent(jTabbedPane1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Tittle, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Pattern))
+                    .addComponent(jTabbedPane1))
                 .addGap(195, 195, 195))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(51, 51, 51)
+                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Tittle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Pattern, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane1)
-                .addGap(91, 91, 91))
+                .addGap(65, 65, 65))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void SavebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SavebtnActionPerformed
-        Application.saved=true;
-        // TODO add your handling code here:
+        getAllTextFields();
+        if(Pattern.getText().equals("")){
+            Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_CENTER, "Pattern Name cannot be empty");
+            Pattern.requestFocus();
+            return;
+        }
+        if(areTextFieldsUnique()) {
+            try {
+                MorseUpload.create("Pattern", textFields);
+                MessageAlerts.getInstance().showMessage("Morse code saved", "Morse code saved successfully.", MessageAlerts.MessageType.SUCCESS);
+            } catch (Exception e) {
+                MessageAlerts.getInstance().showMessage("Failed To Save", "Error saving Morse code. Please try again.", MessageAlerts.MessageType.ERROR);
+            }
+         
+        } else {
+            MessageAlerts.getInstance().showMessage("Duplicate Morse code found", "There are duplicate Morse code in the text fields. Please make sure all the Morse code are unique.Please try again.", MessageAlerts.MessageType.WARNING);
+
+        }
+               // TODO add your handling code here:
     }//GEN-LAST:event_SavebtnActionPerformed
+
+    private void PatternFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PatternFocusLost
+            if(MorseUpload.search_username(Pattern.getText())){
+                Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_CENTER, "Same Pattern name already exist");
+                Pattern.requestFocus();
+            }
+
+    }//GEN-LAST:event_PatternFocusLost
+
+    private void PatternActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PatternActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PatternActionPerformed
+
+
+    private boolean areTextFieldsUnique() {
+        Set<String> set = new HashSet<String>(Arrays.asList(textFields));
+        if(set.size() < textFields.length) {
+            return false;
+        }
+        return true;
+    }
+    
+    private void getAllTextFields() {
+        textFields[0] = textField1.getText();
+        textFields[1] = textField2.getText();
+        textFields[2] = textField3.getText();
+        textFields[3] = textField4.getText();
+        textFields[4] = textField5.getText();
+        textFields[5] = textField6.getText();
+        textFields[6] = textField7.getText();
+        textFields[7] = textField8.getText();
+        textFields[8] = textField9.getText();
+        textFields[9] = textField10.getText();
+        textFields[10] = textField11.getText();
+        textFields[11] = textField12.getText();
+        textFields[12] = textField13.getText();
+        textFields[13] = textField14.getText();
+        textFields[14] = textField15.getText();
+        textFields[15] = textField16.getText();
+        textFields[16] = textField17.getText();
+        textFields[17] = textField18.getText();
+        textFields[18] = textField19.getText();
+        textFields[19] = textField20.getText();
+        textFields[20] = textField21.getText();
+        textFields[21] = textField22.getText();
+        textFields[22] = textField23.getText();
+        textFields[23] = textField24.getText();
+        textFields[24] = textField25.getText();
+        textFields[25] = textField26.getText();
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Pattern;
     private javax.swing.JButton Savebtn;
+    private javax.swing.JLabel Tittle;
     private javax.swing.JPanel a_to_i;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

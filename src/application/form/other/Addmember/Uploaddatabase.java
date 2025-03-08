@@ -18,6 +18,7 @@ import connection.Connuser;
 import net.coobird.thumbnailator.Thumbnails;
 import Model.Userinfo;
 import application.form.other.Addmember.UserProfilepic;
+import raven.alerts.MessageAlerts;
 import raven.toast.Notifications;
 
 /**
@@ -56,20 +57,15 @@ public class Uploaddatabase {
     public boolean search_username(String search) throws SQLException {
         ResultSet r = null;
         boolean flag;
-        try {
-            Connuser c = new Connuser();
-            String query = "select * from usersdata where (username like ?)";
-            PreparedStatement p = c.con.prepareStatement(query);
-            p.setString(1, "%" + search + "%");
-            r = p.executeQuery();
-            flag=r.next();
-            r.close();
-            c.con.close();
-            return flag;
-        }
-        finally {
-        
-        }
+        Connuser c = new Connuser();
+        String query = "select * from usersdata where (username like ?)";
+        PreparedStatement p = c.con.prepareStatement(query);
+        p.setString(1, "%" + search + "%");
+        r = p.executeQuery();
+        flag=r.next();
+        r.close();
+        c.con.close();
+        return flag;
     }
     
     
@@ -149,7 +145,7 @@ public class Uploaddatabase {
             c.con.close();
         }
         finally {
-            Notifications.getInstance().show(Notifications.Type.SUCCESS, Notifications.Location.TOP_CENTER,"All MEMBER DATA IS UPLOADED");
+            MessageAlerts.getInstance().showMessage("WELCOME", "WELCOME "+username+" TO OUR APP DECODE IT. HOPE YOU WILL ENJOY OUR SYSTEM. FOR ANY HELP CONTACT WITH THE ADMIN. THANK YOU", MessageAlerts.MessageType.SUCCESS);
         }
     }
     

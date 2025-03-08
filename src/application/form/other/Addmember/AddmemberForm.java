@@ -77,14 +77,20 @@ public class AddmemberForm extends javax.swing.JPanel {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel1.setText("Name");
 
-        txtName.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtNameKeyReleased(evt);
+        txtName.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNameFocusLost(evt);
             }
         });
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel2.setText("Rank");
+
+        txtEmail.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtEmailFocusLost(evt);
+            }
+        });
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel3.setText("Date of Birth");
@@ -147,6 +153,12 @@ public class AddmemberForm extends javax.swing.JPanel {
 
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel9.setText("Password");
+
+        txtMobile.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtMobileFocusLost(evt);
+            }
+        });
 
         AddBtn.setText("Add Member");
         AddBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -260,12 +272,25 @@ public class AddmemberForm extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_AddBtnActionPerformed
 
-    private void txtNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyReleased
-           try{
+    private void txtEmailFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusLost
+        if(isValidEmail(txtEmail.getText())){
+            return;
+        }
+        else{
+            Notifications.getInstance().show(Notifications.Type.WARNING, Notifications.Location.TOP_RIGHT,"Please enter a valid email address");
+            txtEmail.setText("");
+            txtEmail.requestFocus();
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmailFocusLost
+
+    private void txtNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNameFocusLost
+        try{
                if(!txtName.getText().equals("")){
                    if(uploaddatabase.search_username(txtName.getText())){
                        Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_RIGHT,""+txtName.getText()+" is already exist");
-                       return;
+                       txtName.setText("");
+                       txtName.requestFocus();
                    }
                    else{
                     AddBtn.setEnabled(true);
@@ -275,9 +300,19 @@ public class AddmemberForm extends javax.swing.JPanel {
            catch (SQLException e){
 
            }
-           
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNameKeyReleased
+    }//GEN-LAST:event_txtNameFocusLost
+
+    private void txtMobileFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMobileFocusLost
+        if(isValidMobileNumber(txtMobile.getText())){
+            return;
+        }
+        else{
+            txtMobile.setText("");
+            txtMobile.requestFocus();
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMobileFocusLost
 
     private void cleardata(){
         txtName.setText("");
@@ -286,6 +321,16 @@ public class AddmemberForm extends javax.swing.JPanel {
         txtEmail.setText("");
         Password.setText("");
 
+    }
+
+    public boolean isValidMobileNumber(String mobile) {
+        return mobile != null && mobile.matches("^01\\d{9}$");
+    }
+
+
+    public boolean isValidEmail(String email) {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}\\.com$";
+        return email != null && email.matches(emailRegex);
     }
 
 
