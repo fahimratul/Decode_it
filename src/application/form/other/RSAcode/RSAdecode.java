@@ -13,16 +13,11 @@ import raven.toast.Notifications;
 
 public class RSAdecode extends PanelCustom {
 
-    private RSA logic;
+
 
     public RSAdecode() {
         initComponents();
         setAlpha(1);
-        try {
-            logic= new RSA();
-        } catch (Exception e) {
-            MessageAlerts.getInstance().showMessage("DATA SERVER ERROR", "Error while loading RSA. We are sorry for this unwanted error. You are requested to try again or You can contact with admin. Thank you.", MessageAlerts.MessageType.ERROR);
-        }
         TxtInput.setLineWrap(true);
         TxtInput.setWrapStyleWord(true);
         TxtInput.setEditable(true);
@@ -135,17 +130,19 @@ public class RSAdecode extends PanelCustom {
             Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_LEFT, "Please enter your text");
         }
         else {
-             if(logic==null){
+             if(RSAShow.logic==null){
                  MessageAlerts.getInstance().showMessage("DATA SERVER ERROR", "Error while loading RSA. We are sorry for this unwanted error. You are requested to try again or You can contact with admin. Thank you.", MessageAlerts.MessageType.ERROR);
              }
              else {
-                 String input=TxtInput.getText();
+                
                  String output= null;
                  try {
-                     output = logic.decrypt(input);
+                     output = RSAShow.logic.decrypt(TxtInput.getText());
                  } catch (Exception e) {
-                     MessageAlerts.getInstance().showMessage("FAILED TO DECRYPT", "Error occured due to "+e.toString()+" .Sorry for the failure. Please try again later.", MessageAlerts.MessageType.ERROR);
+                     MessageAlerts.getInstance().showMessage("DECRYPTION ERROR", "Error while decrypting the input. Please ensure the input is correctly formatted.", MessageAlerts.MessageType.ERROR);
+                     return;
                  }
+
                  TxtOut.setText(output);
              }
         

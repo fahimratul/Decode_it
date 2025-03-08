@@ -1,36 +1,19 @@
-package application.form.other.Blowfish;
+package application.form.other.RSAcode_1;
 
-import Logics.RSA;
 import MiscItem.BACKGOUND.PanelCustom;
 import MiscItem.swing.FileLoader;
 import com.formdev.flatlaf.FlatClientProperties;
 import java.awt.Color;
 import java.awt.Insets;
-import java.io.*;
-
-import jnafilechooser.api.JnaFileChooser;
 import raven.alerts.MessageAlerts;
-import raven.popup.DefaultOption;
-import raven.popup.GlassPanePopup;
-import raven.popup.component.SimplePopupBorder;
 import raven.toast.Notifications;
 
-import javax.swing.*;
 
 
-public class Blowfishencode extends PanelCustom {
-
-    private RSA logic;
-
-    public Blowfishencode() {
-
-        try {
-            logic= new RSA();
-        } catch (Exception e) {
-            MessageAlerts.getInstance().showMessage("DATA SERVER ERROR", "Error while loading RSA. We are sorry for this unwanted error. You are requested to try again or You can contact with admin. Thank you.", MessageAlerts.MessageType.ERROR);
-        }
+public class BlowEncode extends PanelCustom {
 
 
+    public BlowEncode() {
         initComponents();
         setBackground(new Color(240, 93, 94, 180));
         TxtInput.setLineWrap(true);
@@ -146,14 +129,14 @@ public class Blowfishencode extends PanelCustom {
             Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_CENTER, "Please enter your text");
         }
         else {
-            if(logic==null){
+            if(BlowfishShow.logic==null){
                 MessageAlerts.getInstance().showMessage("DATA SERVER ERROR", "Error while loading RSA. We are sorry for this unwanted error. You are requested to try again or You can contact with admin. Thank you.", MessageAlerts.MessageType.ERROR);
             }
             else {
                 String input=TxtInput.getText();
                 String output= null;
                 try {
-                    output = logic.encrypt(input);
+                    output = BlowfishShow.logic.encrypt(input);
                 } catch (Exception e) {
                     MessageAlerts.getInstance().showMessage("FAILED TO ENCRYPT", "Error occured due to "+e.toString()+" .Sorry for the failure. Please try again later.", MessageAlerts.MessageType.ERROR);
                 }

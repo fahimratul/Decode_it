@@ -1,7 +1,5 @@
 package application.form.other.RSAcode;
 
-import application.form.other.Blowfish.RSAdecode;
-import application.form.other.Blowfish.RSAencoding;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.SwingUtilities;

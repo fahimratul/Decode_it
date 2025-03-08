@@ -10,15 +10,17 @@ public class BlowfishExample {
     public static void main(String[] args) throws Exception {
         // Generate a Blowfish key
         KeyGenerator keyGenerator = KeyGenerator.getInstance("Blowfish");
-        keyGenerator.init(128); // Key size (32 to 448 bits allowed)
+        keyGenerator.init(448); // Key size (32 to 448 bits allowed)
         SecretKey secretKey = keyGenerator.generateKey();
-
+        System.out.println(secretKey.getEncoded());
         // Generate a random IV (Initialization Vector)
-        byte[] ivBytes = new byte[8]; // Blowfish block size is 8 bytes
+        byte[] ivBytes = new byte[8];
         SecureRandom random = new SecureRandom();
         random.nextBytes(ivBytes);
-        IvParameterSpec ivSpec = new IvParameterSpec(ivBytes);
+        System.out.println(ivBytes);// Blowfish block size is 8 bytes
 
+        IvParameterSpec ivSpec = new IvParameterSpec(ivBytes);
+        System.out.println(ivSpec);
         // Plain text message
         String plainText = "Hello, Blowfish Encryption!";
 

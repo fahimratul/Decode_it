@@ -8,7 +8,6 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.GCMParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.util.Base64;
-import java.util.Scanner;
 
 /**
  * AES-GCM encryption and decryption implementation.
@@ -17,8 +16,8 @@ import java.util.Scanner;
  */
 public class AEScode {
     private SecretKey key;
-    private final int KEY_SIZE = 128; // Key size in bits
-    private final int T_LEN = 128;    // Tag length in bits
+    private final int KEY_SIZE = 256; // Key size in bits
+    private final int T_LEN = 120;    // Tag length in bits
     private byte[] IV;                // Initialization Vector
 
     /**

@@ -106,7 +106,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="Title">
       <Properties>
-        <Property name="text" type="java.lang.String" value="BlowFish DECRYPTION"/>
+        <Property name="text" type="java.lang.String" value="RSA DECRYPTION"/>
         <Property name="horizontalTextPosition" type="int" value="0"/>
       </Properties>
     </Component>

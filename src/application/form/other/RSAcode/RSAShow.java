@@ -4,17 +4,26 @@
  */
 package application.form.other.RSAcode;
 
+import Logics.RSA;
+import raven.alerts.MessageAlerts;
+
 /**
  *
  * @author RATUL
  */
 public class RSAShow extends javax.swing.JPanel {
 
+    public static RSA logic;
     /**
      * Creates new form Morse
      */
     public RSAShow() {
         initComponents();
+        try{
+            logic = new RSA();
+        }catch (Exception e){
+            MessageAlerts.getInstance().showMessage("DATA SERVER ERROR", e.getMessage(), MessageAlerts.MessageType.ERROR);
+        }
     }
 
     /**

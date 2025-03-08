@@ -1,35 +1,23 @@
-package application.form.other.Blowfish;
+package application.form.other.RSAcode_1;
 
-import Logics.BlowfishExample;
-import static Logics.BlowfishExample.decrypt;
-import static Logics.BlowfishExample.encrypt;
+import Logics.RSA;
 import MiscItem.BACKGOUND.PanelCustom;
 import MiscItem.swing.FileLoader;
 import com.formdev.flatlaf.FlatClientProperties;
 import java.awt.Color;
 import java.awt.Insets;
-import java.security.SecureRandom;
-import javax.crypto.KeyGenerator;
-import javax.crypto.SecretKey;
-import javax.crypto.spec.IvParameterSpec;
-import java.util.Scanner;
 
 import raven.alerts.MessageAlerts;
 import raven.toast.Notifications;
 
 
-public class Blowfishdecode extends PanelCustom {
+public class BlowDecode extends PanelCustom {
 
-    private BlowfishExample logic;
 
-    public Blowfishdecode() {
+
+    public BlowDecode() {
         initComponents();
         setAlpha(1);
-        try {
-            logic= new BlowfishExample();
-        } catch (Exception e) {
-            MessageAlerts.getInstance().showMessage("DATA SERVER ERROR", "Error while loading RSA. We are sorry for this unwanted error. You are requested to try again or You can contact with admin. Thank you.", MessageAlerts.MessageType.ERROR);
-        }
         TxtInput.setLineWrap(true);
         TxtInput.setWrapStyleWord(true);
         TxtInput.setEditable(true);
@@ -90,7 +78,7 @@ public class Blowfishdecode extends PanelCustom {
             }
         });
 
-        Title.setText("BlowFish DECRYPTION");
+        Title.setText("RSA DECRYPTION");
         Title.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         Load.setText("LOAD");
@@ -138,36 +126,27 @@ public class Blowfishdecode extends PanelCustom {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ConvertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConvertActionPerformed
-                                       
-    if (TxtInput.getText().trim().isEmpty()) {
-        Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_LEFT, "Please enter your text");
-        return;
-    }
+         if(TxtInput.getText().equals("")){
+            Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_LEFT, "Please enter your text");
+        }
+        else {
+             if(BlowfishShow.logic==null){
+                 MessageAlerts.getInstance().showMessage("DATA SERVER ERROR", "Error while loading RSA. We are sorry for this unwanted error. You are requested to try again or You can contact with admin. Thank you.", MessageAlerts.MessageType.ERROR);
+             }
+             else {
+                
+                 String output= null;
+                 try {
+                     output = BlowfishShow.logic.decrypt(TxtInput.getText());
+                 } catch (Exception e) {
+                     MessageAlerts.getInstance().showMessage("DECRYPTION ERROR", "Error while decrypting the input. Please ensure the input is correctly formatted.", MessageAlerts.MessageType.ERROR);
+                     return;
+                 }
 
-    try {
-        // Get the encrypted text from input field
-        String encryptedText = TxtInput.getText().trim();
-
-        // Use a fixed key and IV (in a real-world case, retrieve these securely)
-        KeyGenerator keyGenerator = KeyGenerator.getInstance("Blowfish");
-        keyGenerator.init(128);
-        SecretKey secretKey = keyGenerator.generateKey();
-
-        byte[] ivBytes = new byte[8]; // Blowfish block size is 8 bytes
-        SecureRandom random = new SecureRandom();
-        random.nextBytes(ivBytes);
-        IvParameterSpec ivSpec = new IvParameterSpec(ivBytes);
-
-        // Decrypt the text
-        String decryptedText = BlowfishExample.decrypt(encryptedText, secretKey, ivSpec);
-
-        // Display the result in output text area
-        TxtOut.setText(decryptedText);
-    } catch (Exception e) {
-        MessageAlerts.getInstance().showMessage("DECRYPTION ERROR", "Failed to decrypt the text. Ensure the input is valid.", MessageAlerts.MessageType.ERROR);
-    }
- 
-
+                 TxtOut.setText(output);
+             }
+        
+        }
     }//GEN-LAST:event_ConvertActionPerformed
 
     private void LoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoadActionPerformed

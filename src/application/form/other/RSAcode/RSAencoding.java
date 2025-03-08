@@ -20,17 +20,8 @@ import javax.swing.*;
 
 public class RSAencoding extends PanelCustom {
 
-    private RSA logic;
 
     public RSAencoding() {
-
-        try {
-            logic= new RSA();
-        } catch (Exception e) {
-            MessageAlerts.getInstance().showMessage("DATA SERVER ERROR", "Error while loading RSA. We are sorry for this unwanted error. You are requested to try again or You can contact with admin. Thank you.", MessageAlerts.MessageType.ERROR);
-        }
-
-
         initComponents();
         setBackground(new Color(240, 93, 94, 180));
         TxtInput.setLineWrap(true);
@@ -146,14 +137,14 @@ public class RSAencoding extends PanelCustom {
             Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_CENTER, "Please enter your text");
         }
         else {
-            if(logic==null){
+            if(RSAShow.logic==null){
                 MessageAlerts.getInstance().showMessage("DATA SERVER ERROR", "Error while loading RSA. We are sorry for this unwanted error. You are requested to try again or You can contact with admin. Thank you.", MessageAlerts.MessageType.ERROR);
             }
             else {
                 String input=TxtInput.getText();
                 String output= null;
                 try {
-                    output = logic.encrypt(input);
+                    output = RSAShow.logic.encrypt(input);
                 } catch (Exception e) {
                     MessageAlerts.getInstance().showMessage("FAILED TO ENCRYPT", "Error occured due to "+e.toString()+" .Sorry for the failure. Please try again later.", MessageAlerts.MessageType.ERROR);
                 }

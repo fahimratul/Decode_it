@@ -2,7 +2,6 @@ package Logics;
 import java.security.*;
 import javax.crypto.Cipher;
 import java.util.Base64;
-import java.util.Scanner;
 
 
 
@@ -35,36 +34,8 @@ import java.util.Scanner;
             cipher.init(Cipher.DECRYPT_MODE, privateKey);
             byte[] decryptedBytes = cipher.doFinal(Base64.getDecoder().decode(encryptedMessage));
             return new String(decryptedBytes);
-        }
-
-        public static void main(String[] args) {
-            try {
-                RSA rsaCipher = new RSA();
-                Scanner scanner = new Scanner(System.in);
-
-                // Ask user for input
-                System.out.println("Enter a message to encrypt: ");
-                String message = scanner.nextLine();
-
-                // Encrypting user input
-                String encryptedMessage = rsaCipher.encrypt(message);
-                System.out.println("Encrypted Message: " + encryptedMessage);
-
-                // Asking for decryption
-                System.out.println("Enter the encrypted message to decrypt: ");
-                String encryptedInput = scanner.nextLine();
-
-                // Decrypting user input
-                String decryptedMessage = rsaCipher.decrypt(encryptedInput);
-                System.out.println("Decrypted Message: " + decryptedMessage);
-
-                scanner.close();  // Close the scanner resource
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
+        }        
+}
 
 
 

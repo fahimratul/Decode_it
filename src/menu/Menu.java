@@ -33,6 +33,7 @@ public class Menu extends JPanel {
         {"CeaserCypher"},
         {"RSA"},
         {"One Time Pad"},
+            {"Blow Fish"},
         {"~Others~"},
         {"Settings"},
         {"About us"},
