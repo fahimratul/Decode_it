@@ -30,7 +30,6 @@ public class MorseChngForm extends javax.swing.JPanel {
                 + "font:$h1.font");
         Pattern.putClientProperty(FlatClientProperties.STYLE, ""+
                 "font:$h1.font");
-        Pattern.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT,"Enter your Pattern Name");
     }
 
 
@@ -102,7 +101,7 @@ public class MorseChngForm extends javax.swing.JPanel {
         textField26 = new MiscItem.swing.TextField();
         Savebtn = new javax.swing.JButton();
         Tittle = new javax.swing.JLabel();
-        Pattern = new javax.swing.JTextField();
+        Pattern = new MiscItem.swing.TextField();
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel1.setText("A : ");
@@ -455,17 +454,7 @@ public class MorseChngForm extends javax.swing.JPanel {
         Tittle.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         Tittle.setText("Pattern Name : ");
 
-        Pattern.setEnabled(false);
-        Pattern.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                PatternFocusLost(evt);
-            }
-        });
-        Pattern.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PatternActionPerformed(evt);
-            }
-        });
+        Pattern.setHint("Enter your pattern name");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -476,8 +465,8 @@ public class MorseChngForm extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(Tittle, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(Pattern))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Pattern, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jTabbedPane1))
                 .addGap(195, 195, 195))
         );
@@ -486,8 +475,8 @@ public class MorseChngForm extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Tittle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Pattern, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE))
+                    .addComponent(Tittle, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                    .addComponent(Pattern, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane1)
                 .addGap(65, 65, 65))
@@ -503,7 +492,7 @@ public class MorseChngForm extends javax.swing.JPanel {
         }
         if(areTextFieldsUnique()) {
             try {
-                MorseUpload.create("Pattern", textFields);
+                MorseUpload.create(Pattern.getText(), textFields);
                 MessageAlerts.getInstance().showMessage("Morse code saved", "Morse code saved successfully.", MessageAlerts.MessageType.SUCCESS);
             } catch (Exception e) {
                 MessageAlerts.getInstance().showMessage("Failed To Save", "Error saving Morse code. Please try again.", MessageAlerts.MessageType.ERROR);
@@ -515,18 +504,6 @@ public class MorseChngForm extends javax.swing.JPanel {
         }
                // TODO add your handling code here:
     }//GEN-LAST:event_SavebtnActionPerformed
-
-    private void PatternFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_PatternFocusLost
-            if(MorseUpload.search_username(Pattern.getText())){
-                Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_CENTER, "Same Pattern name already exist");
-                Pattern.requestFocus();
-            }
-
-    }//GEN-LAST:event_PatternFocusLost
-
-    private void PatternActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PatternActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PatternActionPerformed
 
 
     private boolean areTextFieldsUnique() {
@@ -568,7 +545,7 @@ public class MorseChngForm extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Pattern;
+    private MiscItem.swing.TextField Pattern;
     private javax.swing.JButton Savebtn;
     private javax.swing.JLabel Tittle;
     private javax.swing.JPanel a_to_i;

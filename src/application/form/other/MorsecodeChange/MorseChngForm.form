@@ -21,7 +21,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="Tittle" min="-2" pref="200" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="Pattern" max="32767" attributes="0"/>
                   </Group>
                   <Component id="jTabbedPane1" max="32767" attributes="0"/>
@@ -35,8 +35,8 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="Tittle" max="32767" attributes="0"/>
-                  <Component id="Pattern" pref="47" max="32767" attributes="0"/>
+                  <Component id="Tittle" pref="47" max="32767" attributes="0"/>
+                  <Component id="Pattern" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jTabbedPane1" max="32767" attributes="0"/>
@@ -632,14 +632,10 @@
         <Property name="text" type="java.lang.String" value="Pattern Name : "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="Pattern">
+    <Component class="MiscItem.swing.TextField" name="Pattern">
       <Properties>
-        <Property name="enabled" type="boolean" value="false"/>
+        <Property name="hint" type="java.lang.String" value="Enter your pattern name"/>
       </Properties>
-      <Events>
-        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="PatternFocusLost"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PatternActionPerformed"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>
