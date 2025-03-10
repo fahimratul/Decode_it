@@ -1,19 +1,29 @@
-package application.form.other.RSAcode_1;
+package application.form.other.Base64;
 
+import Logics.Base64Example;
 import MiscItem.BACKGOUND.PanelCustom;
 import MiscItem.swing.FileLoader;
 import com.formdev.flatlaf.FlatClientProperties;
 import java.awt.Color;
 import java.awt.Insets;
+import java.io.*;
+import java.util.Base64;
+import java.util.Scanner;
+
+import jnafilechooser.api.JnaFileChooser;
 import raven.alerts.MessageAlerts;
+import raven.popup.DefaultOption;
+import raven.popup.GlassPanePopup;
+import raven.popup.component.SimplePopupBorder;
 import raven.toast.Notifications;
 
+import javax.swing.*;
 
 
-public class BlowEncode extends PanelCustom {
+public class Base64encoding extends PanelCustom {
 
 
-    public BlowEncode() {
+    public Base64encoding() {
         initComponents();
         setBackground(new Color(240, 93, 94, 180));
         TxtInput.setLineWrap(true);
@@ -73,7 +83,7 @@ public class BlowEncode extends PanelCustom {
         TxtOut.setMaximumSize(new java.awt.Dimension(350, 400));
         OScroll.setViewportView(TxtOut);
 
-        Title.setText("RSA ENCRYPTION");
+        Title.setText("Base64 ENCRYPTION");
         Title.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         Convert.setText("CONVERT");
@@ -129,19 +139,22 @@ public class BlowEncode extends PanelCustom {
             Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_CENTER, "Please enter your text");
         }
         else {
-            if(BlowfishShow.logic==null){
-                MessageAlerts.getInstance().showMessage("DATA SERVER ERROR", "Error while loading RSA. We are sorry for this unwanted error. You are requested to try again or You can contact with admin. Thank you.", MessageAlerts.MessageType.ERROR);
-            }
-            else {
-                String input=TxtInput.getText();
-                String output= null;
-                try {
-                    output = BlowfishShow.logic.encrypt(input);
-                } catch (Exception e) {
-                    MessageAlerts.getInstance().showMessage("FAILED TO ENCRYPT", "Error occured due to "+e.toString()+" .Sorry for the failure. Please try again later.", MessageAlerts.MessageType.ERROR);
-                }
-                TxtOut.setText(output);
-            }
+            
+
+        // Get the string to encode from the user
+        
+        String stringToEncode = TxtInput.getText();
+
+        // Get the string to decode from the user
+        
+
+        // Encode the stringToEncode
+        String encodedString = Base64.getEncoder().encodeToString(stringToEncode.getBytes());
+
+        // Decode the stringToDecode
+        TxtOut.setText(encodedString);
+
+        
         }
     }//GEN-LAST:event_ConvertActionPerformed
 

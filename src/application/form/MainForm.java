@@ -3,7 +3,7 @@ package application.form;
 import application.form.other.CC.CCshow;
 import application.form.other.*;
 import application.form.other.OneTime.OneTimeShow;
-import application.form.other.RSAcode.RSAShow;
+import application.form.other.Base64.Base64Show;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import com.formdev.flatlaf.util.UIScale;
@@ -93,7 +93,7 @@ public class MainForm extends JLayeredPane {
                     Application.showForm(new CCshow());
                     break;
                 case 4:
-                    Application.showForm(new RSAShow());
+                    Application.showForm(new Base64Show());
                     break;
                 case 5:
                     Application.showForm(new OneTimeShow());

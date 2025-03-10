@@ -99,7 +99,7 @@
     </Container>
     <Component class="javax.swing.JLabel" name="Title">
       <Properties>
-        <Property name="text" type="java.lang.String" value="RSA ENCRYPTION"/>
+        <Property name="text" type="java.lang.String" value="Base64 ENCRYPTION"/>
         <Property name="horizontalTextPosition" type="int" value="0"/>
       </Properties>
     </Component>

@@ -1,4 +1,4 @@
-package application.form.other.RSAcode_1;
+package application.form.other.Base64;
 
 import Logics.RSA;
 import MiscItem.BACKGOUND.PanelCustom;
@@ -6,16 +6,18 @@ import MiscItem.swing.FileLoader;
 import com.formdev.flatlaf.FlatClientProperties;
 import java.awt.Color;
 import java.awt.Insets;
+import java.util.Base64;
+import java.util.Scanner;
 
 import raven.alerts.MessageAlerts;
 import raven.toast.Notifications;
 
 
-public class BlowDecode extends PanelCustom {
+public class Base64decode extends PanelCustom {
 
 
 
-    public BlowDecode() {
+    public Base64decode() {
         initComponents();
         setAlpha(1);
         TxtInput.setLineWrap(true);
@@ -78,7 +80,7 @@ public class BlowDecode extends PanelCustom {
             }
         });
 
-        Title.setText("RSA DECRYPTION");
+        Title.setText("Base64 DECRYPTION");
         Title.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         Load.setText("LOAD");
@@ -130,25 +132,30 @@ public class BlowDecode extends PanelCustom {
             Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_LEFT, "Please enter your text");
         }
         else {
-             if(BlowfishShow.logic==null){
-                 MessageAlerts.getInstance().showMessage("DATA SERVER ERROR", "Error while loading RSA. We are sorry for this unwanted error. You are requested to try again or You can contact with admin. Thank you.", MessageAlerts.MessageType.ERROR);
-             }
-             else {
-                
-                 String output= null;
-                 try {
-                     output = BlowfishShow.logic.decrypt(TxtInput.getText());
-                 } catch (Exception e) {
-                     MessageAlerts.getInstance().showMessage("DECRYPTION ERROR", "Error while decrypting the input. Please ensure the input is correctly formatted.", MessageAlerts.MessageType.ERROR);
-                     return;
-                 }
+              
 
-                 TxtOut.setText(output);
-             }
+        // Get the string to encode from the user
         
-        }
-    }//GEN-LAST:event_ConvertActionPerformed
+        
 
+        // Get the string to decode from the user
+        
+        String stringToDecode = TxtInput.getText();
+
+        // Encode the stringToEncode
+      
+
+        // Decode the stringToDecode
+        byte[] decodedBytes = Base64.getDecoder().decode(stringToDecode);
+        String decodedString = new String(decodedBytes);
+
+        // Output results
+        TxtOut.setText(decodedString);
+
+        // Close the scanner to avoid resource leak
+        
+    }//GEN-LAST:event_ConvertActionPerformed
+    }
     private void LoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoadActionPerformed
     
         FileLoader.loadFile("Open File For RSA Decryption", TxtInput, this);
