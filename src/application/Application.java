@@ -59,7 +59,7 @@ public class Application extends javax.swing.JFrame {
 
         FlatRobotoFont.install();
         FlatLaf.registerCustomDefaultsSource("theme");
-        UIManager.put("defaultFont", new Font(FlatRobotoFont.STYLE_BOLD, Font.CENTER_BASELINE, 14));
+        UIManager.put("defaultFont", new Font("LCD Solid", Font.BOLD, 14));
         FlatMacDarkLaf.setup();
         java.awt.EventQueue.invokeLater(() -> {
             app = new Application();
