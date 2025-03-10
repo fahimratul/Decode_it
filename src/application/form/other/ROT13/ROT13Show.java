@@ -36,8 +36,12 @@ public class ROT13Show extends javax.swing.JPanel {
     private void initComponents() {
 
         background1 = new MiscItem.BACKGOUND.Background();
+        rOT13form1 = new application.form.other.ROT13.ROT13form();
 
         background1.setLayout(new java.awt.BorderLayout());
+
+        rOT13form1.setOpaque(false);
+        background1.add(rOT13form1, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -58,5 +62,6 @@ public class ROT13Show extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private MiscItem.BACKGOUND.Background background1;
+    private application.form.other.ROT13.ROT13form rOT13form1;
     // End of variables declaration//GEN-END:variables
 }

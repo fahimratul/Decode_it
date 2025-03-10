@@ -1,6 +1,5 @@
 package application.form.other.RSAcode;
 
-import application.form.other.TextNumText.TextNumTextShow;
 import MiscItem.BACKGOUND.PanelCustom;
 import MiscItem.swing.FileLoader;
 import com.formdev.flatlaf.FlatClientProperties;
@@ -11,11 +10,11 @@ import raven.alerts.MessageAlerts;
 import raven.toast.Notifications;
 
 
-public class TextNumTextdecode extends PanelCustom {
+public class RSAdecode extends PanelCustom {
 
 
 
-    public TextNumTextdecode() {
+    public RSAdecode() {
         initComponents();
         setAlpha(1);
         TxtInput.setLineWrap(true);
@@ -130,14 +129,14 @@ public class TextNumTextdecode extends PanelCustom {
             Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_LEFT, "Please enter your text");
         }
         else {
-             if(TextNumTextShow.logic==null){
+             if(RSAShow.logic==null){
                  MessageAlerts.getInstance().showMessage("DATA SERVER ERROR", "Error while loading RSA. We are sorry for this unwanted error. You are requested to try again or You can contact with admin. Thank you.", MessageAlerts.MessageType.ERROR);
              }
              else {
                 
                  String output= null;
                  try {
-                     output = TextNumTextShow.logic.decrypt(TxtInput.getText());
+                     output = RSAShow.logic.decrypt(TxtInput.getText());
                  } catch (Exception e) {
                      MessageAlerts.getInstance().showMessage("DECRYPTION ERROR", "Error while decrypting the input. Please ensure the input is correctly formatted.", MessageAlerts.MessageType.ERROR);
                      return;

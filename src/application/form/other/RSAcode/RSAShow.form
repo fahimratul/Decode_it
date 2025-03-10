@@ -36,7 +36,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
       <SubComponents>
-        <Component class="application.form.other.RSAcode.TextNumTextform" name="rSAform2">
+        <Component class="application.form.other.RSAcode.RSAform" name="rSAform1">
           <Properties>
             <Property name="opaque" type="boolean" value="false"/>
           </Properties>

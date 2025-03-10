@@ -1,7 +1,5 @@
 package application.form.other.ROT13;
 
-import application.form.other.Base64.Base64encoding;
-import application.form.other.Base64.Base64decode;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.SwingUtilities;
