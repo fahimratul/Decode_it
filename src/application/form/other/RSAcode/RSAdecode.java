@@ -1,5 +1,6 @@
 package application.form.other.RSAcode;
 
+import application.form.other.Base64.Base64Show;
 import Logics.RSA;
 import MiscItem.BACKGOUND.PanelCustom;
 import MiscItem.swing.FileLoader;
@@ -130,14 +131,14 @@ public class RSAdecode extends PanelCustom {
             Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_LEFT, "Please enter your text");
         }
         else {
-             if(RSAShow.logic==null){
+             if(Base64Show.logic==null){
                  MessageAlerts.getInstance().showMessage("DATA SERVER ERROR", "Error while loading RSA. We are sorry for this unwanted error. You are requested to try again or You can contact with admin. Thank you.", MessageAlerts.MessageType.ERROR);
              }
              else {
                 
                  String output= null;
                  try {
-                     output = RSAShow.logic.decrypt(TxtInput.getText());
+                     output = Base64Show.logic.decrypt(TxtInput.getText());
                  } catch (Exception e) {
                      MessageAlerts.getInstance().showMessage("DECRYPTION ERROR", "Error while decrypting the input. Please ensure the input is correctly formatted.", MessageAlerts.MessageType.ERROR);
                      return;

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package application.form.other.RSAcode_1;
+package application.form.other.Base64;
 
 import Logics.RSA;
 import raven.alerts.MessageAlerts;
@@ -11,13 +11,13 @@ import raven.alerts.MessageAlerts;
  *
  * @author RATUL
  */
-public class BlowfishShow extends javax.swing.JPanel {
+public class Base64Show extends javax.swing.JPanel {
 
     public static RSA logic;
     /**
      * Creates new form Morse
      */
-    public BlowfishShow() {
+    public Base64Show() {
         initComponents();
         try{
             logic = new RSA();

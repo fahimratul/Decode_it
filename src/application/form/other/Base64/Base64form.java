@@ -1,4 +1,4 @@
-package application.form.other.RSAcode_1;
+package application.form.other.Base64;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -8,11 +8,11 @@ import org.jdesktop.animation.timing.Animator;
 import org.jdesktop.animation.timing.TimingTargetAdapter;
 import org.jdesktop.animation.timing.interpolation.PropertySetter;
 
-public class Blowform extends javax.swing.JPanel {
+public class Base64form extends javax.swing.JPanel {
 
     private MigLayout layout;
-    private BlowEncode Text;
-    private BlowDecode Morse;
+    private Base64encoding Text;
+    private Base64decode Morse;
     private Animator animator;
     private boolean flag;
 
@@ -29,7 +29,7 @@ public class Blowform extends javax.swing.JPanel {
         revalidate();
     }
 
-    public Blowform() {
+    public Base64form() {
         initComponents();
         init();
         initAnimator();
@@ -55,8 +55,8 @@ public class Blowform extends javax.swing.JPanel {
     private void init() {
         layout = new MigLayout("fill", "fill", "fill");
         setLayout(layout);
-        Text = new BlowEncode();
-        Morse = new BlowDecode();
+        Text = new Base64encoding();
+        Morse = new Base64decode();
         add(Text, "pos (50%)-290px 0.5al n n");
         add(Morse, "pos (50%)-10px 0.5al n n");
         Text.addMouseListener(new MouseAdapter() {
