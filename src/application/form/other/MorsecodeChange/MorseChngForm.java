@@ -4,8 +4,13 @@
  */
 package application.form.other.MorsecodeChange;
 
-import application.Application;
-import application.form.AdminMainForm;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Arrays;
+
+import com.formdev.flatlaf.FlatClientProperties;
+import raven.alerts.MessageAlerts;
+import raven.toast.Notifications;
 
 /**
  *
@@ -13,11 +18,18 @@ import application.form.AdminMainForm;
  */
 public class MorseChngForm extends javax.swing.JPanel {
 
+    private String[] textFields = new String[26];
     /**
      * Creates new form MorseChngForm
      */
     public MorseChngForm() {
+
         initComponents();
+
+        Tittle.putClientProperty(FlatClientProperties.STYLE, ""
+                + "font:$h1.font");
+        Pattern.putClientProperty(FlatClientProperties.STYLE, ""+
+                "font:$h1.font");
     }
 
 
@@ -88,6 +100,13 @@ public class MorseChngForm extends javax.swing.JPanel {
         jLabel26 = new javax.swing.JLabel();
         textField26 = new MiscItem.swing.TextField();
         Savebtn = new javax.swing.JButton();
+        Tittle = new javax.swing.JLabel();
+        Pattern = new MiscItem.swing.TextField();
+
+        jTabbedPane1.setBackground(new java.awt.Color(142, 154, 175));
+        jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.LEFT);
+
+        a_to_i.setBackground(new java.awt.Color(0, 109, 119));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel1.setText("A : ");
@@ -138,7 +157,7 @@ public class MorseChngForm extends javax.swing.JPanel {
                     .addGroup(a_to_iLayout.createSequentialGroup()
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textField4, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE))
+                        .addComponent(textField4, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE))
                     .addGroup(a_to_iLayout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -154,7 +173,7 @@ public class MorseChngForm extends javax.swing.JPanel {
                     .addGroup(a_to_iLayout.createSequentialGroup()
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textField8, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE))
+                        .addComponent(textField8, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE))
                     .addGroup(a_to_iLayout.createSequentialGroup()
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -200,10 +219,12 @@ public class MorseChngForm extends javax.swing.JPanel {
                 .addGroup(a_to_iLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(textField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("A - I", a_to_i);
+
+        j_to_p.setBackground(new java.awt.Color(19, 42, 19));
 
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel10.setText("A : ");
@@ -254,7 +275,7 @@ public class MorseChngForm extends javax.swing.JPanel {
                     .addGroup(j_to_pLayout.createSequentialGroup()
                         .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textField13, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE))
+                        .addComponent(textField13, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE))
                     .addGroup(j_to_pLayout.createSequentialGroup()
                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -270,7 +291,7 @@ public class MorseChngForm extends javax.swing.JPanel {
                     .addGroup(j_to_pLayout.createSequentialGroup()
                         .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textField17, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE))
+                        .addComponent(textField17, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE))
                     .addGroup(j_to_pLayout.createSequentialGroup()
                         .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -320,6 +341,8 @@ public class MorseChngForm extends javax.swing.JPanel {
         );
 
         jTabbedPane1.addTab("J - P", j_to_p);
+
+        q_to_Z.setBackground(new java.awt.Color(55, 37, 73));
 
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel19.setText("A : ");
@@ -432,37 +455,116 @@ public class MorseChngForm extends javax.swing.JPanel {
                     .addComponent(textField26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(Savebtn)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Q - Z", q_to_Z);
+
+        Tittle.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        Tittle.setText("Pattern Name : ");
+
+        Pattern.setHint("Enter your pattern name");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(95, 95, 95)
-                .addComponent(jTabbedPane1)
-                .addGap(195, 195, 195))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(95, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(Tittle, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Pattern, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.LEADING))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(51, 51, 51)
+                .addContainerGap(22, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Tittle, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                    .addComponent(Pattern, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
                 .addComponent(jTabbedPane1)
-                .addGap(91, 91, 91))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void SavebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SavebtnActionPerformed
-        Application.saved=true;
-        // TODO add your handling code here:
+        getAllTextFields();
+        if(Pattern.getText().equals("")){
+            Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_CENTER, "Pattern Name cannot be empty");
+            Pattern.requestFocus();
+            return;
+        }
+        if(areTextFieldsUnique()) {
+            try {
+                MorseUpload.create(Pattern.getText(), textFields);
+                MessageAlerts.getInstance().showMessage("Morse code saved", "Morse code saved successfully.", MessageAlerts.MessageType.SUCCESS);
+            } catch (Exception e) {
+                MessageAlerts.getInstance().showMessage("Failed To Save", "Error saving Morse code. Please try again.", MessageAlerts.MessageType.ERROR);
+            }
+         
+        } else {
+           // MessageAlerts.getInstance().showMessage("Duplicate Morse code found", "There are duplicate Morse code in the text fields. Please make sure all the Morse code are unique.Please try again.", MessageAlerts.MessageType.WARNING);
+
+        }
+               // TODO add your handling code here:
     }//GEN-LAST:event_SavebtnActionPerformed
 
 
+    private boolean areTextFieldsUnique() {
+        for(int i = 0; i < textFields.length-1; i++){
+            for(int j = i+1; j < textFields.length; j++){
+                if(textFields[i].equals(textFields[j])){
+                    MessageAlerts.getInstance().showMessage(textFields[i],textFields[j],MessageAlerts.MessageType.ERROR );
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    
+
+
+
+
+    private void getAllTextFields() {
+        textFields[0] = textField1.getText();
+        textFields[1] = textField2.getText();
+        textFields[2] = textField3.getText();
+        textFields[3] = textField4.getText();
+        textFields[4] = textField5.getText();
+        textFields[5] = textField6.getText();
+        textFields[6] = textField7.getText();
+        textFields[7] = textField8.getText();
+        textFields[8] = textField9.getText();
+        textFields[9] = textField10.getText();
+        textFields[10] = textField11.getText();
+        textFields[11] = textField12.getText();
+        textFields[12] = textField13.getText();
+        textFields[13] = textField14.getText();
+        textFields[14] = textField15.getText();
+        textFields[15] = textField16.getText();
+        textFields[16] = textField17.getText();
+        textFields[17] = textField18.getText();
+        textFields[18] = textField19.getText();
+        textFields[19] = textField20.getText();
+        textFields[20] = textField21.getText();
+        textFields[21] = textField22.getText();
+        textFields[22] = textField23.getText();
+        textFields[23] = textField24.getText();
+        textFields[24] = textField25.getText();
+        textFields[25] = textField26.getText();
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private MiscItem.swing.TextField Pattern;
     private javax.swing.JButton Savebtn;
+    private javax.swing.JLabel Tittle;
     private javax.swing.JPanel a_to_i;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

@@ -46,6 +46,7 @@ public class AdminMenu extends JPanel {
         { "Member List"},
         {"~Change Code~"},
         {"Morse code"},
+        {"RSA Code"},
         {"~OTHER~"},
         {"Logout"}
     };
