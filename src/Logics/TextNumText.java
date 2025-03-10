@@ -36,6 +36,10 @@ public class TextNumText {
         numToCharMap.put(56, '!');
         charToNumMap.put('?', 57);
         numToCharMap.put(57, '?');
+        charToNumMap.put('"', 58);
+        numToCharMap.put(58, '"');
+        charToNumMap.put('"', 59);
+        numToCharMap.put(59, '"');
     }
     // Encode a text into a single numerical value
     public static long encode(String text) {
