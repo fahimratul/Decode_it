@@ -1,19 +1,20 @@
-package application.form.other.ROT13;
+package application.form.other.RSAcode;
 
-import static Logics.ROT13Example.rot13;
+import application.form.other.TextNumText.TextNumTextShow;
 import MiscItem.BACKGOUND.PanelCustom;
 import MiscItem.swing.FileLoader;
 import com.formdev.flatlaf.FlatClientProperties;
 import java.awt.Color;
 import java.awt.Insets;
+import raven.alerts.MessageAlerts;
 import raven.toast.Notifications;
 
 
 
-public class ROT13encoding extends PanelCustom {
+public class TextNumTextencoding extends PanelCustom {
 
 
-    public ROT13encoding() {
+    public TextNumTextencoding() {
         initComponents();
         setBackground(new Color(240, 93, 94, 180));
         TxtInput.setLineWrap(true);
@@ -73,7 +74,7 @@ public class ROT13encoding extends PanelCustom {
         TxtOut.setMaximumSize(new java.awt.Dimension(350, 400));
         OScroll.setViewportView(TxtOut);
 
-        Title.setText("ROT13 ENCRYPTION");
+        Title.setText("RSA ENCRYPTION");
         Title.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         Convert.setText("CONVERT");
@@ -129,20 +130,19 @@ public class ROT13encoding extends PanelCustom {
             Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_CENTER, "Please enter your text");
         }
         else {
-            
-
-        // Get the string to encode or decode from the user
-        
-        String input = TxtInput.getText();
-
-        // Apply ROT13 encoding/decoding
-        String result = rot13(input);
-
-        // Output the result
-        TxtOut.setText(result);
-        
-
-        
+            if(TextNumTextShow.logic==null){
+                MessageAlerts.getInstance().showMessage("DATA SERVER ERROR", "Error while loading RSA. We are sorry for this unwanted error. You are requested to try again or You can contact with admin. Thank you.", MessageAlerts.MessageType.ERROR);
+            }
+            else {
+                String input=TxtInput.getText();
+                String output= null;
+                try {
+                    output = TextNumTextShow.logic.encrypt(input);
+                } catch (Exception e) {
+                    MessageAlerts.getInstance().showMessage("FAILED TO ENCRYPT", "Error occured due to "+e.toString()+" .Sorry for the failure. Please try again later.", MessageAlerts.MessageType.ERROR);
+                }
+                TxtOut.setText(output);
+            }
         }
     }//GEN-LAST:event_ConvertActionPerformed
 
