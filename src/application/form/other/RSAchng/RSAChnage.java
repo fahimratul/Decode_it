@@ -47,7 +47,7 @@ public class RSAChnage extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        background1 = new MiscItem.BACKGOUND.Background();
+        background1 = new MiscItem.BACKGOUND.Background(6);
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         Pattern = new javax.swing.JTextField();

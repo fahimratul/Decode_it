@@ -27,6 +27,9 @@
   </Layout>
   <SubComponents>
     <Container class="MiscItem.BACKGOUND.Background" name="background1">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new MiscItem.BACKGOUND.Background(2)"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">

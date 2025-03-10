@@ -17,7 +17,8 @@ public class TextToMorse extends PanelCustom {
     
     public TextToMorse() {
         initComponents();
-        
+        setBackground(new Color(60, 180, 221, 170));
+
         logic = new MorsecodeLogic();
        
         

@@ -36,7 +36,7 @@ public class FormDashboard extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        background1 = new MiscItem.BACKGOUND.Background();
+        background1 = new MiscItem.BACKGOUND.Background(5);
         lb = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jPanel1 = new javax.swing.JPanel();

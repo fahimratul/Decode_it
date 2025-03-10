@@ -41,7 +41,7 @@ public class Adminlogin extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        background1 = new MiscItem.BACKGOUND.Background();
+        background1 = new MiscItem.BACKGOUND.Background(5);
         panelLogin1 = new application.form.PanelLogin();
         lbTitle = new javax.swing.JLabel();
         lbUser = new javax.swing.JLabel();

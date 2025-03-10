@@ -9,8 +9,6 @@ import raven.alerts.MessageAlerts;
 import raven.toast.Notifications;
 
 import java.io.IOException;
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
@@ -49,7 +47,7 @@ public class AESchange extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        background1 = new MiscItem.BACKGOUND.Background();
+        background1 = new MiscItem.BACKGOUND.Background(2);
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         Pattern = new javax.swing.JTextField();

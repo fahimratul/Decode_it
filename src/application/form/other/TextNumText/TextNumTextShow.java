@@ -35,7 +35,7 @@ public class TextNumTextShow extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        background1 = new MiscItem.BACKGOUND.Background();
+        background1 = new MiscItem.BACKGOUND.Background(7);
         textNumTextform1 = new application.form.other.TextNumText.TextNumTextform();
 
         background1.setLayout(new java.awt.BorderLayout());

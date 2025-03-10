@@ -35,7 +35,7 @@ public class ROT13Show extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        background1 = new MiscItem.BACKGOUND.Background();
+        background1 = new MiscItem.BACKGOUND.Background(5);
         rOT13form1 = new application.form.other.ROT13.ROT13form();
 
         background1.setLayout(new java.awt.BorderLayout());

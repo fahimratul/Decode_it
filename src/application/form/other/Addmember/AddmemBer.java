@@ -34,7 +34,7 @@ public class AddmemBer extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        background1 = new MiscItem.BACKGOUND.Background();
+        background1 = new MiscItem.BACKGOUND.Background(4);
         addmemberForm1 = new application.form.other.Addmember.AddmemberForm();
         jSeparator1 = new javax.swing.JSeparator();
 

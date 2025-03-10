@@ -26,7 +26,7 @@ public class AesShow extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        background1 = new MiscItem.BACKGOUND.Background();
+        background1 = new MiscItem.BACKGOUND.Background(2);
         aESFORM1 = new application.form.other.AES.AESFORM();
 
         background1.setLayout(new java.awt.BorderLayout());
