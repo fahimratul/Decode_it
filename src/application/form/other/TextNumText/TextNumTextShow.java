@@ -36,8 +36,10 @@ public class TextNumTextShow extends javax.swing.JPanel {
     private void initComponents() {
 
         background1 = new MiscItem.BACKGOUND.Background();
+        textNumTextform1 = new application.form.other.TextNumText.TextNumTextform();
 
         background1.setLayout(new java.awt.BorderLayout());
+        background1.add(textNumTextform1, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -58,5 +60,6 @@ public class TextNumTextShow extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private MiscItem.BACKGOUND.Background background1;
+    private application.form.other.TextNumText.TextNumTextform textNumTextform1;
     // End of variables declaration//GEN-END:variables
 }
