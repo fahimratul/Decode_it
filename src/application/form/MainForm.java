@@ -103,13 +103,16 @@ public class MainForm extends JLayeredPane {
                     //Application.showForm(new BlowfishShow());
                     break;
                 case 7:
-
+                    Application.showForm(new Base64Show());
                     break;
                 case 8:
+
+                    break;
+                case 9:
                     show_about();
                     break;
                         
-                case 9:
+                case 10:
                     MessageAlerts.getInstance().showMessage("ARE YOU SURE?", "Are you sure you want to exit?Please Check back you data saved or not.", MessageAlerts.MessageType.WARNING, MessageAlerts.YES_NO_OPTION, new PopupCallbackAction() {
                         @Override
                         public void action(PopupController popupController, int i) {
