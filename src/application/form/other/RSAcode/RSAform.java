@@ -1,7 +1,5 @@
 package application.form.other.RSAcode;
 
-import application.form.other.Base64.Base64encoding;
-import application.form.other.Base64.Base64decode;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.SwingUtilities;
@@ -13,8 +11,8 @@ import org.jdesktop.animation.timing.interpolation.PropertySetter;
 public class RSAform extends javax.swing.JPanel {
 
     private MigLayout layout;
-    private Base64encoding Text;
-    private Base64decode Morse;
+    private RSAencoding Text;
+    private RSAdecode Morse;
     private Animator animator;
     private boolean flag;
 
@@ -57,8 +55,8 @@ public class RSAform extends javax.swing.JPanel {
     private void init() {
         layout = new MigLayout("fill", "fill", "fill");
         setLayout(layout);
-        Text = new Base64encoding();
-        Morse = new Base64decode();
+        Text = new RSAencoding();
+        Morse = new RSAdecode();
         add(Text, "pos (50%)-290px 0.5al n n");
         add(Morse, "pos (50%)-10px 0.5al n n");
         Text.addMouseListener(new MouseAdapter() {
