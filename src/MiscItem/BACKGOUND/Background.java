@@ -46,10 +46,9 @@ public class Background extends JComponent {
     private BufferedImage bufferedImage;
     private Component blur;
 
-    public Background() {
-        Random random = new Random();
-        int randomNumber = random.nextInt(7); // Generates a random number between 0 (inclusive) and 7 (exclusive)
-        image= new ImageIcon(getClass().getResource("/MiscItem/BACKGOUND/2.jpg"));
+    public Background(int i) {
+        // Generates a random number between 0 (inclusive) and 7 (exclusive)
+        image= new ImageIcon(getClass().getResource("/MiscItem/BACKGOUND/"+i+".jpg"));
     }
     private void createImage() {
         if (image != null) {
