@@ -39,6 +39,8 @@ public class Base64Show extends javax.swing.JPanel {
         base64form1 = new application.form.other.Base64.Base64form();
 
         background1.setLayout(new java.awt.BorderLayout());
+
+        base64form1.setOpaque(false);
         background1.add(base64form1, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

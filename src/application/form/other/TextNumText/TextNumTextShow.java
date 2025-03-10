@@ -39,6 +39,8 @@ public class TextNumTextShow extends javax.swing.JPanel {
         textNumTextform1 = new application.form.other.TextNumText.TextNumTextform();
 
         background1.setLayout(new java.awt.BorderLayout());
+
+        textNumTextform1.setOpaque(false);
         background1.add(textNumTextform1, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
