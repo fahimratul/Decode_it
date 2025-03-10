@@ -4,6 +4,7 @@ import application.form.other.CC.CCshow;
 import application.form.other.*;
 import application.form.other.OneTime.OneTimeShow;
 import application.form.other.Base64.Base64Show;
+import application.form.other.ROT13.ROT13Show;
 import application.form.other.TextNumText.TextNumTextShow;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
@@ -106,13 +107,19 @@ public class MainForm extends JLayeredPane {
                     Application.showForm(new Base64Show());
                     break;
                 case 8:
-
+                    Application.showForm(new ROT13Show());
                     break;
                 case 9:
+                    Application.showForm(new TextNumTextShow());
+                    break;
+                case 10:
+
+                    break;
+                case 11:
                     show_about();
                     break;
                         
-                case 10:
+                case 12:
                     MessageAlerts.getInstance().showMessage("ARE YOU SURE?", "Are you sure you want to exit?Please Check back you data saved or not.", MessageAlerts.MessageType.WARNING, MessageAlerts.YES_NO_OPTION, new PopupCallbackAction() {
                         @Override
                         public void action(PopupController popupController, int i) {
