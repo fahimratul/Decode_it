@@ -1,7 +1,5 @@
 package application.form.other.RSAcode;
 
-import application.form.other.TextNumText.TextNumTextencoding;
-import application.form.other.TextNumText.TextNumTextdecode;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.SwingUtilities;
@@ -10,11 +8,11 @@ import org.jdesktop.animation.timing.Animator;
 import org.jdesktop.animation.timing.TimingTargetAdapter;
 import org.jdesktop.animation.timing.interpolation.PropertySetter;
 
-public class TextNumTextform extends javax.swing.JPanel {
+public class RSAform extends javax.swing.JPanel {
 
     private MigLayout layout;
-    private TextNumTextencoding Text;
-    private TextNumTextdecode Morse;
+    private RSAencoding Text;
+    private RSAdecode Morse;
     private Animator animator;
     private boolean flag;
 
@@ -31,7 +29,7 @@ public class TextNumTextform extends javax.swing.JPanel {
         revalidate();
     }
 
-    public TextNumTextform() {
+    public RSAform() {
         initComponents();
         init();
         initAnimator();
@@ -57,8 +55,8 @@ public class TextNumTextform extends javax.swing.JPanel {
     private void init() {
         layout = new MigLayout("fill", "fill", "fill");
         setLayout(layout);
-        Text = new TextNumTextencoding();
-        Morse = new TextNumTextdecode();
+        Text = new RSAencoding();
+        Morse = new RSAdecode();
         add(Text, "pos (50%)-290px 0.5al n n");
         add(Morse, "pos (50%)-10px 0.5al n n");
         Text.addMouseListener(new MouseAdapter() {

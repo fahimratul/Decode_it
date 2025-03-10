@@ -25,7 +25,9 @@ import application.form.other.AES.AesShow;
 import menu.Menu;
 import menu.MenuAction;
 import application.form.other.MorseCode.Morse;
+import application.form.other.ROT13.ROT13Show;
 import application.form.other.Setting.Setting;
+import application.form.other.TextNumText.TextNumTextShow;
 import application.form.other.about.Aboutshow;
 import raven.alerts.MessageAlerts;
 import raven.popup.DefaultOption;
@@ -107,13 +109,19 @@ public class MainForm extends JLayeredPane {
                     Application.showForm(new Base64Show());
                     break;
                 case 8:
-                    Application.showForm(new Setting());
+                    Application.showForm(new ROT13Show());
                     break;
                 case 9:
+                    Application.showForm(new TextNumTextShow());
+                    break;
+                case 10:
+                    Application.showForm(new Setting());
+                    break;
+                case 11:
                     show_about();
                     break;
                         
-                case 10:
+                case 12:
                     MessageAlerts.getInstance().showMessage("ARE YOU SURE?", "Are you sure you want to exit?Please Check back you data saved or not.", MessageAlerts.MessageType.WARNING, MessageAlerts.YES_NO_OPTION, new PopupCallbackAction() {
                         @Override
                         public void action(PopupController popupController, int i) {
