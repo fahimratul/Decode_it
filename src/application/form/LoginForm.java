@@ -1,6 +1,5 @@
 package application.form;
 
-import Model.User;
 import application.Application;
 import application.form.other.Addmember.Uploaddatabase;
 import com.formdev.flatlaf.FlatClientProperties;
@@ -143,7 +142,7 @@ public class LoginForm extends javax.swing.JPanel {
                     service.getUser(username);
                 }
                 catch(SQLException e) {
-                    MessageAlerts.getInstance().showMessage("Login Error", "Ww could not load you user info. Sorry for the error . Please try again.", MessageAlerts.MessageType.ERROR);
+                    MessageAlerts.getInstance().showMessage("Login Error", "We could not load you user info. Sorry for the error . Please try again.", MessageAlerts.MessageType.ERROR);
                 }
                 txtUser.setText("");
                 txtPass.setText("");

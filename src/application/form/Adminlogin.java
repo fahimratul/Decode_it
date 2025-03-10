@@ -1,7 +1,7 @@
 package application.form;
 
-import Model.User;
 import application.Application;
+import application.form.other.Addmember.Uploaddatabase;
 import com.formdev.flatlaf.FlatClientProperties;
 import connection.Connuser;
 import net.miginfocom.swing.MigLayout;
@@ -10,6 +10,7 @@ import raven.toast.Notifications;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import raven.alerts.MessageAlerts;
 
 /**
  *
@@ -148,29 +149,37 @@ public class Adminlogin extends javax.swing.JPanel {
     
     private void cmdLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLoginActionPerformed
             if(checkuser()){
-                if(checkuser_password(txtUser.getText(),txtPass.getPassword())) {
-                    Application.useradmin= new User(txtUser.getText());
-                    txtUser.setText("");
-                    txtPass.setText("");
-                    Application.adminloginmenu();
+            if(checkuser_password(txtUser.getText(),txtPass.getPassword())) {
+                try {
+                    String username=txtUser.getText();
+                    Uploaddatabase service= new Uploaddatabase();
+                    service.getUser(username);
                 }
-                else{
-                    Notifications.getInstance().show(Notifications.Type.WARNING,Notifications.Location.TOP_CENTER,"Wrong Password or Username");
+                catch(SQLException e) {
+                    MessageAlerts.getInstance().showMessage("Login Error", "We could not load you user info. Sorry for the error . Please try again.", MessageAlerts.MessageType.ERROR);
                 }
+                txtUser.setText("");
+                txtPass.setText("");
+                Application.adminloginmenu();
             }
             else{
-                if(txtUser.getText().isEmpty()){
-                    Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Enter User Name");
-                }
-                if(txtPass.getText().isEmpty()){
-                    Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Enter Password ");
-                }
+                Notifications.getInstance().show(Notifications.Type.WARNING,Notifications.Location.TOP_CENTER,"Wrong Password or Username");
             }
+        }
+        else{
+            if(txtUser.getText().isEmpty()){
+                Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Enter User Name");
+            }
+            if(txtPass.getText().isEmpty()){
+                Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_CENTER, "Enter Password ");
+            }
+        }
     }
 
-    private boolean checkuser_password(String name, char[] password) {
+//GEN-LAST:event_cmdLoginActionPerformed
+ private boolean checkuser_password(String name, char[] password) {
         Connuser c = new Connuser();
-        String query = "SELECT * FROM users WHERE username = ? AND password = ?";
+        String query = "SELECT * FROM usersdata WHERE username = ? AND pass = ?";
         try (PreparedStatement pstmt = c.con.prepareStatement(query)) {
             pstmt.setString(1, name);
             pstmt.setString(2, String.valueOf(password));
@@ -183,11 +192,12 @@ public class Adminlogin extends javax.swing.JPanel {
             }
         } catch (SQLException e) {
             return false;
-        }
-        
+        }    
     }
-//GEN-LAST:event_cmdLoginActionPerformed
-
+    
+    
+    
+    
     private void txtUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtUserMouseClicked
         emptymsgbox.setText(" ");
 

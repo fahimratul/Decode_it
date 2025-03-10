@@ -1,6 +1,5 @@
 package application;
 
-import Model.User;
 import Model.Userinfo;
 import application.form.Adminlogin;
 import application.form.LoginForm;
@@ -33,7 +32,6 @@ public class Application extends javax.swing.JFrame {
     private final Adminlogin adminlogin;
     private final AdminMainForm adminMainForm;
     public static Userinfo user;
-    public static User useradmin;
     public static  boolean saved;
 
     public Application() {
@@ -59,7 +57,7 @@ public class Application extends javax.swing.JFrame {
 
         FlatRobotoFont.install();
         FlatLaf.registerCustomDefaultsSource("theme");
-        UIManager.put("defaultFont", new Font("LCD Solid", Font.BOLD, 14));
+        UIManager.put("defaultFont", new Font(FlatRobotoFont.FAMILY, Font.BOLD, 14));
         FlatMacDarkLaf.setup();
         java.awt.EventQueue.invokeLater(() -> {
             app = new Application();
@@ -121,7 +119,10 @@ public class Application extends javax.swing.JFrame {
         FlatAnimatedLafChange.hideSnapshotWithAnimation();
     }
 
-
+    public static void changefont(String font, int style, int size) {
+        UIManager.put("defaultFont", new Font(font, style, size));
+        SwingUtilities.updateComponentTreeUI(app);
+    }
 
 
     public static void logout() {

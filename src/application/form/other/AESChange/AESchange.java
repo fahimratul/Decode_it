@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package application.form.other.RSAchng;
+package application.form.other.AESChange;
 
 import connection.Connuser;
 import raven.alerts.MessageAlerts;
@@ -21,12 +21,14 @@ import java.util.logging.Logger;
 
 
 import java.sql.SQLException;
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
 
 /**
  *
  * @author RATUL
  */
-public class RSAChnage extends javax.swing.JPanel {
+public class AESchange extends javax.swing.JPanel {
 
 
     PrivateKey privateKey; 
@@ -34,7 +36,7 @@ public class RSAChnage extends javax.swing.JPanel {
     /**
      * Creates new form RSAChnage
      */
-    public RSAChnage() {
+    public AESchange() {
         initComponents();
     }
 
@@ -54,14 +56,13 @@ public class RSAChnage extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        KeyGenerator = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
+        Generatorbtn = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         Publickey = new javax.swing.JTextField();
-        Privatekey = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         Keysize = new javax.swing.JComboBox<>();
-        Padd = new javax.swing.JComboBox<>();
+        Tagsize = new javax.swing.JComboBox<>();
+        jCheckBox1 = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
@@ -77,20 +78,17 @@ public class RSAChnage extends javax.swing.JPanel {
         jLabel3.setText("Key Size");
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel4.setText("Padding Scheme");
+        jLabel4.setText("Tag Size");
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel5.setText("Public Key");
+        jLabel5.setText(" Key");
 
-        KeyGenerator.setText("Genarate Key");
-        KeyGenerator.addActionListener(new java.awt.event.ActionListener() {
+        Generatorbtn.setText("Genarate Key");
+        Generatorbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                KeyGeneratorActionPerformed(evt);
+                GeneratorbtnActionPerformed(evt);
             }
         });
-
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel6.setText("Private key");
 
         jButton2.setText("Save");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -101,42 +99,50 @@ public class RSAChnage extends javax.swing.JPanel {
 
         Publickey.setEditable(false);
 
-        Privatekey.setEditable(false);
+        Keysize.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "128", "192", "256" }));
 
-        Keysize.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1024", "2048", "4096" }));
+        Tagsize.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "128", "120", "112", "104", "96" }));
 
-        Padd.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "RSA/ECB/OAEPWithSHA-1AndMGF1Padding", "RSA/ECB/OAEPWithSHA-256AndMGF1Padding", "RSA/ECB/OAEPWithSHA-512AndMGF1Padding" }));
+        jCheckBox1.setText("Allow Padding ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(KeyGenerator, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 1, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(Publickey, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45))
+            .addComponent(jSeparator2)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(57, 57, 57)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Publickey, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Privatekey, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Pattern)
-                    .addComponent(Keysize, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Padd, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(40, 40, 40))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jSeparator2)
-                .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Pattern)
+                            .addComponent(Keysize, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Tagsize, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(40, 40, 40))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(277, 277, 277))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(Generatorbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(250, 250, 250))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,22 +158,20 @@ public class RSAChnage extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Padd, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
+                    .addComponent(Tagsize, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(KeyGenerator)
-                .addGap(19, 19, 19)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBox1)
+                .addGap(18, 18, 18)
+                .addComponent(Generatorbtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Publickey, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Privatekey, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addGap(26, 26, 26))
         );
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -178,11 +182,11 @@ public class RSAChnage extends javax.swing.JPanel {
         background1Layout.setHorizontalGroup(
             background1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(background1Layout.createSequentialGroup()
-                .addGap(157, 157, 157)
+                .addContainerGap(157, Short.MAX_VALUE)
                 .addGroup(background1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(188, 188, 188))
+                .addContainerGap(187, Short.MAX_VALUE))
         );
         background1Layout.setVerticalGroup(
             background1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,26 +212,25 @@ public class RSAChnage extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String pattern = Pattern.getText();
-        String publicKey = Publickey.getText();
-        String privateKey = Privatekey.getText();
+        int keySize = Integer.parseInt((String) Keysize.getSelectedItem());
+        int TagSize = Integer.parseInt((String) Tagsize.getSelectedItem());
+            
         try {
-            create(pattern, publicKey, privateKey);
+            create(pattern, keySize, TagSize);
             MessageAlerts.getInstance().showMessage("SUCCESSFULLY SAVED ","Congratulation. You have created new pattern named: "+pattern+ " . Your pattern has been saved with your genarated successfully", MessageAlerts.MessageType.SUCCESS);
         } catch (SQLException | IOException ex) {
             MessageAlerts.getInstance().showMessage("Failed to save","Database Error. Your Changed have not saved in database.Please Try again. Thank you", MessageAlerts.MessageType.ERROR);
-        }
-        
-        
+        }  
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    public static void create(String Pattern , String PublicKey,  String PrivateKey) throws SQLException, IOException {
+    public static void create(String Pattern , int Key,  int tag) throws SQLException, IOException {
         Connuser c = new Connuser();
-        String query= "INSERT INTO rsa (Pattern,PublicKey, PrivateKey) VALUES (?, ?, ?)";
+        String query= "INSERT INTO rsa (Pattern,key,tag) VALUES (?, ?, ?)";
         try {
             PreparedStatement p = c.con.prepareStatement(query);
             p.setString(1, Pattern);
-            p.setString(2, PublicKey);
-            p.setString(3, PrivateKey);
+            p.setInt(2, Key);
+            p.setInt(3, tag);
             p.executeUpdate();
         
             } 
@@ -240,38 +243,32 @@ public class RSAChnage extends javax.swing.JPanel {
 
 
 
-
-
-
-
-    private void KeyGeneratorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KeyGeneratorActionPerformed
+    private void GeneratorbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GeneratorbtnActionPerformed
         if(Pattern.getText().isEmpty()){
            Notifications.getInstance().show(Notifications.Type.INFO, Notifications.Location.TOP_RIGHT, "You have to enter a pattern name.Please enter a pattern name to save your key");
             return;
         }
-
-        KeyPairGenerator keyGen;
         try {
-            keyGen = KeyPairGenerator.getInstance("RSA");
             int keySize = Integer.parseInt((String) Keysize.getSelectedItem());
-            keyGen.initialize(keySize);
-            KeyPair keyPair = keyGen.generateKeyPair();
-            privateKey = keyPair.getPrivate();
-            publicKey = keyPair.getPublic();
-            Publickey.setText(java.util.Base64.getEncoder().encodeToString(publicKey.getEncoded()));
-            Privatekey.setText(java.util.Base64.getEncoder().encodeToString(privateKey.getEncoded()));
+            int TagSize = Integer.parseInt((String) Tagsize.getSelectedItem());
+            KeyGenerator generator = KeyGenerator.getInstance("AES");
+            generator.init(keySize);
+            SecretKey key;
+            key = generator.generateKey();
+           
+            Publickey.setText(java.util.Base64.getEncoder().encodeToString(key.getEncoded()));
         } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(RSAChnage.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AESchange.class.getName()).log(Level.SEVERE, null, ex);
         }
         // TODO add your handling code here:
-    }//GEN-LAST:event_KeyGeneratorActionPerformed
-    
+    }//GEN-LAST:event_GeneratorbtnActionPerformed
+
     
     public boolean search(String pat) throws SQLException {
         ResultSet r = null;
         boolean flag;
         Connuser c = new Connuser();
-        String query = "select * from rsa where (Pattern like ?)";
+        String query = "select * from aes where (Pattern like ?)";
         PreparedStatement p = c.con.prepareStatement(query);
         p.setString(1, "%" + pat + "%");
         r = p.executeQuery();
@@ -297,20 +294,19 @@ public class RSAChnage extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton KeyGenerator;
+    private javax.swing.JButton Generatorbtn;
     private javax.swing.JComboBox<String> Keysize;
-    private javax.swing.JComboBox<String> Padd;
     private javax.swing.JTextField Pattern;
-    private javax.swing.JTextField Privatekey;
     private javax.swing.JTextField Publickey;
+    private javax.swing.JComboBox<String> Tagsize;
     private MiscItem.BACKGOUND.Background background1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables

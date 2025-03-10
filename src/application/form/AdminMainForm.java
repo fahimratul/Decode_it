@@ -25,7 +25,10 @@ import raven.alerts.MessageAlerts;
 import raven.popup.component.PopupCallbackAction;
 import raven.popup.component.PopupController;
 import application.Application;
+import application.form.other.AESChange.AESchange;
 import application.form.other.RSAchng.RSAChnage;
+import application.form.other.Setting.Setting;
+import application.form.other.about.Aboutshow;
 
 /**
  *
@@ -98,6 +101,15 @@ public class AdminMainForm extends JLayeredPane {
                         Application.showForm_admin(new RSAChnage());
                         break;
                     case 5:
+                        Application.showForm_admin(new AESchange());
+                        break;
+                    case 6:
+                        Application.showForm_admin(new Setting());
+                        break;
+                    case 7:
+                        Application.showForm_admin(new Aboutshow());
+                        break;
+                    case 8:
                         MessageAlerts.getInstance().showMessage("ARE YOU SURE?", "Are you sure you want to exit?Please Check back you data saved or not.", MessageAlerts.MessageType.WARNING, MessageAlerts.YES_NO_OPTION, new PopupCallbackAction() {
                             @Override
                             public void action(PopupController popupController, int i) {
