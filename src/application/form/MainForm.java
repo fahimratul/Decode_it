@@ -25,6 +25,7 @@ import application.form.other.AES.AesShow;
 import menu.Menu;
 import menu.MenuAction;
 import application.form.other.MorseCode.Morse;
+import application.form.other.Setting.Setting;
 import application.form.other.about.Aboutshow;
 import raven.alerts.MessageAlerts;
 import raven.popup.DefaultOption;
@@ -106,7 +107,7 @@ public class MainForm extends JLayeredPane {
                     Application.showForm(new Base64Show());
                     break;
                 case 8:
-
+                    Application.showForm(new Setting());
                     break;
                 case 9:
                     show_about();
