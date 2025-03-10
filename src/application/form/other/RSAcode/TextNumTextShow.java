@@ -11,13 +11,13 @@ import raven.alerts.MessageAlerts;
  *
  * @author RATUL
  */
-public class RSAShow extends javax.swing.JPanel {
+public class TextNumTextShow extends javax.swing.JPanel {
 
     public static RSA logic;
     /**
      * Creates new form Morse
      */
-    public RSAShow() {
+    public TextNumTextShow() {
         initComponents();
         try{
             logic = new RSA();
@@ -36,7 +36,7 @@ public class RSAShow extends javax.swing.JPanel {
     private void initComponents() {
 
         background1 = new MiscItem.BACKGOUND.Background();
-        rSAform2 = new application.form.other.RSAcode.RSAform();
+        rSAform2 = new application.form.other.TextNumText.TextNumTextform();
 
         background1.setLayout(new java.awt.BorderLayout());
 
@@ -62,6 +62,6 @@ public class RSAShow extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private MiscItem.BACKGOUND.Background background1;
-    private application.form.other.RSAcode.RSAform rSAform2;
+    private application.form.other.TextNumText.TextNumTextform rSAform2;
     // End of variables declaration//GEN-END:variables
 }

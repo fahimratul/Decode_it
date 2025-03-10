@@ -1,5 +1,7 @@
-package application.form.other.RSAcode;
-
+package application.form.other.TextNumText;
+import Logics.TextNumText;
+import static Logics.TextNumText.decode;
+import static Logics.TextNumText.encode;
 import MiscItem.BACKGOUND.PanelCustom;
 import MiscItem.swing.FileLoader;
 import com.formdev.flatlaf.FlatClientProperties;
@@ -10,11 +12,11 @@ import raven.alerts.MessageAlerts;
 import raven.toast.Notifications;
 
 
-public class RSAdecode extends PanelCustom {
+public class TextNumTextdecode extends PanelCustom {
 
 
 
-    public RSAdecode() {
+    public TextNumTextdecode() {
         initComponents();
         setAlpha(1);
         TxtInput.setLineWrap(true);
@@ -77,7 +79,7 @@ public class RSAdecode extends PanelCustom {
             }
         });
 
-        Title.setText("RSA DECRYPTION");
+        Title.setText("TextNumText DECRYPTION");
         Title.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         Load.setText("LOAD");
@@ -129,21 +131,16 @@ public class RSAdecode extends PanelCustom {
             Notifications.getInstance().show(Notifications.Type.ERROR, Notifications.Location.TOP_LEFT, "Please enter your text");
         }
         else {
-             if(RSAShow.logic==null){
-                 MessageAlerts.getInstance().showMessage("DATA SERVER ERROR", "Error while loading RSA. We are sorry for this unwanted error. You are requested to try again or You can contact with admin. Thank you.", MessageAlerts.MessageType.ERROR);
-             }
-             else {
-                
-                 String output= null;
-                 try {
-                     output = RSAShow.logic.decrypt(TxtInput.getText());
-                 } catch (Exception e) {
-                     MessageAlerts.getInstance().showMessage("DECRYPTION ERROR", "Error while decrypting the input. Please ensure the input is correctly formatted.", MessageAlerts.MessageType.ERROR);
-                     return;
-                 }
+            
+        
 
-                 TxtOut.setText(output);
-             }
+        // Encode the text into a single numerical value
+        long encodedValue = Long.parseLong(TxtInput.getText().trim());
+        
+
+        // Decode the numerical value back into text
+        String decodedText = decode(encodedValue);
+        TxtOut.setText(decodedText);
         
         }
     }//GEN-LAST:event_ConvertActionPerformed

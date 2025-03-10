@@ -35,6 +35,8 @@ public class Menu extends JPanel {
         {"One Time Pad"},
             {"Blow Fish"},
             {"Base64"},
+            {"ROT13"},
+            {"TextNumText"},
         {"~Others~"},
         {"Settings"},
         {"About us"},
